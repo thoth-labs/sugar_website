@@ -295,8 +295,8 @@
     }
   },
   {
-    "id": "biscuit-sec",
-    "name": "Biscuit sec (petit-beurre)",
+    "id": "biscuit-sable",
+    "name": "Biscuit sablé",
     "emoji": "🍪",
     "category": "sucres",
     "ig": 55,
@@ -939,6 +939,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "figue-fraiche",
+    "name": "Figue fraîche",
+    "emoji": "🍇",
+    "category": "fruits",
+    "ig": 35,
+    "glucose": 6,
+    "fructose": 6.2,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 13.5,
+    "proteines": 1.2,
+    "lipides": 0,
+    "fibres": 4.1,
+    "calories": 69.4,
+    "portion": {
+      "g": 50,
+      "label": "1 figue"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "13012",
+      "url": "https://ciqual.anses.fr/#/aliments/13012/figue-crue"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "figue-seche",
     "name": "Figue sèche",
     "emoji": "🍇",
@@ -1116,7 +1143,7 @@
     "fibres": 0.1,
     "calories": 163,
     "portion": {
-      "g": 70,
+      "g": 120,
       "label": "1 cornet"
     },
     "source": {
@@ -2559,7 +2586,7 @@
     "name": "Sucre blanc",
     "emoji": "🍬",
     "category": "sucres",
-    "ig": 100,
+    "ig": 65,
     "glucose": 0,
     "fructose": 0,
     "saccharose": 99.8,
@@ -2586,7 +2613,7 @@
     "name": "Sucre roux",
     "emoji": "🍬",
     "category": "sucres",
-    "ig": 70,
+    "ig": 65,
     "glucose": 1.4,
     "fructose": 1.1,
     "saccharose": 94.6,
