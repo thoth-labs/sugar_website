@@ -2742,33 +2742,6 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
-    "id": "vin-rouge",
-    "name": "Vin rouge",
-    "emoji": "🍷",
-    "category": "boissons",
-    "ig": 0,
-    "glucose": 0.1,
-    "fructose": 0,
-    "saccharose": 0,
-    "lactose": 0,
-    "maltose": 0,
-    "glucides": 2.6,
-    "proteines": 0.1,
-    "lipides": 0,
-    "fibres": 0,
-    "calories": 82.1,
-    "alcool": 10.2,
-    "portion": {
-      "g": 125,
-      "label": "1 verre"
-    },
-    "source": {
-      "name": "CIQUAL 2020",
-      "ref": "5214",
-      "url": "https://ciqual.anses.fr/#/aliments/5214/vin-rouge"
-    }
-  },
-  {
     "id": "yaourt-nature",
     "name": "Yaourt nature",
     "emoji": "🫙",
