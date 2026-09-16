@@ -5,6 +5,7 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&
 
 let foods = [];
 let nutrients = [];
+let tabKeysBound = false;
 const state = { n: "", sort: "desc", q: "", u: "100g", cmp: [] };
 const current = () => nutrients.find((n) => n.key === state.n);
 
@@ -25,6 +26,7 @@ function renderTabs() {
     `<div class="tab-separator"></div>` +
     `<span class="tab-section-label">📊 Macronutriments</span>` + macro.map(tabHTML).join("");
   $("tabs").querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => selectTab(t.dataset.key)));
+  if (!tabKeysBound) { $("tabs").addEventListener("keydown", onTabKey); tabKeysBound = true; }
 }
 
 function selectTab(key) {
@@ -32,6 +34,17 @@ function selectTab(key) {
   state.sort = "desc";
   sync();
   renderAll();
+}
+
+function onTabKey(e) {
+  const keys = nutrients.map((n) => n.key);
+  const i = keys.indexOf(state.n);
+  const map = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: keys.length - 1 };
+  if (!(e.key in map)) return;
+  e.preventDefault();
+  const next = keys[(map[e.key] + keys.length) % keys.length];
+  selectTab(next);
+  $("tabs").querySelector(`[data-key="${next}"]`).focus();
 }
 
 function renderBanner() {
@@ -122,6 +135,7 @@ function renderGrid() {
     ? data.map((f, i) => cardHTML(f, i, n, maxVal, others)).join("")
     : `<div class="empty"><div class="empty-icon">🔍</div><h3>Aucun aliment trouvé</h3></div>`;
   $("grid").querySelectorAll("[data-cmp]").forEach((b) => b.addEventListener("click", () => toggleCompare(b.dataset.cmp)));
+  $("status").textContent = `${data.length} aliment${data.length > 1 ? "s" : ""}, ${state.sort === "desc" ? "du plus riche au moins riche" : "du moins riche au plus riche"} en ${n.label.toLowerCase()}`;
 }
 
 function toggleCompare(id) {
