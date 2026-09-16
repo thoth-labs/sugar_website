@@ -1878,3 +1878,148 @@ EOF
 ```
 
 Merging to `main` is the user's call: it publishes to sugar.thoth.fr.
+
+---
+
+## Task 15: Alcohol field, beer and wine, data corrections (added during execution)
+
+**Why:** Task 7 could not add bière blonde or vin rouge because alcohol carries 7 kcal/g and no field represents it, so the validator's calorie rule rejects every alcoholic record. The hero advertises "Bière contient du maltose". Also from the Task 7 review: `biscuit-sec` is sourced from USDA shortbread but named "petit-beurre"; `sucre-blanc` ig 100 is the glucose value, not sucrose.
+
+**Files:**
+- Modify: `scripts/validate.mjs`, `test/validate.test.mjs`, `assets/lib.js`, `test/lib.test.mjs`, `scripts/build.mjs`, `test/build.test.mjs`, `data/foods.json`, `data/nutrients.json`
+- Regenerate: `aliment/`, `nutriment/`, `comprendre.html`, `sitemap.xml`
+
+**Interfaces:**
+- Produces: optional food field `alcool` (g/100 g, number ≥ 0). Calorie estimate becomes `4·proteines + 4·glucides + 2·fibres + 9·lipides + 7·(alcool ?? 0)`. `scale()` scales `alcool` when present. Food pages show a note when `alcool > 0`.
+
+- [ ] **Step 1: Validator (test first)**
+
+Append to `test/validate.test.mjs`:
+
+```js
+test("alcool counts 7 kcal/g in the calorie estimate", () => {
+  const beer = food({ glucose: 0, fructose: 0, saccharose: 0, lactose: 0, maltose: 0.5, glucides: 3, proteines: 0.5, lipides: 0, fibres: 0, alcool: 4, calories: 43 });
+  assert.deepEqual(validateFood(beer, 0), []);
+  const noAlcool = { ...beer }; delete noAlcool.alcool;
+  assert.match(validateFood(noAlcool, 0).join(), /calories/);
+});
+test("alcool must be a finite number >= 0 when present", () => {
+  assert.match(validateFood(food({ alcool: -1 }), 0).join(), /alcool/);
+});
+```
+
+Run `npm test` → both fail. Then in `scripts/validate.mjs` `validateFood`:
+- after the `NUTRIENT_KEYS` loop add: `if (f.alcool !== undefined && !isNum(f.alcool)) p.push(`${tag}: alcool must be a finite number >= 0 when present`);`
+- change the estimate to: `const est = 4 * f.proteines + 4 * f.glucides + 2 * f.fibres + 9 * f.lipides + 7 * (isNum(f.alcool) ? f.alcool : 0);`
+
+Run `npm test` → green.
+
+- [ ] **Step 2: lib scale (test first)**
+
+Append to `test/lib.test.mjs`:
+
+```js
+test("scale also scales alcool when present", () => {
+  const beer = { ...foods[0], alcool: 4, portion: { g: 250, label: "1 demi" } };
+  assert.equal(scale(beer, "portion").alcool, 10);
+  assert.equal(scale(foods[0], "portion").alcool, undefined);
+});
+```
+
+In `assets/lib.js` `scale()`, after the loop: `if (typeof food.alcool === "number") out.alcool = Math.round(food.alcool * k * 10) / 10;`
+
+- [ ] **Step 3: Food page note (test first)**
+
+In `test/build.test.mjs`, add to the `foods` fixture a third food `{ id: "biere", name: "Bière", emoji: "🍺", category: "boissons", ig: 0, glucose: 0, fructose: 0, saccharose: 0, lactose: 0, maltose: 0.5, glucides: 3, proteines: 0.5, lipides: 0, fibres: 0, alcool: 4, calories: 43, portion: { g: 250, label: "1 demi" }, source: { name: "CIQUAL 2020", ref: "5000", url: "https://ciqual.anses.fr/#/aliments/5000/biere" } }`, update the expected `written` list (add `aliment/biere/index.html`) and assert `fs.readFileSync(path.join(outDir, "aliment/biere/index.html"), "utf8")` matches `/4\.0 g d'alcool/` and that `aliment/miel/index.html` does not match `/alcool/`.
+
+In `scripts/build.mjs` `foodPage`, after the `</table>`: `${f.alcool > 0 ? `<p class="note">Contient aussi ${f.alcool.toFixed(1)} g d'alcool pour 100 g (7 kcal/g), inclus dans les calories.</p>` : ""}`.
+
+- [ ] **Step 4: Data**
+
+Using the datasets and helpers in the worktree `.tmp/` (or re-download per Task 6), add:
+- `biere-blonde` — "Bière blonde", 🍺, boissons, portion 250 g "1 demi". CIQUAL 2020 (alcool constituent code 60000) or USDA SR Legacy "Alcoholic beverage, beer, regular, all" (nutrient 1018 = alcohol, ethyl). Record `alcool` from the source.
+- `vin-rouge` — "Vin rouge", 🍷, boissons, portion 125 g "1 verre". CIQUAL 2020 or USDA "Alcoholic beverage, wine, table, red".
+- Rename `biscuit-sec` → id `biscuit-sable`, name "Biscuit sablé" (keep the USDA shortbread source); update any `surprises` reference. Keep the file sorted by id.
+- Set `sucre-blanc.ig` and `sucre-roux.ig` to `65` (`igSource` stays "Tables publiques (valeur indicative)").
+- If `biere-blonde.maltose > 0`, consider it for the `maltose` surprises list.
+
+Run `npm run validate` → `103 aliments, 11 nutriments, 0 problème(s), 0 source(s) à vérifier`; `npm test` green; `npm run build`.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add scripts/validate.mjs test/validate.test.mjs assets/lib.js test/lib.test.mjs scripts/build.mjs test/build.test.mjs data aliment nutriment comprendre.html sitemap.xml
+git commit -m "Add optional alcohol field; add beer and wine; fix biscuit name and sugar IG
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+```
+
+---
+
+## Task 16: Rename to Sugar, remove dashes from copy, docs (added during execution)
+
+**Why:** User instructions during execution: the site is now called **Sugar** (exact casing), and no dashes are used as punctuation inside sentences. Also fixes the glucides description, which wrongly says fibres are included.
+
+**Files:**
+- Modify: `index.html`, `data/config.json`, `data/nutrients.json`, `test/data.test.mjs`, `scripts/template.mjs`, `scripts/build.mjs`, `README.md`, `package.json`, `CLAUDE.md`
+- Regenerate: `aliment/`, `nutriment/`, `comprendre.html`, `sitemap.xml`
+
+- [ ] **Step 1: Guard test (test first)**
+
+Append to `test/data.test.mjs`:
+
+```js
+test("no dashes used as punctuation in nutrient copy", () => {
+  for (const n of nutrients) {
+    assert.doesNotMatch(n.desc, /[—–]| - /, `${n.key}.desc`);
+    assert.doesNotMatch(n.label, /[—–]/, `${n.key}.label`);
+  }
+});
+```
+
+and change the config assertion to `assert.equal(config.siteName, "Sugar");`. Run `npm test` → fails.
+
+- [ ] **Step 2: Nutrient copy** (`data/nutrients.json`, exact new `desc` values)
+
+- glucose: `Le glucose est absorbé directement dans le sang : c'est le sucre qui fait monter la glycémie le plus vite. Présent dans les fruits, le miel, mais aussi en traces dans le pain et les produits céréaliers.`
+- fructose: `Le fructose est le sucre des fruits. Il est métabolisé par le foie (pas par les muscles), donc il n'augmente pas directement la glycémie, mais en excès il surcharge le foie. Le miel et les fruits en sont riches.`
+- lactose: `Le lactose est le sucre du lait (glucose + galactose). Présent presque exclusivement dans les produits laitiers animaux, et en traces dans quelques aliments transformés. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.`
+- glucides: `Les glucides totaux regroupent les sucres et l'amidon (les fibres sont comptées à part). C'est la principale source d'énergie. Présents partout : céréales, fruits, légumineuses, et même dans les légumes.`
+- proteines: `Indispensables aux muscles et tissus. Les viandes en sont riches, mais aussi l'avoine, les légumineuses, le fromage ou même le pain, souvent méconnus comme sources protéiques.`
+- lipides: `Les graisses sont essentielles au cerveau, aux hormones et à l'absorption des vitamines liposolubles. Pas toutes mauvaises : celles du saumon, des noix ou de l'avocat sont bénéfiques.`
+- calories: `L'énergie apportée par un aliment. Les graisses : 9 kcal/g. Glucides et protéines : 4 kcal/g. Le beurre est 45 fois plus calorique que la tomate, à garder en tête pour les portions.`
+- ig: `L'IG mesure la vitesse de montée de la glycémie après ingestion, de 0 à 100. IG inférieur à 55 : lent. IG supérieur à 70 : rapide. La cuisson, la transformation et la finesse de mouture augmentent l'IG, même pour la carotte cuite !`
+- saccharose, maltose, fibres: unchanged unless they contain a dash.
+
+- [ ] **Step 3: App shell** (`index.html`)
+
+- `<title>Sugar : ce que contient vraiment votre assiette</title>`; same text for `og:title`; `og:site_name` = `Sugar`.
+- meta description: `Classez plus de 100 aliments par glucose, fructose, saccharose, lactose, maltose, glucides, protéines, lipides, fibres, calories et index glycémique. Valeurs pour 100 g, sources CIQUAL et USDA.`
+- og:description: `Types de sucres, macronutriments et index glycémique de plus de 100 aliments, classés et comparés.`
+- logo: `<div class="logo">Sugar</div>`
+- header-sub: `Tout aliment contient tout. Voyons combien.`
+- hero p: `Nutriments, types de sucres, index glycémique : classez tout, découvrez les surprises.`
+- hero pill for beer: keep `🍺 Bière contient du maltose` only if `biere-blonde.maltose > 0` in `data/foods.json`; otherwise replace with `🥖 Baguette contient du maltose` (check `baguette.maltose > 0`; if also 0, use `🌾 Avoine contient du maltose`).
+- footer: `Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : Université de Sydney`
+
+- [ ] **Step 4: Config, template, build**
+
+- `data/config.json`: `"siteName": "Sugar"`.
+- `scripts/template.mjs`: logo `<a class="logo" href="/">Sugar</a>`; footer as above.
+- `scripts/build.mjs`: every ` — ${config.siteName}` in titles becomes ` | ${config.siteName}`; crumbs `<a href="/">NutriBase</a>` → `<a href="/">${esc(config.siteName)}</a>`; comprendre lead `chaque onglet de NutriBase` → `chaque onglet de ${esc(config.siteName)}`; `grep -n "—\|NutriBase" scripts/*.mjs` must return nothing.
+- `package.json`: `"name": "sugar"`, description `Ce que contient vraiment votre assiette : sucres, macronutriments, index glycémique.`
+
+- [ ] **Step 5: README and CLAUDE.md**
+
+`README.md`: title `# Sugar`, replace every ` — ` (use `:` or a new sentence, and `` `dir/` : description`` for the structure list), food count "plus de 100 aliments". `CLAUDE.md`: rewrite per Task 14 Step 4 (data-driven architecture, scripts, generated files committed, URL state keys, robots rule, `id` as identifier), name "Sugar", no dashes.
+
+- [ ] **Step 6: Verify and commit**
+
+`grep -rn "NutriBase" --include=*.html --include=*.json --include=*.md --include=*.mjs . | grep -v "^./docs\|^./.superpowers\|^./.claude\|^./.tmp\|^./aliment\|^./nutriment"` → nothing. `grep -n "—" index.html README.md package.json data/nutrients.json scripts/*.mjs` → nothing. `npm run check` green; `git status --porcelain` shows only intended files after build.
+
+```bash
+git add -A -- index.html data test scripts README.md package.json CLAUDE.md aliment nutriment comprendre.html sitemap.xml
+git commit -m "Rename site to Sugar, remove dashes from copy, update docs
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+```
