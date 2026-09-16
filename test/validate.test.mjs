@@ -55,3 +55,4 @@ test("nutrient needs 6 surprises and a hex color", () => {
   assert.match(p, /at least 6 surprises/);
   assert.match(p, /hex color/);
 });
+test("nutrient key must be lowercase letters", () => assert.match(validateData({ foods: sixFoods, nutrients: [nutrient({ key: "Glu-cose" })] }).join(), /key must match/));
