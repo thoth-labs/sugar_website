@@ -56,3 +56,13 @@ test("nutrient needs 6 surprises and a hex color", () => {
   assert.match(p, /hex color/);
 });
 test("nutrient key must be lowercase letters", () => assert.match(validateData({ foods: sixFoods, nutrients: [nutrient({ key: "Glu-cose" })] }).join(), /key must match/));
+
+test("alcool counts 7 kcal/g in the calorie estimate", () => {
+  const beer = food({ glucose: 0, fructose: 0, saccharose: 0, lactose: 0, maltose: 0.5, glucides: 3, proteines: 0.5, lipides: 0, fibres: 0, alcool: 4, calories: 43 });
+  assert.deepEqual(validateFood(beer, 0), []);
+  const noAlcool = { ...beer }; delete noAlcool.alcool;
+  assert.match(validateFood(noAlcool, 0).join(), /calories/);
+});
+test("alcool must be a finite number >= 0 when present", () => {
+  assert.match(validateFood(food({ alcool: -1 }), 0).join(), /alcool/);
+});

@@ -26,7 +26,7 @@ function foodPage(f, nutrients, config) {
 <tbody>
 ${rows}
 </tbody>
-</table>
+</table>${f.alcool > 0 ? `<p class="note">Contient aussi ${f.alcool.toFixed(1)} g d'alcool pour 100 g (7 kcal/g), inclus dans les calories.</p>` : ""}
 ${total > 0 ? `<h2>Répartition des sucres</h2><ul class="sugar-list">${chips}</ul>` : `<h2>Sucres</h2><p>Cet aliment ne contient pas de sucres.</p>`}
 <h2>Source</h2>
 <p>${esc(f.source.name)}, fiche <a href="${esc(f.source.url)}" rel="noopener">${esc(f.source.ref)}</a>.${f.igSource ? ` Index glycémique : ${esc(f.igSource)}.` : ""}</p>

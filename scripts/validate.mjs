@@ -21,11 +21,12 @@ export function validateFood(f, i) {
   if (!isStr(f.emoji) || EMOJI_BLOCKLIST.includes(f.emoji)) p.push(`${tag}: emoji missing or blocked`);
   if (!CATEGORIES.includes(f.category)) p.push(`${tag}: category "${f.category}" not in ${CATEGORIES.join("|")}`);
   for (const k of NUTRIENT_KEYS) if (!isNum(f[k])) p.push(`${tag}: ${k} must be a finite number >= 0`);
+  if (f.alcool !== undefined && !isNum(f.alcool)) p.push(`${tag}: alcool must be a finite number >= 0 when present`);
   if (isNum(f.ig) && f.ig > 100) p.push(`${tag}: ig must be 0-100`);
   if (NUTRIENT_KEYS.every((k) => isNum(f[k]))) {
     const sugars = SUGAR_KEYS.reduce((s, k) => s + f[k], 0);
     if (sugars > f.glucides + 0.5) p.push(`${tag}: sugars ${sugars.toFixed(1)} exceed glucides ${f.glucides}`);
-    const est = 4 * f.proteines + 4 * f.glucides + 2 * f.fibres + 9 * f.lipides;
+    const est = 4 * f.proteines + 4 * f.glucides + 2 * f.fibres + 9 * f.lipides + 7 * (isNum(f.alcool) ? f.alcool : 0);
     if (f.calories >= 20 && Math.abs(f.calories - est) > 0.2 * est) p.push(`${tag}: calories ${f.calories} differ >20% from estimate ${est.toFixed(0)}`);
   }
   if (!f.portion || !isNum(f.portion.g) || f.portion.g < 1 || f.portion.g > 1000 || !isStr(f.portion.label)) p.push(`${tag}: portion must be {g: 1-1000, label}`);

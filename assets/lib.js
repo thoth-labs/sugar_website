@@ -44,6 +44,7 @@ export function scale(food, unit) {
     if (key === "ig") continue;
     out[key] = Math.round(food[key] * k * 10) / 10;
   }
+  if (typeof food.alcool === "number") out.alcool = Math.round(food.alcool * k * 10) / 10;
   return out;
 }
 

@@ -69,3 +69,8 @@ test("writeState omits defaults and round-trips", () => {
   const qs = writeState(s, nuts);
   assert.deepEqual(readState(qs, nuts), s);
 });
+test("scale also scales alcool when present", () => {
+  const beer = { ...foods[0], alcool: 4, portion: { g: 250, label: "1 demi" } };
+  assert.equal(scale(beer, "portion").alcool, 10);
+  assert.equal(scale(foods[0], "portion").alcool, undefined);
+});

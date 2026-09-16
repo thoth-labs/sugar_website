@@ -295,6 +295,33 @@
     }
   },
   {
+    "id": "biere-blonde",
+    "name": "Bière blonde",
+    "emoji": "🍺",
+    "category": "boissons",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 3.6,
+    "proteines": 0.5,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 43,
+    "alcool": 3.9,
+    "portion": {
+      "g": 250,
+      "label": "1 demi"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "168746",
+      "url": "https://fdc.nal.usda.gov/food-details/168746/nutrients"
+    }
+  },
+  {
     "id": "biscuit-sable",
     "name": "Biscuit sablé",
     "emoji": "🍪",
@@ -2713,6 +2740,33 @@
       "url": "https://fdc.nal.usda.gov/food-details/170457/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "vin-rouge",
+    "name": "Vin rouge",
+    "emoji": "🍷",
+    "category": "boissons",
+    "ig": 0,
+    "glucose": 0.1,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 2.6,
+    "proteines": 0.1,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 82.1,
+    "alcool": 10.2,
+    "portion": {
+      "g": 125,
+      "label": "1 verre"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "5214",
+      "url": "https://ciqual.anses.fr/#/aliments/5214/vin-rouge"
+    }
   },
   {
     "id": "yaourt-nature",
