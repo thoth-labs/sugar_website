@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { normalize, slugify, filterFoods, sortFoods, totalSugars, valueOf, otherNutrients, scale } from "../assets/lib.js";
+import { readState, writeState } from "../assets/lib.js";
 
 const foods = [
   { id: "epinard", name: "Épinard", glucose: 0.1, fructose: 0.1, saccharose: 0.1, lactose: 0, maltose: 0, glucides: 3.6, proteines: 2.9, lipides: 0.4, fibres: 2.2, calories: 23, ig: 15, portion: { g: 100, label: "1 portion" } },
@@ -53,4 +54,18 @@ test("scale per portion rounds to 0.1 and leaves ig alone", () => {
   assert.equal(s.ig, 58);
   assert.equal(foods[2].glucose, 33.5);
   assert.deepEqual(scale(foods[2], "100g"), foods[2]);
+});
+test("readState defaults and parses", () => {
+  const nuts = [{ key: "glucose" }, { key: "fibres" }];
+  assert.deepEqual(readState("", nuts), { n: "glucose", sort: "desc", q: "", u: "100g", cmp: [] });
+  assert.deepEqual(readState("?n=fibres&sort=asc&q=pom&u=portion&cmp=a,b,c", nuts), { n: "fibres", sort: "asc", q: "pom", u: "portion", cmp: ["a", "b"] });
+  assert.equal(readState("?n=unknown", nuts).n, "glucose");
+  assert.equal(readState("?sort=weird&u=weird", nuts).sort, "desc");
+});
+test("writeState omits defaults and round-trips", () => {
+  const nuts = [{ key: "glucose" }, { key: "fibres" }];
+  assert.equal(writeState({ n: "glucose", sort: "desc", q: "", u: "100g", cmp: [] }, nuts), "");
+  const s = { n: "fibres", sort: "asc", q: "pâte", u: "portion", cmp: ["a", "b"] };
+  const qs = writeState(s, nuts);
+  assert.deepEqual(readState(qs, nuts), s);
 });

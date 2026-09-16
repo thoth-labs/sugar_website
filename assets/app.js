@@ -1,12 +1,16 @@
-import { filterFoods, sortFoods, otherNutrients, valueOf } from "./lib.js";
+import { filterFoods, sortFoods, otherNutrients, valueOf, readState, writeState } from "./lib.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 let foods = [];
 let nutrients = [];
-const state = { n: "", sort: "desc", q: "" };
+const state = { n: "", sort: "desc", q: "", u: "100g", cmp: [] };
 const current = () => nutrients.find((n) => n.key === state.n);
+
+function sync() {
+  history.replaceState(null, "", location.pathname + writeState(state, nutrients));
+}
 
 function tabHTML(n) {
   const active = n.key === state.n;
@@ -26,6 +30,7 @@ function renderTabs() {
 function selectTab(key) {
   state.n = key;
   state.sort = "desc";
+  sync();
   renderAll();
 }
 
@@ -51,6 +56,7 @@ function renderPills() {
   $("sortPills").innerHTML = pill("desc", "↓ Plus riche") + pill("asc", "↑ Moins riche");
   $("sortPills").querySelectorAll("[data-sort]").forEach((p) => p.addEventListener("click", () => {
     state.sort = p.dataset.sort;
+    sync();
     renderPills();
     renderGrid();
   }));
@@ -117,9 +123,11 @@ async function main() {
   ]);
   foods = f;
   nutrients = n;
-  state.n = nutrients[0].key;
+  Object.assign(state, readState(location.search, nutrients));
+  $("searchInput").value = state.q;
   $("searchInput").addEventListener("input", (e) => {
     state.q = e.target.value;
+    sync();
     renderGrid();
   });
   renderAll();
