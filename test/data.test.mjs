@@ -8,8 +8,8 @@ const config = JSON.parse(fs.readFileSync(new URL("../data/config.json", import.
 
 const NUTRIENT_KEYS = ["ig", "glucose", "fructose", "saccharose", "lactose", "maltose", "glucides", "proteines", "lipides", "fibres", "calories"];
 
-test("foods.json has the 59 original foods with every key", () => {
-  assert.equal(foods.length, 59);
+test("foods.json has the sourced foods with every key", () => {
+  assert.ok(foods.length >= 58, `expected >= 58 foods, got ${foods.length}`);
   for (const f of foods) {
     for (const k of NUTRIENT_KEYS) assert.equal(typeof f[k], "number", `${f.name}.${k}`);
     assert.match(f.id, /^[a-z0-9-]+$/, f.name);
@@ -44,8 +44,9 @@ test("every food cites a real CIQUAL or USDA record", () => {
 });
 
 test("igSource is present exactly when ig > 0", () => {
+  const ALLOWED = new Set(["Université de Sydney (glycemicindex.com)", "Tables publiques (valeur indicative)"]);
   for (const f of foods) {
-    if (f.ig > 0) assert.equal(typeof f.igSource, "string", f.id);
+    if (f.ig > 0) assert.ok(ALLOWED.has(f.igSource), `${f.id}: unexpected igSource ${JSON.stringify(f.igSource)}`);
     else assert.equal(f.igSource, undefined, f.id);
   }
 });

@@ -26,11 +26,11 @@
     "desc": "Le fructose est le sucre des fruits. Il est métabolisé par le foie (pas par les muscles), donc il n'augmente pas directement la glycémie — mais en excès il surcharge le foie. Le miel et les fruits en sont riches.",
     "surprises": [
       "miel",
-      "miel-d-acacia",
       "raisin",
       "dattes",
       "confiture",
-      "poire"
+      "poire",
+      "soda-cola"
     ]
   },
   {
@@ -57,14 +57,14 @@
     "color": "#7c3aed",
     "unit": "g",
     "isSugar": true,
-    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent essentiellement dans les produits laitiers animaux, et en traces dans tout aliment qui en contient. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
+    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent presque exclusivement dans les produits laitiers animaux — et en traces dans quelques aliments transformés. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
     "surprises": [
       "lait-entier",
       "yaourt-nature",
       "fromage-blanc",
       "chocolat-au-lait",
       "beurre",
-      "confiture"
+      "brocoli"
     ]
   },
   {

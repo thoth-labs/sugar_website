@@ -832,33 +832,6 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
-    "id": "miel-d-acacia",
-    "name": "Miel d'acacia",
-    "emoji": "🍯",
-    "category": "sucres",
-    "ig": 50,
-    "glucose": 35.8,
-    "fructose": 40.9,
-    "saccharose": 0.9,
-    "lactose": 0,
-    "maltose": 1.4,
-    "glucides": 82.2,
-    "proteines": 0.3,
-    "lipides": 0,
-    "fibres": 0.2,
-    "calories": 304,
-    "portion": {
-      "g": 20,
-      "label": "1 c. à soupe"
-    },
-    "source": {
-      "name": "USDA FoodData Central",
-      "ref": "169640",
-      "url": "https://fdc.nal.usda.gov/food-details/169640/nutrients"
-    },
-    "igSource": "Tables publiques (valeur indicative)"
-  },
-  {
     "id": "myrtille",
     "name": "Myrtille",
     "emoji": "🫐",
