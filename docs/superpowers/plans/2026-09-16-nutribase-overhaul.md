@@ -1939,11 +1939,10 @@ In `scripts/build.mjs` `foodPage`, after the `</table>`: `${f.alcool > 0 ? `<p c
 Using the datasets and helpers in the worktree `.tmp/` (or re-download per Task 6), add:
 - `biere-blonde` — "Bière blonde", 🍺, boissons, portion 250 g "1 demi". CIQUAL 2020 (alcool constituent code 60000) or USDA SR Legacy "Alcoholic beverage, beer, regular, all" (nutrient 1018 = alcohol, ethyl). Record `alcool` from the source.
 - `vin-rouge` — "Vin rouge", 🍷, boissons, portion 125 g "1 verre". CIQUAL 2020 or USDA "Alcoholic beverage, wine, table, red".
-- Rename `biscuit-sec` → id `biscuit-sable`, name "Biscuit sablé" (keep the USDA shortbread source); update any `surprises` reference. Keep the file sorted by id.
-- Set `sucre-blanc.ig` and `sucre-roux.ig` to `65` (`igSource` stays "Tables publiques (valeur indicative)").
+- (The biscuit rename and the sugar IG fix moved into Task 7's fix round; nothing to do here.)
 - If `biere-blonde.maltose > 0`, consider it for the `maltose` surprises list.
 
-Run `npm run validate` → `103 aliments, 11 nutriments, 0 problème(s), 0 source(s) à vérifier`; `npm test` green; `npm run build`.
+Run `npm run validate` → `104 aliments, 11 nutriments, 0 problème(s), 0 source(s) à vérifier`; `npm test` green; `npm run build`.
 
 - [ ] **Step 5: Commit**
 
