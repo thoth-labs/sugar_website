@@ -47,6 +47,7 @@ export function validateData({ foods, nutrients }) {
   for (const n of nutrients) {
     const tag = `nutrient "${n?.key}"`;
     if (!isStr(n?.key) || !isStr(n.label) || !isStr(n.emoji) || !isStr(n.unit) || typeof n.isSugar !== "boolean" || !isStr(n.desc)) p.push(`${tag}: key, label, emoji, unit, isSugar, desc required`);
+    if (!/^[a-z]+$/.test(n?.key ?? "")) p.push(`${tag}: key must match /^[a-z]+$/`);
     if (!HEX_RE.test(n?.color ?? "")) p.push(`${tag}: color must be a 6-digit hex color`);
     if (!Array.isArray(n?.surprises) || n.surprises.length < 6) p.push(`${tag}: needs at least 6 surprises`);
     for (const id of n?.surprises ?? []) {

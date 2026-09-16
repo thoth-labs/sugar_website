@@ -2,24 +2,24 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { layout, esc } from "./template.mjs";
-import { sortFoods, scale, totalSugars, valueOf, SUGAR_KEYS } from "../assets/lib.js";
+import { sortFoods, scale, totalSugars } from "../assets/lib.js";
 
 const fmt = (v, unit) => {
   if (unit === "kcal") return `${Math.round(v)} kcal`;
   if (unit === "/100") return `${Math.round(v)}`;
-  return `${Number(v).toFixed(1)} ${unit}`;
+  return `${Number(v).toFixed(1)} ${esc(unit)}`;
 };
 
 function foodPage(f, nutrients, config) {
   const per = scale(f, "portion");
   const sugars = nutrients.filter((n) => n.isSugar);
   const total = totalSugars(f);
-  const rows = nutrients.map((n) => `<tr><th scope="row"><a href="/nutriment/${n.key}/">${n.emoji} ${esc(n.label)}</a></th><td>${fmt(f[n.key], n.unit)}</td><td>${n.key === "ig" ? "—" : fmt(per[n.key], n.unit)}</td></tr>`).join("\n");
+  const rows = nutrients.map((n) => `<tr><th scope="row"><a href="/nutriment/${n.key}/">${esc(n.emoji)} ${esc(n.label)}</a></th><td>${fmt(f[n.key], n.unit)}</td><td>${n.key === "ig" ? "—" : fmt(per[n.key], n.unit)}</td></tr>`).join("\n");
   const chips = sugars.filter((n) => f[n.key] > 0).map((n) => `<li><a href="/nutriment/${n.key}/">${esc(n.label)}</a> : ${f[n.key].toFixed(1)} g (${Math.round((f[n.key] / total) * 100)} %)</li>`).join("\n");
   const body = `
 <article class="food-page">
 <p class="crumbs"><a href="/">NutriBase</a> › ${esc(f.category)}</p>
-<h1><span class="big-emoji">${f.emoji}</span> ${esc(f.name)}</h1>
+<h1><span class="big-emoji">${esc(f.emoji)}</span> ${esc(f.name)}</h1>
 <p class="lead">${esc(f.name)} apporte ${f.calories} kcal, ${f.glucides.toFixed(1)} g de glucides dont ${total.toFixed(1)} g de sucres, ${f.proteines.toFixed(1)} g de protéines et ${f.lipides.toFixed(1)} g de lipides pour 100 g.${f.ig > 0 ? ` Index glycémique : ${f.ig}.` : ""}</p>
 <table class="nutri-table">
 <thead><tr><th>Nutriment</th><th>Pour 100 g</th><th>Par portion (${esc(f.portion.label)}, ${f.portion.g} g)</th></tr></thead>
@@ -37,11 +37,11 @@ ${total > 0 ? `<h2>Répartition des sucres</h2><ul class="sugar-list">${chips}</
 
 function nutrientPage(n, foods, config) {
   const ranked = sortFoods(foods, n.key, "desc");
-  const items = ranked.map((f, i) => `<li${n.surprises.includes(f.id) && f[n.key] > 0 ? ' class="surprise-row"' : ""}><span class="rank">${i + 1}</span> <a href="/aliment/${f.id}/">${f.emoji} ${esc(f.name)}</a> <strong>${fmt(f[n.key], n.unit)}</strong></li>`).join("\n");
+  const items = ranked.map((f, i) => `<li${n.surprises.includes(f.id) && f[n.key] > 0 ? ' class="surprise-row"' : ""}><span class="rank">${i + 1}</span> <a href="/aliment/${f.id}/">${esc(f.emoji)} ${esc(f.name)}</a> <strong>${fmt(f[n.key], n.unit)}</strong></li>`).join("\n");
   const body = `
 <article class="nutrient-page" style="--tab-color:${n.color}">
 <p class="crumbs"><a href="/">NutriBase</a> › <a href="/comprendre.html">Comprendre</a></p>
-<h1><span class="big-emoji">${n.emoji}</span> ${esc(n.label)}</h1>
+<h1><span class="big-emoji">${esc(n.emoji)}</span> ${esc(n.label)}</h1>
 <p class="lead">${esc(n.desc)}</p>
 <h2>Classement des aliments (pour 100 g)</h2>
 <ol class="ranking">
@@ -54,8 +54,8 @@ ${items}
 
 function comprendrePage(nutrients, foods, config) {
   const section = (n) => {
-    const top = sortFoods(foods, n.key, "desc").slice(0, 3).map((f) => `<a href="/aliment/${f.id}/">${f.emoji} ${esc(f.name)}</a> (${fmt(f[n.key], n.unit)})`).join(", ");
-    return `<section id="${n.key}"><h2>${n.emoji} <a href="/nutriment/${n.key}/">${esc(n.label)}</a></h2><p>${esc(n.desc)}</p><p class="top3">Les plus riches : ${top}.</p></section>`;
+    const top = sortFoods(foods, n.key, "desc").slice(0, 3).map((f) => `<a href="/aliment/${f.id}/">${esc(f.emoji)} ${esc(f.name)}</a> (${fmt(f[n.key], n.unit)})`).join(", ");
+    return `<section id="${n.key}"><h2>${esc(n.emoji)} <a href="/nutriment/${n.key}/">${esc(n.label)}</a></h2><p>${esc(n.desc)}</p><p class="top3">Les plus riches : ${top}.</p></section>`;
   };
   const body = `
 <article class="comprendre">
