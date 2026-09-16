@@ -1,5 +1,59 @@
 [
   {
+    "id": "abricot",
+    "name": "Abricot",
+    "emoji": "🍑",
+    "category": "fruits",
+    "ig": 34,
+    "glucose": 2.4,
+    "fructose": 0.9,
+    "saccharose": 5.9,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 9.3,
+    "proteines": 1.4,
+    "lipides": 0.4,
+    "fibres": 2,
+    "calories": 48,
+    "portion": {
+      "g": 45,
+      "label": "1 abricot"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "171697",
+      "url": "https://fdc.nal.usda.gov/food-details/171697/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "abricot-sec",
+    "name": "Abricot sec",
+    "emoji": "🍑",
+    "category": "fruits",
+    "ig": 30,
+    "glucose": 33.1,
+    "fructose": 12.5,
+    "saccharose": 7.9,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 55.3,
+    "proteines": 3.4,
+    "lipides": 0.5,
+    "fibres": 7.3,
+    "calories": 241,
+    "portion": {
+      "g": 24,
+      "label": "3 abricots"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "173941",
+      "url": "https://fdc.nal.usda.gov/food-details/173941/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "amandes",
     "name": "Amandes",
     "emoji": "🌰",
@@ -107,6 +161,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "baguette",
+    "name": "Baguette",
+    "emoji": "🍞",
+    "category": "cereales",
+    "ig": 95,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 2.3,
+    "glucides": 58.3,
+    "proteines": 8.3,
+    "lipides": 1.4,
+    "fibres": 2.7,
+    "calories": 287,
+    "portion": {
+      "g": 50,
+      "label": "⅕ baguette"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "7001",
+      "url": "https://ciqual.anses.fr/#/aliments/7001/pain-baguette-courante"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "banane",
     "name": "Banane",
     "emoji": "🍌",
@@ -130,6 +211,33 @@
       "name": "USDA FoodData Central",
       "ref": "173944",
       "url": "https://fdc.nal.usda.gov/food-details/173944/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "barre-chocolatee",
+    "name": "Barre chocolatée",
+    "emoji": "🍫",
+    "category": "sucres",
+    "ig": 65,
+    "glucose": 0.9,
+    "fructose": 0.3,
+    "saccharose": 31.4,
+    "lactose": 9.4,
+    "maltose": 1.3,
+    "glucides": 50.9,
+    "proteines": 8.8,
+    "lipides": 34.2,
+    "fibres": 1.7,
+    "calories": 551,
+    "portion": {
+      "g": 50,
+      "label": "1 barre"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "31012",
+      "url": "https://ciqual.anses.fr/#/aliments/31012/barres-ou-confiserie-chocolatees-au-lait"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -187,6 +295,33 @@
     }
   },
   {
+    "id": "biscuit-sec",
+    "name": "Biscuit sec (petit-beurre)",
+    "emoji": "🍪",
+    "category": "sucres",
+    "ig": 55,
+    "glucose": 0.4,
+    "fructose": 0.3,
+    "saccharose": 21,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 74.7,
+    "proteines": 5.4,
+    "lipides": 14,
+    "fibres": 1.3,
+    "calories": 451,
+    "portion": {
+      "g": 25,
+      "label": "3 biscuits"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "174087",
+      "url": "https://fdc.nal.usda.gov/food-details/174087/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "boeuf-maigre",
     "name": "Bœuf (maigre)",
     "emoji": "🥩",
@@ -211,6 +346,33 @@
       "ref": "6105",
       "url": "https://ciqual.anses.fr/#/aliments/6105/boeuf-faux-filet-roti-cuit-au-four"
     }
+  },
+  {
+    "id": "boisson-energisante",
+    "name": "Boisson énergisante",
+    "emoji": "⚡",
+    "category": "boissons",
+    "ig": 70,
+    "glucose": 3.4,
+    "fructose": 1.6,
+    "saccharose": 5.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 10.2,
+    "proteines": 0.5,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 43,
+    "portion": {
+      "g": 250,
+      "label": "1 canette"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "173210",
+      "url": "https://fdc.nal.usda.gov/food-details/173210/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
   },
   {
     "id": "brocoli",
@@ -238,6 +400,59 @@
       "url": "https://fdc.nal.usda.gov/food-details/170379/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "cacahuete",
+    "name": "Cacahuète",
+    "emoji": "🥜",
+    "category": "oleagineux",
+    "ig": 14,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 4.9,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 12.9,
+    "proteines": 24.4,
+    "lipides": 49.7,
+    "fibres": 8.4,
+    "calories": 587,
+    "portion": {
+      "g": 30,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "173806",
+      "url": "https://fdc.nal.usda.gov/food-details/173806/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "camembert",
+    "name": "Camembert",
+    "emoji": "🧀",
+    "category": "laitiers",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 19.5,
+    "lipides": 22.5,
+    "fibres": 0,
+    "calories": 280,
+    "portion": {
+      "g": 30,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "12001",
+      "url": "https://ciqual.anses.fr/#/aliments/12001/camembert-sans-precision"
+    }
   },
   {
     "id": "carotte",
@@ -290,6 +505,33 @@
       "name": "USDA FoodData Central",
       "ref": "171719",
       "url": "https://fdc.nal.usda.gov/food-details/171719/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "champignon-de-paris",
+    "name": "Champignon de Paris",
+    "emoji": "🍄",
+    "category": "legumes",
+    "ig": 15,
+    "glucose": 1.5,
+    "fructose": 0.2,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 2.3,
+    "proteines": 3.1,
+    "lipides": 0.3,
+    "fibres": 1,
+    "calories": 22,
+    "portion": {
+      "g": 100,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169251",
+      "url": "https://fdc.nal.usda.gov/food-details/169251/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -348,6 +590,87 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "chou-fleur",
+    "name": "Chou-fleur",
+    "emoji": "🥦",
+    "category": "legumes",
+    "ig": 15,
+    "glucose": 0.9,
+    "fructose": 1,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 3,
+    "proteines": 1.9,
+    "lipides": 0.3,
+    "fibres": 2,
+    "calories": 25,
+    "portion": {
+      "g": 150,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169986",
+      "url": "https://fdc.nal.usda.gov/food-details/169986/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "clementine",
+    "name": "Clémentine",
+    "emoji": "🍊",
+    "category": "fruits",
+    "ig": 30,
+    "glucose": 2.1,
+    "fructose": 2.4,
+    "saccharose": 6.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 11.5,
+    "proteines": 0.8,
+    "lipides": 0.3,
+    "fibres": 1.8,
+    "calories": 53,
+    "portion": {
+      "g": 60,
+      "label": "1 clémentine"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169105",
+      "url": "https://fdc.nal.usda.gov/food-details/169105/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "compote-de-pomme",
+    "name": "Compote de pomme",
+    "emoji": "🍏",
+    "category": "fruits",
+    "ig": 40,
+    "glucose": 5.4,
+    "fructose": 7.9,
+    "saccharose": 6.7,
+    "lactose": 0,
+    "maltose": 0.5,
+    "glucides": 24.4,
+    "proteines": 0.2,
+    "lipides": 0.2,
+    "fibres": 1.5,
+    "calories": 102,
+    "portion": {
+      "g": 100,
+      "label": "1 pot"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "13038",
+      "url": "https://ciqual.anses.fr/#/aliments/13038/compote-de-pomme"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "confiture",
     "name": "Confiture",
     "emoji": "🫙",
@@ -398,6 +721,114 @@
       "name": "USDA FoodData Central",
       "ref": "174648",
       "url": "https://fdc.nal.usda.gov/food-details/174648/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "courge-butternut",
+    "name": "Courge butternut",
+    "emoji": "🎃",
+    "category": "legumes",
+    "ig": 51,
+    "glucose": 1,
+    "fructose": 1,
+    "saccharose": 0.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 9.7,
+    "proteines": 1,
+    "lipides": 0.1,
+    "fibres": 2,
+    "calories": 45,
+    "portion": {
+      "g": 150,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169295",
+      "url": "https://fdc.nal.usda.gov/food-details/169295/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "courgette",
+    "name": "Courgette",
+    "emoji": "🥒",
+    "category": "legumes",
+    "ig": 15,
+    "glucose": 1.1,
+    "fructose": 1.4,
+    "saccharose": 0.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 2.6,
+    "proteines": 1.2,
+    "lipides": 0.3,
+    "fibres": 1,
+    "calories": 17,
+    "portion": {
+      "g": 150,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169291",
+      "url": "https://fdc.nal.usda.gov/food-details/169291/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "creme-dessert-chocolat",
+    "name": "Crème dessert chocolat",
+    "emoji": "🍮",
+    "category": "laitiers",
+    "ig": 45,
+    "glucose": 0.6,
+    "fructose": 0.3,
+    "saccharose": 11,
+    "lactose": 4.5,
+    "maltose": 0,
+    "glucides": 19.9,
+    "proteines": 3.4,
+    "lipides": 3.9,
+    "fibres": 0.7,
+    "calories": 130,
+    "portion": {
+      "g": 125,
+      "label": "1 pot"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "39200",
+      "url": "https://ciqual.anses.fr/#/aliments/39200/creme-dessert-au-chocolat-rayon-frais"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "croissant",
+    "name": "Croissant",
+    "emoji": "🥐",
+    "category": "cereales",
+    "ig": 67,
+    "glucose": 2.7,
+    "fructose": 3.8,
+    "saccharose": 0,
+    "lactose": 0.2,
+    "maltose": 1.2,
+    "glucides": 47.6,
+    "proteines": 6.3,
+    "lipides": 21.1,
+    "fibres": 1.8,
+    "calories": 412,
+    "portion": {
+      "g": 45,
+      "label": "1 croissant"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "7615",
+      "url": "https://ciqual.anses.fr/#/aliments/7615/croissant-ordinaire-artisanal"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -508,6 +939,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "figue-seche",
+    "name": "Figue sèche",
+    "emoji": "🍇",
+    "category": "fruits",
+    "ig": 40,
+    "glucose": 24.8,
+    "fructose": 22.9,
+    "saccharose": 0.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 54.1,
+    "proteines": 3.3,
+    "lipides": 0.9,
+    "fibres": 9.8,
+    "calories": 249,
+    "portion": {
+      "g": 20,
+      "label": "1 figue"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "174665",
+      "url": "https://fdc.nal.usda.gov/food-details/174665/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "fraise",
     "name": "Fraise",
     "emoji": "🍓",
@@ -531,6 +989,60 @@
       "name": "USDA FoodData Central",
       "ref": "167762",
       "url": "https://fdc.nal.usda.gov/food-details/167762/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "framboise",
+    "name": "Framboise",
+    "emoji": "🫐",
+    "category": "fruits",
+    "ig": 25,
+    "glucose": 1.9,
+    "fructose": 2.4,
+    "saccharose": 0.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 5.4,
+    "proteines": 1.2,
+    "lipides": 0.7,
+    "fibres": 6.5,
+    "calories": 52,
+    "portion": {
+      "g": 80,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "167755",
+      "url": "https://fdc.nal.usda.gov/food-details/167755/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "frites",
+    "name": "Frites",
+    "emoji": "🍟",
+    "category": "legumes",
+    "ig": 75,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0.4,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 39.4,
+    "proteines": 3.3,
+    "lipides": 11.9,
+    "fibres": 3.9,
+    "calories": 285,
+    "portion": {
+      "g": 130,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "4032",
+      "url": "https://ciqual.anses.fr/#/aliments/4032/frites-de-pommes-de-terre-surgelees-cuites-en-friteuse"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -562,6 +1074,59 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "fromage-de-chevre",
+    "name": "Fromage de chèvre",
+    "emoji": "🧀",
+    "category": "laitiers",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 19.8,
+    "lipides": 24.7,
+    "fibres": 0,
+    "calories": 300,
+    "portion": {
+      "g": 30,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "12802",
+      "url": "https://ciqual.anses.fr/#/aliments/12802/fromage-de-chevre-lactique-affine-au-lait-pasteurise-type-buchette-ou-crottin"
+    }
+  },
+  {
+    "id": "glace-vanille",
+    "name": "Glace vanille (cornet)",
+    "emoji": "🍨",
+    "category": "sucres",
+    "ig": 60,
+    "glucose": 0.7,
+    "fructose": 0.2,
+    "saccharose": 12.8,
+    "lactose": 5.6,
+    "maltose": 0.3,
+    "glucides": 26.3,
+    "proteines": 4.2,
+    "lipides": 4.9,
+    "fibres": 0.1,
+    "calories": 163,
+    "portion": {
+      "g": 70,
+      "label": "1 cornet"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "173274",
+      "url": "https://fdc.nal.usda.gov/food-details/173274/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "graines-de-chia",
     "name": "Graines de chia",
     "emoji": "🌱",
@@ -585,6 +1150,33 @@
       "name": "USDA FoodData Central",
       "ref": "170554",
       "url": "https://fdc.nal.usda.gov/food-details/170554/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "grenade",
+    "name": "Grenade",
+    "emoji": "🍎",
+    "category": "fruits",
+    "ig": 35,
+    "glucose": 6.2,
+    "fructose": 7.1,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 14.3,
+    "proteines": 1.4,
+    "lipides": 1.2,
+    "fibres": 2.3,
+    "calories": 80.6,
+    "portion": {
+      "g": 100,
+      "label": "½ grenade"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "13018",
+      "url": "https://ciqual.anses.fr/#/aliments/13018/grenade-pulpe-et-pepins-crue"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -616,6 +1208,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "haricots-verts",
+    "name": "Haricots verts",
+    "emoji": "🫘",
+    "category": "legumes",
+    "ig": 30,
+    "glucose": 1.5,
+    "fructose": 1.4,
+    "saccharose": 0.4,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 4.3,
+    "proteines": 1.8,
+    "lipides": 0.2,
+    "fibres": 2.7,
+    "calories": 31,
+    "portion": {
+      "g": 150,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169961",
+      "url": "https://fdc.nal.usda.gov/food-details/169961/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "jus-d-orange",
     "name": "Jus d'orange",
     "emoji": "🥤",
@@ -639,6 +1258,60 @@
       "name": "CIQUAL 2020",
       "ref": "2070",
       "url": "https://ciqual.anses.fr/#/aliments/2070/jus-d-orange-pur-jus"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "jus-de-pomme",
+    "name": "Jus de pomme",
+    "emoji": "🍏",
+    "category": "boissons",
+    "ig": 40,
+    "glucose": 2.1,
+    "fructose": 6,
+    "saccharose": 1.4,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 11.4,
+    "proteines": 0.2,
+    "lipides": 0.1,
+    "fibres": 0.2,
+    "calories": 48.9,
+    "portion": {
+      "g": 200,
+      "label": "1 verre"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "2074",
+      "url": "https://ciqual.anses.fr/#/aliments/2074/jus-de-pomme-pur-jus"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "ketchup",
+    "name": "Ketchup",
+    "emoji": "🥫",
+    "category": "sucres",
+    "ig": 55,
+    "glucose": 10.3,
+    "fructose": 8.7,
+    "saccharose": 2.3,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 27.1,
+    "proteines": 1,
+    "lipides": 0.1,
+    "fibres": 0.3,
+    "calories": 101,
+    "portion": {
+      "g": 15,
+      "label": "1 c. à soupe"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "168556",
+      "url": "https://fdc.nal.usda.gov/food-details/168556/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -670,6 +1343,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "lait-d-amande",
+    "name": "Lait d'amande",
+    "emoji": "🥛",
+    "category": "boissons",
+    "ig": 30,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0.8,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 1.1,
+    "proteines": 0.4,
+    "lipides": 1,
+    "fibres": 0.2,
+    "calories": 15,
+    "portion": {
+      "g": 200,
+      "label": "1 verre"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "174832",
+      "url": "https://fdc.nal.usda.gov/food-details/174832/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "lait-de-soja",
     "name": "Lait de soja",
     "emoji": "🥛",
@@ -693,6 +1393,33 @@
       "name": "CIQUAL 2020",
       "ref": "18901",
       "url": "https://ciqual.anses.fr/#/aliments/18901/boisson-au-soja-nature-enrichie-en-calcium-preemballee"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "lait-demi-ecreme",
+    "name": "Lait demi-écrémé",
+    "emoji": "🥛",
+    "category": "laitiers",
+    "ig": 30,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 4.7,
+    "maltose": 0,
+    "glucides": 4.8,
+    "proteines": 3.4,
+    "lipides": 1.6,
+    "fibres": 0,
+    "calories": 47,
+    "portion": {
+      "g": 200,
+      "label": "1 verre"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "19041",
+      "url": "https://ciqual.anses.fr/#/aliments/19041/lait-demi-ecreme-uht"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -805,6 +1532,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "melon",
+    "name": "Melon",
+    "emoji": "🍈",
+    "category": "fruits",
+    "ig": 65,
+    "glucose": 1.5,
+    "fructose": 1.9,
+    "saccharose": 4.4,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 7.8,
+    "proteines": 0.8,
+    "lipides": 0.2,
+    "fibres": 0.9,
+    "calories": 34,
+    "portion": {
+      "g": 150,
+      "label": "1 tranche"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169092",
+      "url": "https://fdc.nal.usda.gov/food-details/169092/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "miel",
     "name": "Miel",
     "emoji": "🍯",
@@ -828,6 +1582,33 @@
       "name": "USDA FoodData Central",
       "ref": "169640",
       "url": "https://fdc.nal.usda.gov/food-details/169640/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "muesli",
+    "name": "Muesli",
+    "emoji": "🥣",
+    "category": "cereales",
+    "ig": 57,
+    "glucose": 3.8,
+    "fructose": 4,
+    "saccharose": 14.3,
+    "lactose": 1.2,
+    "maltose": 0.6,
+    "glucides": 66.6,
+    "proteines": 7.5,
+    "lipides": 12.2,
+    "fibres": 6.4,
+    "calories": 418,
+    "portion": {
+      "g": 45,
+      "label": "1 bol"
+    },
+    "source": {
+      "name": "CIQUAL 2020",
+      "ref": "32004",
+      "url": "https://ciqual.anses.fr/#/aliments/32004/muesli-aliment-moyen"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -859,6 +1640,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "noisette",
+    "name": "Noisette",
+    "emoji": "🥜",
+    "category": "oleagineux",
+    "ig": 15,
+    "glucose": 0.1,
+    "fructose": 0.1,
+    "saccharose": 4.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 7,
+    "proteines": 15,
+    "lipides": 60.8,
+    "fibres": 9.7,
+    "calories": 628,
+    "portion": {
+      "g": 30,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "170581",
+      "url": "https://fdc.nal.usda.gov/food-details/170581/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "noix",
     "name": "Noix",
     "emoji": "🥜",
@@ -882,6 +1690,33 @@
       "name": "USDA FoodData Central",
       "ref": "170187",
       "url": "https://fdc.nal.usda.gov/food-details/170187/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "noix-de-cajou",
+    "name": "Noix de cajou",
+    "emoji": "🥜",
+    "category": "oleagineux",
+    "ig": 22,
+    "glucose": 0.1,
+    "fructose": 0.1,
+    "saccharose": 5.8,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 26.9,
+    "proteines": 18.2,
+    "lipides": 43.9,
+    "fibres": 3.3,
+    "calories": 553,
+    "portion": {
+      "g": 30,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "170162",
+      "url": "https://fdc.nal.usda.gov/food-details/170162/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -1020,6 +1855,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "pamplemousse",
+    "name": "Pamplemousse",
+    "emoji": "🍊",
+    "category": "fruits",
+    "ig": 25,
+    "glucose": 1.6,
+    "fructose": 1.8,
+    "saccharose": 3.5,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 9.1,
+    "proteines": 0.8,
+    "lipides": 0.1,
+    "fibres": 1.6,
+    "calories": 42,
+    "portion": {
+      "g": 150,
+      "label": "½ pamplemousse"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "174673",
+      "url": "https://fdc.nal.usda.gov/food-details/174673/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "pasteque",
     "name": "Pastèque",
     "emoji": "🍉",
@@ -1043,6 +1905,33 @@
       "name": "USDA FoodData Central",
       "ref": "167765",
       "url": "https://fdc.nal.usda.gov/food-details/167765/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "patate-douce",
+    "name": "Patate douce",
+    "emoji": "🍠",
+    "category": "legumes",
+    "ig": 50,
+    "glucose": 0.6,
+    "fructose": 0.5,
+    "saccharose": 2.3,
+    "lactose": 0,
+    "maltose": 3.1,
+    "glucides": 17.4,
+    "proteines": 2,
+    "lipides": 0.2,
+    "fibres": 3.3,
+    "calories": 90,
+    "portion": {
+      "g": 150,
+      "label": "1 patate douce"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "168483",
+      "url": "https://fdc.nal.usda.gov/food-details/168483/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -1101,6 +1990,60 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "petits-pois",
+    "name": "Petits pois",
+    "emoji": "🫛",
+    "category": "legumes",
+    "ig": 35,
+    "glucose": 0.1,
+    "fructose": 0.4,
+    "saccharose": 5,
+    "lactose": 0,
+    "maltose": 0.2,
+    "glucides": 8.8,
+    "proteines": 5.4,
+    "lipides": 0.4,
+    "fibres": 5.7,
+    "calories": 81,
+    "portion": {
+      "g": 100,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "170419",
+      "url": "https://fdc.nal.usda.gov/food-details/170419/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "pizza-margherita",
+    "name": "Pizza margherita",
+    "emoji": "🍕",
+    "category": "cereales",
+    "ig": 60,
+    "glucose": 0.9,
+    "fructose": 1.2,
+    "saccharose": 0.3,
+    "lactose": 0.4,
+    "maltose": 0.7,
+    "glucides": 26.8,
+    "proteines": 10.4,
+    "lipides": 12.3,
+    "fibres": 2.2,
+    "calories": 268,
+    "portion": {
+      "g": 150,
+      "label": "½ pizza"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "170317",
+      "url": "https://fdc.nal.usda.gov/food-details/170317/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "poire",
     "name": "Poire",
     "emoji": "🍐",
@@ -1151,6 +2094,33 @@
       "name": "CIQUAL 2020",
       "ref": "20507",
       "url": "https://ciqual.anses.fr/#/aliments/20507/pois-chiche-bouilli-cuit-a-l-eau"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "poivron",
+    "name": "Poivron",
+    "emoji": "🫑",
+    "category": "legumes",
+    "ig": 15,
+    "glucose": 1.9,
+    "fructose": 2.3,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 4.2,
+    "proteines": 1,
+    "lipides": 0.3,
+    "fibres": 2.1,
+    "calories": 26,
+    "portion": {
+      "g": 100,
+      "label": "1 poivron"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "170108",
+      "url": "https://fdc.nal.usda.gov/food-details/170108/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -1235,6 +2205,60 @@
     }
   },
   {
+    "id": "prune",
+    "name": "Prune",
+    "emoji": "🍑",
+    "category": "fruits",
+    "ig": 35,
+    "glucose": 5.1,
+    "fructose": 3.1,
+    "saccharose": 1.6,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 10,
+    "proteines": 0.7,
+    "lipides": 0.3,
+    "fibres": 1.4,
+    "calories": 46,
+    "portion": {
+      "g": 55,
+      "label": "1 prune"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169949",
+      "url": "https://fdc.nal.usda.gov/food-details/169949/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "puree-de-pommes-de-terre",
+    "name": "Purée de pommes de terre",
+    "emoji": "🥔",
+    "category": "legumes",
+    "ig": 83,
+    "glucose": 0.3,
+    "fructose": 0.2,
+    "saccharose": 0.2,
+    "lactose": 0.7,
+    "maltose": 0,
+    "glucides": 15.3,
+    "proteines": 1.9,
+    "lipides": 4.2,
+    "fibres": 1.5,
+    "calories": 113,
+    "portion": {
+      "g": 200,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "168555",
+      "url": "https://fdc.nal.usda.gov/food-details/168555/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "quinoa-cuit",
     "name": "Quinoa cuit",
     "emoji": "🫘",
@@ -1289,6 +2313,33 @@
     "igSource": "Tables publiques (valeur indicative)"
   },
   {
+    "id": "raisins-secs",
+    "name": "Raisins secs",
+    "emoji": "🍇",
+    "category": "fruits",
+    "ig": 64,
+    "glucose": 30.5,
+    "fructose": 34.7,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 74.8,
+    "proteines": 3.3,
+    "lipides": 0.3,
+    "fibres": 4.5,
+    "calories": 299,
+    "portion": {
+      "g": 30,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "168165",
+      "url": "https://fdc.nal.usda.gov/food-details/168165/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
     "id": "riz-blanc-cuit",
     "name": "Riz blanc cuit",
     "emoji": "🍚",
@@ -1312,6 +2363,60 @@
       "name": "USDA FoodData Central",
       "ref": "168878",
       "url": "https://fdc.nal.usda.gov/food-details/168878/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "riz-complet-cuit",
+    "name": "Riz complet cuit",
+    "emoji": "🍚",
+    "category": "cereales",
+    "ig": 50,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 24,
+    "proteines": 2.7,
+    "lipides": 1,
+    "fibres": 1.6,
+    "calories": 123,
+    "portion": {
+      "g": 150,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "169704",
+      "url": "https://fdc.nal.usda.gov/food-details/169704/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "sauce-tomate",
+    "name": "Sauce tomate",
+    "emoji": "🥫",
+    "category": "legumes",
+    "ig": 35,
+    "glucose": 1.8,
+    "fructose": 1.7,
+    "saccharose": 0.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 3.8,
+    "proteines": 1.2,
+    "lipides": 0.3,
+    "fibres": 1.5,
+    "calories": 24,
+    "portion": {
+      "g": 100,
+      "label": "1 louche"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "170054",
+      "url": "https://fdc.nal.usda.gov/food-details/170054/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },
@@ -1340,6 +2445,33 @@
       "ref": "175167",
       "url": "https://fdc.nal.usda.gov/food-details/175167/nutrients"
     }
+  },
+  {
+    "id": "sirop-d-agave",
+    "name": "Sirop d'agave",
+    "emoji": "🍯",
+    "category": "sucres",
+    "ig": 15,
+    "glucose": 12.4,
+    "fructose": 55.6,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 76.2,
+    "proteines": 0.1,
+    "lipides": 0.5,
+    "fibres": 0.2,
+    "calories": 310,
+    "portion": {
+      "g": 20,
+      "label": "1 c. à soupe"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "170277",
+      "url": "https://fdc.nal.usda.gov/food-details/170277/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
   },
   {
     "id": "sirop-d-erable",
@@ -1446,6 +2578,33 @@
       "name": "USDA FoodData Central",
       "ref": "169655",
       "url": "https://fdc.nal.usda.gov/food-details/169655/nutrients"
+    },
+    "igSource": "Tables publiques (valeur indicative)"
+  },
+  {
+    "id": "sucre-roux",
+    "name": "Sucre roux",
+    "emoji": "🍬",
+    "category": "sucres",
+    "ig": 70,
+    "glucose": 1.4,
+    "fructose": 1.1,
+    "saccharose": 94.6,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 98.1,
+    "proteines": 0.1,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 380,
+    "portion": {
+      "g": 5,
+      "label": "1 c. à café"
+    },
+    "source": {
+      "name": "USDA FoodData Central",
+      "ref": "168833",
+      "url": "https://fdc.nal.usda.gov/food-details/168833/nutrients"
     },
     "igSource": "Tables publiques (valeur indicative)"
   },

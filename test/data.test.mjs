@@ -8,8 +8,8 @@ const config = JSON.parse(fs.readFileSync(new URL("../data/config.json", import.
 
 const NUTRIENT_KEYS = ["ig", "glucose", "fructose", "saccharose", "lactose", "maltose", "glucides", "proteines", "lipides", "fibres", "calories"];
 
-test("foods.json has the sourced foods with every key", () => {
-  assert.ok(foods.length >= 58, `expected >= 58 foods, got ${foods.length}`);
+test("foods.json has at least 100 foods with every key", () => {
+  assert.ok(foods.length >= 100, `expected >= 100 foods, got ${foods.length}`);
   for (const f of foods) {
     for (const k of NUTRIENT_KEYS) assert.equal(typeof f[k], "number", `${f.name}.${k}`);
     assert.match(f.id, /^[a-z0-9-]+$/, f.name);
