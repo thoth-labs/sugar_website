@@ -227,7 +227,7 @@
     "proteines": 2.8,
     "lipides": 0.4,
     "fibres": 2.6,
-    "calories": 34,
+    "calories": 40,
     "portion": {
       "g": 150,
       "label": "1 portion"
@@ -495,7 +495,7 @@
     "proteines": 2.9,
     "lipides": 0.4,
     "fibres": 2.2,
-    "calories": 23,
+    "calories": 30,
     "portion": {
       "g": 100,
       "label": "1 portion cuite"
@@ -765,7 +765,7 @@
     "proteines": 3.4,
     "lipides": 1.5,
     "fibres": 2.7,
-    "calories": 86,
+    "calories": 90,
     "portion": {
       "g": 100,
       "label": "1 épi"
@@ -1054,7 +1054,7 @@
     "ig": 72,
     "glucose": 2.7,
     "fructose": 3.4,
-    "saccharose": 3.2,
+    "saccharose": 2.1,
     "lactose": 0,
     "maltose": 0,
     "glucides": 8,
