@@ -23,12 +23,15 @@
 
 <header>
     <div class="logo">Sugar</div>
-    <div class="header-sub">Tout aliment contient tout. Voyons combien.</div>
+    <nav class="header-nav" aria-label="Navigation">
+        <a href="/" aria-current="page">Classement</a>
+        <a href="/comprendre.html">Comprendre les sucres</a>
+    </nav>
 </header>
 
 <div class="hero">
     <h1>Ce que contient <em>vraiment</em> votre assiette</h1>
-    <p>Nutriments, types de sucres, index glycémique : classez tout, découvrez les surprises.</p>
+    <p>Tout aliment contient tout. Voyons combien.</p>
     <div class="hero-examples">
         <div class="hero-pill">🍞 <strong>Pain blanc</strong> contient du glucose</div>
         <div class="hero-pill">🍎 <strong>Pomme</strong> riche en fructose</div>
@@ -52,7 +55,7 @@
 <div class="grid-container" id="grid"></div>
 <div id="status" class="visually-hidden" role="status" aria-live="polite"></div>
 <div class="compare-tray" id="compare" aria-live="polite" hidden></div>
-<footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : Université de Sydney</footer>
+<footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques)</footer>
 
 <script type="module" src="assets/app.js"></script>
 </body>

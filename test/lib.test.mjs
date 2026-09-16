@@ -61,6 +61,7 @@ test("readState defaults and parses", () => {
   assert.deepEqual(readState("?n=fibres&sort=asc&q=pom&u=portion&cmp=a,b,c", nuts), { n: "fibres", sort: "asc", q: "pom", u: "portion", cmp: ["a", "b"] });
   assert.equal(readState("?n=unknown", nuts).n, "glucose");
   assert.equal(readState("?sort=weird&u=weird", nuts).sort, "desc");
+  assert.deepEqual(readState("?cmp=a,a", nuts).cmp, ["a"]);
 });
 test("writeState omits defaults and round-trips", () => {
   const nuts = [{ key: "glucose" }, { key: "fibres" }];

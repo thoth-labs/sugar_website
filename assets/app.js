@@ -106,7 +106,7 @@ function cardHTML(f, i, n, maxVal, others) {
   return `<article class="card" style="animation-delay:${Math.min(i * 0.025, 0.5)}s">
     <div class="card-top">
       <div class="food-emoji">${f.emoji}</div>
-      <div><div class="food-name">${esc(f.name)}</div><div class="food-sub">${state.u === "portion" ? `${esc(f.portion.label)} · ${f.portion.g} g` : "pour 100g"}</div></div>
+      <div><div class="food-name"><a href="aliment/${f.id}/">${esc(f.name)}</a></div><div class="food-sub">${state.u === "portion" ? `${esc(f.portion.label)} · ${f.portion.g} g` : "pour 100g"}</div></div>
     </div>
     <div class="primary-block" style="background:${n.color}12;color:${n.color}">
       <div class="pb-top">

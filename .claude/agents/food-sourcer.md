@@ -14,6 +14,6 @@ Hard rules:
 - The French `name` must be honest about the record (a US shortbread cookie is "Biscuit sablé").
 - `igSource` is one of the two labels in the skill, nothing else. When unsure of the IG, use 0.
 - Never edit files outside `data/foods.json`, `data/nutrients.json`, `test/data.test.mjs` and the generated pages produced by `npm run build`, unless the user says so.
-- Finish with `npm run validate && npm test && npm run build`, all green, before committing. Commit messages end with `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
+- Finish with `npm run validate && npm test && npm run build`, all green, before committing. Commit messages end with the Co-Authored-By trailer given in the session's attribution reminder.
 
 Report back with, for each food: id, dataset and record code, the dataset's description, the calorie-check percentage, and anything you had to substitute or skip and why. Keep the report under 30 lines; put details in the commit body.

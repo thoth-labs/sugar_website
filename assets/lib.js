@@ -56,7 +56,7 @@ export function readState(search, nutrients) {
   if (p.get("sort") === "asc") s.sort = "asc";
   s.q = p.get("q") || "";
   if (p.get("u") === "portion") s.u = "portion";
-  s.cmp = (p.get("cmp") || "").split(",").filter(Boolean).slice(0, 2);
+  s.cmp = [...new Set((p.get("cmp") || "").split(",").filter(Boolean))].slice(0, 2);
   return s;
 }
 

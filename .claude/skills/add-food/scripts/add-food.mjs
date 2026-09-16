@@ -15,7 +15,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { loadDatasets, toFoodValues, sourceFor, completeness, REPO, SUGARS, CORE } from "./datasets.mjs";
+import { loadDatasets, toFoodValues, sourceFor, completeness, sugarsUnaccounted, REPO, SUGARS, CORE } from "./datasets.mjs";
 
 const CATEGORIES = ["fruits", "legumes", "cereales", "proteines", "laitiers", "legumineuses", "oleagineux", "sucres", "boissons"];
 const args = process.argv.slice(2);
@@ -57,14 +57,13 @@ if (override) {
   if (sugars.length !== 5 || sugars.some((n) => !Number.isFinite(n) || n < 0)) { console.error("--sugars needs five numbers: glucose,fructose,saccharose,lactose,maltose"); process.exit(2); }
   console.log("NOTE: sugar breakdown supplied by --sugars; say where it comes from in the commit body.");
 } else {
-  const known = SUGARS.reduce((s, k) => s + (vals[k] ?? 0), 0);
-  const missing = SUGARS.filter((k) => vals[k] == null);
-  const noCarbs = (vals.glucides ?? 0) === 0;
-  const remainder = vals.sucres != null ? vals.sucres - known : null;
-  if (missing.length && !noCarbs && (remainder == null || remainder > 0.5)) {
+  if (sugarsUnaccounted(rec, vals)) {
+    const missing = SUGARS.filter((k) => vals[k] == null);
+    const known = SUGARS.reduce((s, k) => s + (rec.values[k] ?? 0), 0);
+    const remainder = rec.values.sucres != null ? (rec.values.sucres - known).toFixed(2) : null;
     console.error(
       `${from} "${rec.name}" does not itemise ${missing.join(", ")}` +
-        (remainder != null ? ` and ${remainder.toFixed(1)} g of its ${vals.sucres} g total sugars is unaccounted for.` : " and reports no total sugars.") +
+        (remainder != null ? ` and ${remainder} g of its ${vals.sucres} g total sugars is unaccounted for.` : " and reports no total sugars.") +
         `\nEither pick a record with a full breakdown (find-food.mjs shows [core/5 + sugars/5]) or pass --sugars g,f,s,l,m taken from a record of the same food that you cite in the commit body.`
     );
     process.exit(1);

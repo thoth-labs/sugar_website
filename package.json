@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Ce que contient vraiment votre assiette : sucres, macronutriments, index glycémique.",
   "scripts": {
-    "test": "node --test",
+    "test": "node --test test/*.test.mjs",
     "validate": "node scripts/validate.mjs",
     "build": "node scripts/build.mjs",
     "check": "npm run validate && npm test && npm run build"

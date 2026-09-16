@@ -28,7 +28,7 @@ test("layout emits canonical, description and optional plausible tag", () => {
 });
 
 test("build writes one page per food and nutrient, comprendre and sitemap", () => {
-  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), "nutribase-"));
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), "sugar-"));
   const written = build({ foods, nutrients, config, outDir }).sort();
   assert.deepEqual(written, ["aliment/biere/index.html", "aliment/miel/index.html", "aliment/tomate/index.html", "comprendre.html", "nutriment/calories/index.html", "nutriment/glucose/index.html", "sitemap.xml"]);
   const biere = fs.readFileSync(path.join(outDir, "aliment/biere/index.html"), "utf8");
@@ -49,7 +49,7 @@ test("build writes one page per food and nutrient, comprendre and sitemap", () =
 });
 
 test("build removes stale food pages", () => {
-  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), "nutribase-"));
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), "sugar-"));
   fs.mkdirSync(path.join(outDir, "aliment/obsolete"), { recursive: true });
   fs.writeFileSync(path.join(outDir, "aliment/obsolete/index.html"), "old");
   build({ foods, nutrients, config, outDir });

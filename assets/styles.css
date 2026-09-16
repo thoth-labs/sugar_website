@@ -13,6 +13,12 @@ header{background:var(--green-dark);padding:0 40px;position:sticky;top:0;z-index
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green-pale);}
 .logo em{color:var(--green-light);font-style:italic;}
 .header-sub{font-size:0.74rem;color:rgba(255,255,255,0.38);}
+.header-nav{display:flex;gap:18px;}
+.header-nav a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.82rem;}
+.header-nav a:hover{color:#fff;}
+.header-nav a[aria-current]{color:#fff;}
+.food-name a{color:inherit;text-decoration:none;}
+.food-name a:hover{text-decoration:underline;}
 
 .hero{background:linear-gradient(135deg,var(--green-dark) 0%,#1e4d35 100%);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 40%,rgba(82,183,136,0.16) 0%,transparent 65%);}

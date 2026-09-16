@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Sugar: a French-language static site that ranks around 100 foods by nutrient content (five sugar types, macronutrients, calories, glycemic index) per 100 g. Zero npm dependencies, Node 22. Deployed via GitHub Pages at `sugar.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
+Sugar: a French-language static site that ranks around 100 foods by nutrient content (five sugar types, macronutrients, calories, glycemic index) per 100 g. Zero npm dependencies, Node 20 or later. Deployed via GitHub Pages at `sugar.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
 
 ## Data model
 
 `data/foods.json`: an array of food objects, sorted by `id`. Each has:
 - `id`: the stable identifier (slug, `[a-z0-9-]+`); `name` is display text only and can be renamed freely.
 - The five sugar keys (`glucose`, `fructose`, `saccharose`, `lactose`, `maltose`), macros (`glucides`, `proteines`, `lipides`, `fibres`), `calories` and `ig`. All values are grams per 100 g except `calories` (kcal) and `ig` (0 to 100). `glucides` follows the French convention: sugars plus starch, fibres excluded.
-- Optional `alcool` (g per 100 g, counted at 7 kcal/g) and `igSource`, required whenever `ig > 0`.
+- Optional `alcool` (g per 100 g, counted at 7 kcal/g). `igSource` is required whenever `ig > 0`.
 - `portion` (`g`, `label`) and `source` (`name`, `ref`, `url`), citing CIQUAL 2020 or USDA FoodData Central.
 
 `data/nutrients.json`: one entry per tab (`key`, `label`, `emoji`, `color`, `unit`, `isSugar`, `desc`, `surprises`). `surprises` holds food `id`s (not names) that get the surprise badge on that tab when their value is greater than zero.

@@ -30,7 +30,7 @@ export function layout({ siteName, siteUrl, path, title, description, body, plau
 <main class="page">
 ${body}
 </main>
-<footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : Université de Sydney</footer>
+<footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques)</footer>
 </body>
 </html>
 `;

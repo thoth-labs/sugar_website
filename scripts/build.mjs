@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 import { layout, esc } from "./template.mjs";
 import { sortFoods, scale, totalSugars } from "../assets/lib.js";
 
+const CATEGORY_LABELS = { fruits: "Fruits", legumes: "Légumes", cereales: "Céréales", proteines: "Protéines", laitiers: "Produits laitiers", legumineuses: "Légumineuses", oleagineux: "Oléagineux", sucres: "Sucres et douceurs", boissons: "Boissons" };
+
 const fmt = (v, unit) => {
   if (unit === "kcal") return `${Math.round(v)} kcal`;
   if (unit === "/100") return `${Math.round(v)}`;
@@ -18,9 +20,9 @@ function foodPage(f, nutrients, config) {
   const chips = sugars.filter((n) => f[n.key] > 0).map((n) => `<li><a href="/nutriment/${n.key}/">${esc(n.label)}</a> : ${f[n.key].toFixed(1)} g (${Math.round((f[n.key] / total) * 100)} %)</li>`).join("\n");
   const body = `
 <article class="food-page">
-<p class="crumbs"><a href="/">${esc(config.siteName)}</a> › ${esc(f.category)}</p>
+<p class="crumbs"><a href="/">${esc(config.siteName)}</a> › ${esc(CATEGORY_LABELS[f.category] || f.category)}</p>
 <h1><span class="big-emoji">${esc(f.emoji)}</span> ${esc(f.name)}</h1>
-<p class="lead">${esc(f.name)} apporte ${f.calories} kcal, ${f.glucides.toFixed(1)} g de glucides dont ${total.toFixed(1)} g de sucres, ${f.proteines.toFixed(1)} g de protéines et ${f.lipides.toFixed(1)} g de lipides pour 100 g.${f.ig > 0 ? ` Index glycémique : ${f.ig}.` : ""}</p>
+<p class="lead">${esc(f.name)} apporte ${Math.round(f.calories)} kcal, ${f.glucides.toFixed(1)} g de glucides dont ${total.toFixed(1)} g de sucres, ${f.proteines.toFixed(1)} g de protéines et ${f.lipides.toFixed(1)} g de lipides pour 100 g.${f.ig > 0 ? ` Index glycémique : ${f.ig}.` : ""}</p>
 <table class="nutri-table">
 <thead><tr><th>Nutriment</th><th>Pour 100 g</th><th>Par portion (${esc(f.portion.label)}, ${f.portion.g} g)</th></tr></thead>
 <tbody>
@@ -32,7 +34,7 @@ ${total > 0 ? `<h2>Répartition des sucres</h2><ul class="sugar-list">${chips}</
 <p>${esc(f.source.name)}, fiche <a href="${esc(f.source.url)}" rel="noopener">${esc(f.source.ref)}</a>.${f.igSource ? ` Index glycémique : ${esc(f.igSource)}.` : ""}</p>
 <p><a class="btn" href="/?q=${encodeURIComponent(f.name)}">Voir ${esc(f.name)} dans le classement</a></p>
 </article>`;
-  return layout({ ...config, path: `/aliment/${f.id}/`, title: `${f.name} : sucres, calories et nutriments pour 100 g | ${config.siteName}`, description: `${f.name} : ${total.toFixed(1)} g de sucres (glucose ${f.glucose}, fructose ${f.fructose}, saccharose ${f.saccharose}, lactose ${f.lactose}, maltose ${f.maltose}), ${f.calories} kcal pour 100 g. Source ${f.source.name}.`, body });
+  return layout({ ...config, path: `/aliment/${f.id}/`, title: `${f.name} : sucres, calories et nutriments pour 100 g | ${config.siteName}`, description: `${f.name} : ${total.toFixed(1)} g de sucres (glucose ${f.glucose}, fructose ${f.fructose}, saccharose ${f.saccharose}, lactose ${f.lactose}, maltose ${f.maltose}), ${Math.round(f.calories)} kcal pour 100 g. Source ${f.source.name}.`, body });
 }
 
 function nutrientPage(n, foods, config) {
@@ -47,7 +49,7 @@ function nutrientPage(n, foods, config) {
 <ol class="ranking">
 ${items}
 </ol>
-<p><a class="btn" href="/?n=${n.key}">Explorer ${esc(n.label)} dans l'application</a></p>
+<p><a class="btn" href="/?n=${n.key}">Voir le classement complet dans l'application</a></p>
 </article>`;
   return layout({ ...config, path: `/nutriment/${n.key}/`, title: `${n.label} : quels aliments en contiennent le plus ? | ${config.siteName}`, description: `${n.desc.slice(0, 150)}`, body });
 }
@@ -55,7 +57,7 @@ ${items}
 function comprendrePage(nutrients, foods, config) {
   const section = (n) => {
     const top = sortFoods(foods, n.key, "desc").slice(0, 3).map((f) => `<a href="/aliment/${f.id}/">${esc(f.emoji)} ${esc(f.name)}</a> (${fmt(f[n.key], n.unit)})`).join(", ");
-    return `<section id="${n.key}"><h2>${esc(n.emoji)} <a href="/nutriment/${n.key}/">${esc(n.label)}</a></h2><p>${esc(n.desc)}</p><p class="top3">Les plus riches : ${top}.</p></section>`;
+    return `<section id="${n.key}"><h2>${esc(n.emoji)} <a href="/nutriment/${n.key}/">${esc(n.label)}</a></h2><p>${esc(n.desc)}</p><p class="top3">${n.key === "ig" ? "Les plus élevés" : "Les plus riches"} : ${top}.</p></section>`;
   };
   const body = `
 <article class="comprendre">

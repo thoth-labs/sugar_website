@@ -193,6 +193,14 @@ export function sourceFor(dataset, rec) {
     : { name: "USDA FoodData Central", ref: String(rec.code), url: `https://fdc.nal.usda.gov/food-details/${rec.code}/nutrients` };
 }
 
+// True when the record's own total sugars exceeds what its itemised sugars explain.
+export function sugarsUnaccounted(rec, vals) {
+  const v = rec.values;
+  if (v.sucres == null) return SUGARS.some((k) => vals[k] == null) && (vals.glucides ?? 0) > 0;
+  const known = SUGARS.reduce((s, k) => s + (v[k] ?? 0), 0);
+  return v.sucres - known > Math.max(0.1, 0.2 * v.sucres);
+}
+
 export function completeness(vals) {
   return {
     core: CORE.filter((k) => vals[k] != null).length,

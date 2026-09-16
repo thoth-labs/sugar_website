@@ -1,15 +1,12 @@
 /* Styles for generated pages (aliment/, nutriment/, comprendre.html) */
 .logo{text-decoration:none;}
-.header-nav{display:flex;gap:18px;}
-.header-nav a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.82rem;}
-.header-nav a:hover{color:#fff;}
 .page{max-width:860px;margin:0 auto;padding:32px 24px 48px;}
 .page h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
 .page h2{font-family:'DM Serif Display',serif;font-size:1.35rem;margin:28px 0 10px;}
 .page h2.group{font-size:1.6rem;margin-top:40px;color:var(--green-mid);}
 .page p{line-height:1.6;margin-bottom:12px;}
 .page a{color:var(--green-mid);}
-.crumbs{font-size:0.78rem;color:var(--muted);text-transform:capitalize;}
+.crumbs{font-size:0.78rem;color:var(--muted);}
 .lead{font-size:1.02rem;color:#2f4a3a;}
 .big-emoji{font-size:1.2em;margin-right:6px;}
 .nutri-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid #e4ede7;border-radius:var(--radius);overflow:hidden;font-size:0.9rem;}

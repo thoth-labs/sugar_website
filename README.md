@@ -33,6 +33,6 @@ python -m http.server 8000   # prévisualiser sur http://localhost:8000
 
 ## Sources
 
-CIQUAL 2020 (ANSES), USDA FoodData Central, index glycémique : Université de Sydney.
+CIQUAL 2020 (ANSES), USDA FoodData Central, index glycémique : valeurs indicatives (tables publiques).
 
 Licence MIT.
