@@ -26,11 +26,11 @@ export function layout({ siteName, siteUrl, path, title, description, body, plau
 <link rel="stylesheet" href="/assets/pages.css">${plausible}
 </head>
 <body>
-<header><a class="logo" href="/">Nutri<em>Base</em></a><nav class="header-nav"><a href="/">Classement</a><a href="/comprendre.html">Comprendre les sucres</a></nav></header>
+<header><a class="logo" href="/">Sugar</a><nav class="header-nav"><a href="/">Classement</a><a href="/comprendre.html">Comprendre les sucres</a></nav></header>
 <main class="page">
 ${body}
 </main>
-<footer>NutriBase · Valeurs pour 100g · Sources : CIQUAL (ANSES), USDA · IG : Université de Sydney</footer>
+<footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : Université de Sydney</footer>
 </body>
 </html>
 `;

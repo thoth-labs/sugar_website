@@ -154,7 +154,7 @@ function renderCompare() {
   tray.hidden = false;
   const head = `<div class="ct-head"><div class="ct-title">Comparer</div><button class="ct-close" id="cmpClose">Fermer</button></div>`;
   if (picked.length === 1) {
-    tray.innerHTML = head + `<div class="ct-hint">${picked[0].emoji} ${esc(picked[0].name)} sélectionné — choisissez un second aliment.</div>`;
+    tray.innerHTML = head + `<div class="ct-hint">${picked[0].emoji} ${esc(picked[0].name)} sélectionné, choisissez un second aliment.</div>`;
   } else {
     const [a, b] = picked;
     const unitLabel = (f) => state.u === "portion" ? `${esc(f.portion.label)} · ${f.portion.g} g` : "pour 100 g";

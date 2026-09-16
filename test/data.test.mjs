@@ -61,5 +61,12 @@ test("glucides covers the five sugars (French convention, fibres excluded)", () 
 
 test("config.json has site url", () => {
   assert.equal(config.siteUrl, "https://sugar.thoth.fr");
-  assert.equal(config.siteName, "NutriBase");
+  assert.equal(config.siteName, "Sugar");
+});
+
+test("no dashes used as punctuation in nutrient copy", () => {
+  for (const n of nutrients) {
+    assert.doesNotMatch(n.desc, /[—–]| - /, `${n.key}.desc`);
+    assert.doesNotMatch(n.label, /[—–]/, `${n.key}.label`);
+  }
 });

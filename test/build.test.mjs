@@ -15,7 +15,7 @@ const nutrients = [
   { key: "glucose", label: "Glucose", emoji: "⚡", color: "#d4600a", unit: "g", isSugar: true, desc: "Desc glucose", surprises: ["tomate"] },
   { key: "calories", label: "Calories", emoji: "🔥", color: "#b91c1c", unit: "kcal", isSugar: false, desc: "Desc calories", surprises: ["miel"] },
 ];
-const config = { siteUrl: "https://example.test", siteName: "NutriBase", plausibleDomain: null };
+const config = { siteUrl: "https://example.test", siteName: "Sugar", plausibleDomain: null };
 
 test("esc escapes html", () => assert.equal(esc(`<a href="x">&'`), "&lt;a href=&quot;x&quot;&gt;&amp;&#39;"));
 

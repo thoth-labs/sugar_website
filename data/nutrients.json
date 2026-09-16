@@ -6,7 +6,7 @@
     "color": "#d4600a",
     "unit": "g",
     "isSugar": true,
-    "desc": "Le glucose est absorbé directement dans le sang — c'est le sucre qui fait monter la glycémie le plus vite. Présent dans les fruits, le miel, mais aussi en traces dans le pain et les produits céréaliers.",
+    "desc": "Le glucose est absorbé directement dans le sang : c'est le sucre qui fait monter la glycémie le plus vite. Présent dans les fruits, le miel, mais aussi en traces dans le pain et les produits céréaliers.",
     "surprises": [
       "ketchup",
       "pain-blanc",
@@ -23,7 +23,7 @@
     "color": "#c2410c",
     "unit": "g",
     "isSugar": true,
-    "desc": "Le fructose est le sucre des fruits. Il est métabolisé par le foie (pas par les muscles), donc il n'augmente pas directement la glycémie — mais en excès il surcharge le foie. Le miel et les fruits en sont riches.",
+    "desc": "Le fructose est le sucre des fruits. Il est métabolisé par le foie (pas par les muscles), donc il n'augmente pas directement la glycémie, mais en excès il surcharge le foie. Le miel et les fruits en sont riches.",
     "surprises": [
       "sirop-d-agave",
       "ketchup",
@@ -57,7 +57,7 @@
     "color": "#7c3aed",
     "unit": "g",
     "isSugar": true,
-    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent presque exclusivement dans les produits laitiers animaux — et en traces dans quelques aliments transformés. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
+    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent presque exclusivement dans les produits laitiers animaux, et en traces dans quelques aliments transformés. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
     "surprises": [
       "barre-chocolatee",
       "croissant",
@@ -91,7 +91,7 @@
     "color": "#c47a00",
     "unit": "g",
     "isSugar": false,
-    "desc": "Les glucides totaux incluent tous les sucres + amidon + fibres. C'est la principale source d'énergie. Présents partout : céréales, fruits, légumineuses — et même dans les légumes.",
+    "desc": "Les glucides totaux regroupent les sucres et l'amidon (les fibres sont comptées à part). C'est la principale source d'énergie. Présents partout : céréales, fruits, légumineuses, et même dans les légumes.",
     "surprises": [
       "ketchup",
       "petits-pois",
@@ -108,7 +108,7 @@
     "color": "#2563a8",
     "unit": "g",
     "isSugar": false,
-    "desc": "Indispensables aux muscles et tissus. Les viandes en sont riches, mais aussi l'avoine, les légumineuses, le fromage ou même le pain — souvent méconnus comme sources protéiques.",
+    "desc": "Indispensables aux muscles et tissus. Les viandes en sont riches, mais aussi l'avoine, les légumineuses, le fromage ou même le pain, souvent méconnus comme sources protéiques.",
     "surprises": [
       "cacahuete",
       "graines-de-chia",
@@ -125,7 +125,7 @@
     "color": "#7c3aed",
     "unit": "g",
     "isSugar": false,
-    "desc": "Les graisses sont essentielles au cerveau, aux hormones et à l'absorption des vitamines liposolubles. Pas toutes mauvaises — celles du saumon, des noix ou de l'avocat sont bénéfiques.",
+    "desc": "Les graisses sont essentielles au cerveau, aux hormones et à l'absorption des vitamines liposolubles. Pas toutes mauvaises : celles du saumon, des noix ou de l'avocat sont bénéfiques.",
     "surprises": [
       "croissant",
       "muesli",
@@ -159,7 +159,7 @@
     "color": "#b91c1c",
     "unit": "kcal",
     "isSugar": false,
-    "desc": "L'énergie apportée par un aliment. Les graisses : 9 kcal/g. Glucides & protéines : 4 kcal/g. Le beurre est 45× plus calorique que la tomate — à garder en tête pour les portions.",
+    "desc": "L'énergie apportée par un aliment. Les graisses : 9 kcal/g. Glucides et protéines : 4 kcal/g. Le beurre est 45 fois plus calorique que la tomate, à garder en tête pour les portions.",
     "surprises": [
       "noisette",
       "muesli",
@@ -176,7 +176,7 @@
     "color": "#dc2626",
     "unit": "/100",
     "isSugar": false,
-    "desc": "L'IG mesure la vitesse de montée de la glycémie après ingestion (0–100). IG <55 = lent. IG >70 = rapide. La cuisson, la transformation et la finesse de mouture augmentent l'IG — même la carotte cuite !",
+    "desc": "L'IG mesure la vitesse de montée de la glycémie après ingestion, de 0 à 100. IG inférieur à 55 : lent. IG supérieur à 70 : rapide. La cuisson, la transformation et la finesse de mouture augmentent l'IG, même pour la carotte cuite !",
     "surprises": [
       "baguette",
       "puree-de-pommes-de-terre",

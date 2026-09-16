@@ -1,9 +1,9 @@
 {
-  "name": "nutribase",
+  "name": "sugar",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Ce que contient vraiment votre assiette — sucres, macronutriments, index glycémique.",
+  "description": "Ce que contient vraiment votre assiette : sucres, macronutriments, index glycémique.",
   "scripts": {
     "test": "node --test",
     "validate": "node scripts/validate.mjs",
