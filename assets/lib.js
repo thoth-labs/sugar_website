@@ -46,3 +46,26 @@ export function scale(food, unit) {
   }
   return out;
 }
+
+export function readState(search, nutrients) {
+  const p = new URLSearchParams(search);
+  const s = { n: nutrients[0].key, sort: "desc", q: "", u: "100g", cmp: [] };
+  const n = p.get("n");
+  if (n && nutrients.some((x) => x.key === n)) s.n = n;
+  if (p.get("sort") === "asc") s.sort = "asc";
+  s.q = p.get("q") || "";
+  if (p.get("u") === "portion") s.u = "portion";
+  s.cmp = (p.get("cmp") || "").split(",").filter(Boolean).slice(0, 2);
+  return s;
+}
+
+export function writeState(state, nutrients) {
+  const p = new URLSearchParams();
+  if (state.n !== nutrients[0].key) p.set("n", state.n);
+  if (state.sort === "asc") p.set("sort", "asc");
+  if (state.q) p.set("q", state.q);
+  if (state.u === "portion") p.set("u", "portion");
+  if (state.cmp.length) p.set("cmp", state.cmp.join(","));
+  const qs = p.toString();
+  return qs ? `?${qs}` : "";
+}

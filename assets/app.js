@@ -1,12 +1,17 @@
-import { filterFoods, sortFoods, otherNutrients, valueOf } from "./lib.js";
+import { filterFoods, sortFoods, otherNutrients, valueOf, readState, writeState, scale } from "./lib.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 let foods = [];
 let nutrients = [];
-const state = { n: "", sort: "desc", q: "" };
+let tabKeysBound = false;
+const state = { n: "", sort: "desc", q: "", u: "100g", cmp: [] };
 const current = () => nutrients.find((n) => n.key === state.n);
+
+function sync() {
+  history.replaceState(null, "", location.pathname + writeState(state, nutrients));
+}
 
 function tabHTML(n) {
   const active = n.key === state.n;
@@ -21,12 +26,25 @@ function renderTabs() {
     `<div class="tab-separator"></div>` +
     `<span class="tab-section-label">📊 Macronutriments</span>` + macro.map(tabHTML).join("");
   $("tabs").querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => selectTab(t.dataset.key)));
+  if (!tabKeysBound) { $("tabs").addEventListener("keydown", onTabKey); tabKeysBound = true; }
 }
 
 function selectTab(key) {
   state.n = key;
   state.sort = "desc";
+  sync();
   renderAll();
+}
+
+function onTabKey(e) {
+  const keys = nutrients.map((n) => n.key);
+  const i = keys.indexOf(state.n);
+  const map = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: keys.length - 1 };
+  if (!(e.key in map)) return;
+  e.preventDefault();
+  const next = keys[(map[e.key] + keys.length) % keys.length];
+  selectTab(next);
+  $("tabs").querySelector(`[data-key="${next}"]`).focus();
 }
 
 function renderBanner() {
@@ -51,8 +69,21 @@ function renderPills() {
   $("sortPills").innerHTML = pill("desc", "↓ Plus riche") + pill("asc", "↑ Moins riche");
   $("sortPills").querySelectorAll("[data-sort]").forEach((p) => p.addEventListener("click", () => {
     state.sort = p.dataset.sort;
+    sync();
     renderPills();
     renderGrid();
+  }));
+}
+
+function renderUnitPills() {
+  const pill = (u, label) => `<button class="sort-pill${state.u === u ? " active" : ""}" aria-pressed="${state.u === u}" data-unit="${u}" style="--pill-color:var(--green-mid)">${label}</button>`;
+  $("unitPills").innerHTML = pill("100g", "100 g") + pill("portion", "Portion");
+  $("unitPills").querySelectorAll("[data-unit]").forEach((p) => p.addEventListener("click", () => {
+    state.u = p.dataset.unit;
+    sync();
+    renderUnitPills();
+    renderGrid();
+    renderCompare();
   }));
 }
 
@@ -75,7 +106,7 @@ function cardHTML(f, i, n, maxVal, others) {
   return `<article class="card" style="animation-delay:${Math.min(i * 0.025, 0.5)}s">
     <div class="card-top">
       <div class="food-emoji">${f.emoji}</div>
-      <div><div class="food-name">${esc(f.name)}</div><div class="food-sub">pour 100g</div></div>
+      <div><div class="food-name">${esc(f.name)}</div><div class="food-sub">${state.u === "portion" ? `${esc(f.portion.label)} · ${f.portion.g} g` : "pour 100g"}</div></div>
     </div>
     <div class="primary-block" style="background:${n.color}12;color:${n.color}">
       <div class="pb-top">
@@ -90,23 +121,57 @@ function cardHTML(f, i, n, maxVal, others) {
     <div class="others">
       ${others.map((o) => `<div class="ot"><div class="ot-name">${o.emoji} ${esc(o.label.split(" ")[0])}</div><div class="ot-val">${valueOf(f, o.key).toFixed(1)}<span class="ot-unit"> ${o.unit}</span></div></div>`).join("")}
     </div>
+    <button class="cmp-btn" data-cmp="${f.id}" aria-pressed="${state.cmp.includes(f.id)}">${state.cmp.includes(f.id) ? "✓ Sélectionné" : "Comparer"}</button>
   </article>`;
 }
 
 function renderGrid() {
   const n = current();
-  const data = sortFoods(filterFoods(foods, state.q), n.key, state.sort);
-  const maxVal = Math.max(...foods.map((f) => f[n.key]));
+  const scaled = foods.map((f) => scale(f, state.u));
+  const data = sortFoods(filterFoods(scaled, state.q), n.key, state.sort);
+  const maxVal = Math.max(...scaled.map((f) => f[n.key]));
   const others = otherNutrients(nutrients, n.key);
   $("grid").innerHTML = data.length
     ? data.map((f, i) => cardHTML(f, i, n, maxVal, others)).join("")
     : `<div class="empty"><div class="empty-icon">🔍</div><h3>Aucun aliment trouvé</h3></div>`;
+  $("grid").querySelectorAll("[data-cmp]").forEach((b) => b.addEventListener("click", () => toggleCompare(b.dataset.cmp)));
+  $("status").textContent = `${data.length} aliment${data.length > 1 ? "s" : ""}, ${state.sort === "desc" ? "du plus riche au moins riche" : "du moins riche au plus riche"} en ${n.label.toLowerCase()}`;
+}
+
+function toggleCompare(id) {
+  if (state.cmp.includes(id)) state.cmp = state.cmp.filter((x) => x !== id);
+  else state.cmp = [...state.cmp.slice(-1), id];
+  sync();
+  renderGrid();
+  renderCompare();
+}
+
+function renderCompare() {
+  const tray = $("compare");
+  const picked = state.cmp.map((id) => foods.find((f) => f.id === id)).filter(Boolean).map((f) => scale(f, state.u));
+  document.body.classList.toggle("has-compare", picked.length > 0);
+  if (picked.length === 0) { tray.hidden = true; tray.innerHTML = ""; return; }
+  tray.hidden = false;
+  const head = `<div class="ct-head"><div class="ct-title">Comparer</div><button class="ct-close" id="cmpClose">Fermer</button></div>`;
+  if (picked.length === 1) {
+    tray.innerHTML = head + `<div class="ct-hint">${picked[0].emoji} ${esc(picked[0].name)} sélectionné — choisissez un second aliment.</div>`;
+  } else {
+    const [a, b] = picked;
+    const unitLabel = (f) => state.u === "portion" ? `${esc(f.portion.label)} · ${f.portion.g} g` : "pour 100 g";
+    const rows = [...nutrients, { key: "sucres", label: "Sucres totaux", emoji: "🍭", unit: "g" }].map((n) => {
+      const va = valueOf(a, n.key), vb = valueOf(b, n.key);
+      return `<tr><td>${n.emoji} ${esc(n.label)}</td><td class="${va > vb ? "win" : ""}">${va.toFixed(1)} ${n.unit}</td><td class="${vb > va ? "win" : ""}">${vb.toFixed(1)} ${n.unit}</td></tr>`;
+    }).join("");
+    tray.innerHTML = head + `<table class="ct-table"><thead><tr><th></th><th>${a.emoji} ${esc(a.name)}<div class="ct-hint">${unitLabel(a)}</div></th><th>${b.emoji} ${esc(b.name)}<div class="ct-hint">${unitLabel(b)}</div></th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+  $("cmpClose").addEventListener("click", () => { state.cmp = []; sync(); renderGrid(); renderCompare(); });
 }
 
 function renderAll() {
   renderTabs();
   renderBanner();
   renderPills();
+  renderUnitPills();
   renderGrid();
 }
 
@@ -117,12 +182,15 @@ async function main() {
   ]);
   foods = f;
   nutrients = n;
-  state.n = nutrients[0].key;
+  Object.assign(state, readState(location.search, nutrients));
+  $("searchInput").value = state.q;
   $("searchInput").addEventListener("input", (e) => {
     state.q = e.target.value;
+    sync();
     renderGrid();
   });
   renderAll();
+  renderCompare();
 }
 
 main();
