@@ -4,36 +4,49 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-NutriBase: a single-file, French-language static site that ranks ~60 foods by nutrient content (5 sugar types, macronutrients, calories, glycemic index) per 100g. The entire app lives in `index.html` (inline CSS + vanilla JS, no framework, no dependencies except Google Fonts).
+Sugar: a French-language static site that ranks around 100 foods by nutrient content (five sugar types, macronutrients, calories, glycemic index) per 100 g. Zero npm dependencies, Node 20 or later. Deployed via GitHub Pages at `sugar.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
 
-Deployed via GitHub Pages at `sugar.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
+## Data model
 
-GitHub Pages serves every committed file, so `robots.txt` explicitly disallows the non-page files (this file, `CNAME`, etc.) and `sitemap.xml` lists only the homepage. `.nojekyll` stops Jekyll from rendering Markdown files into indexable HTML pages. When adding a file that is not meant to be a public page, add a `Disallow` line for it in `robots.txt`.
+`data/foods.json`: an array of food objects, sorted by `id`. Each has:
+- `id`: the stable identifier (slug, `[a-z0-9-]+`); `name` is display text only and can be renamed freely.
+- The five sugar keys (`glucose`, `fructose`, `saccharose`, `lactose`, `maltose`), macros (`glucides`, `proteines`, `lipides`, `fibres`), `calories` and `ig`. All values are grams per 100 g except `calories` (kcal) and `ig` (0 to 100). `glucides` follows the French convention: sugars plus starch, fibres excluded.
+- Optional `alcool` (g per 100 g, counted at 7 kcal/g). `igSource` is required whenever `ig > 0`.
+- `portion` (`g`, `label`) and `source` (`name`, `ref`, `url`), citing CIQUAL 2020 or USDA FoodData Central.
+
+`data/nutrients.json`: one entry per tab (`key`, `label`, `emoji`, `color`, `unit`, `isSugar`, `desc`, `surprises`). `surprises` holds food `id`s (not names) that get the surprise badge on that tab when their value is greater than zero.
+
+`scripts/validate.mjs` enforces both shapes (types, sort order, source URLs, calorie estimate, surprises resolving to real foods with non-zero values). Run it before committing data changes.
+
+## Code split
+
+- `assets/lib.js`: pure functions (sorting, filtering, URL state, unit scaling). No DOM access, fully covered by `test/lib.test.mjs`.
+- `assets/app.js`: DOM rendering and event wiring on top of `lib.js`. Not directly unit tested; verify manually or via the `run` skill.
+- `scripts/template.mjs` and `scripts/build.mjs`: generate the static pages (see below) from `data/*.json`.
+
+## Generated pages
+
+`scripts/build.mjs` writes `aliment/<id>/index.html` (one per food), `nutriment/<key>/index.html` (one per nutrient), `comprendre.html` and `sitemap.xml`. These are committed to the repo, not built by CI: run `npm run build` after any data change and commit the result, or CI fails on a stale diff.
+
+GitHub Pages serves every committed file, so `robots.txt` disallows the non-page files (`CLAUDE.md`, `CNAME`, `README.md`, `package.json`, `scripts/`, `test/`, etc). Add a `Disallow` line there for any new non-page file.
 
 ## Commands
 
-There is no build, lint, or test step. To preview locally, open `index.html` directly in a browser or serve the directory:
-
 ```
-python -m http.server 8000
+npm test          # unit tests (node --test)
+npm run validate  # validates data/foods.json and data/nutrients.json
+npm run build     # regenerates aliment/, nutriment/, comprendre.html, sitemap.xml
+npm run check     # validate + test + build, must stay green
 ```
 
-## Architecture of `index.html`
+## App state
 
-Three sections, in order: `<style>` (lines ~8–115), static HTML shell (header, hero, empty containers `#tabs`, `#banner`, `#sortPills`, `#grid`), then one `<script>` that owns all rendering.
+The app keeps its state in the URL query string, read and written by `assets/lib.js`: `n` (selected nutrient key), `sort` (`asc` or `desc`), `q` (search text), `u` (`100g` or `portion`), `cmp` (up to two food ids being compared).
 
-**Data model (in the script):**
-- `foods[]`: one object per food with `name`, `emoji`, `ig`, the five sugar keys (`glucose`, `fructose`, `saccharose`, `lactose`, `maltose`) and macros (`glucides`, `proteines`, `lipides`, `fibres`, `calories`). All values are g per 100g except `ig` (0–100) and `calories` (kcal). Every food must have every key, since the grid calls `.toFixed()` on each.
-- `nutrients[]`: one entry per tab. `key` must match a `foods` property. `isSugar: true` places the tab in the "Types de sucres" group and turns on the per-card sugar breakdown chips; `false` places it under "Macronutriments". `surprises` is a list of food `name` strings that get the "⚠️ Plus que vous ne le croyez !" badge on that tab (only when the value is > 0), so it must match `foods[].name` exactly.
-- `SUGAR_KEYS` / `SUGAR_COLORS` / `SUGAR_LABELS` duplicate the sugar entries of `nutrients` and are used for the breakdown chips. Keep them in sync if adding or renaming a sugar type.
+## Adding foods
 
-**State:** three module-level variables, `current` (selected nutrient), `sortDir` (-1 richest first, 1 poorest first), `search` (text filter). No persistence.
+Use the `add-food` skill (`.claude/skills/add-food/`) or the `food-sourcer` agent (`.claude/agents/food-sourcer.md`) to add or re-source foods. Both pull numbers only from CIQUAL or USDA, never invented values, and run `npm run validate` before finishing.
 
-**Rendering:** `renderAll()` = `renderTabs()` + `renderBanner()` + `renderPills()` + `renderGrid()`. Each function rebuilds its container's `innerHTML` from scratch and re-attaches click listeners; there is no diffing. Changing the tab calls `renderAll()`, changing sort calls `renderPills()` + `renderGrid()`, typing in search calls only `renderGrid()`. The banner average skips zero values. Bar widths in the grid are relative to the max of the *unfiltered* food list, so search does not rescale bars.
+## Copy conventions
 
-**Styling:** colors per nutrient are passed as inline CSS custom properties (`--tab-color`, `--pill-color`) or as hex + 2-digit alpha suffixes (e.g. `${n.color}12`), so nutrient `color` values must be 6-digit hex.
-
-## Content conventions
-
-- All UI copy and food names are in French; data sources cited in the footer are CIQUAL (ANSES), USDA and the University of Sydney GI database. Keep new food data consistent with those sources.
-- Food names double as identifiers (search, `surprises`), so renaming a food requires updating every `surprises` array that references it.
+All UI copy is in French. The site name is exactly `Sugar`, everywhere (title, meta tags, logo, footer, page titles). Do not use dashes ("—", "–") or " - " as sentence punctuation anywhere in user-facing copy; use a comma, a colon or a new sentence instead. Hyphens inside compound words (`chou-fleur`, `demi-écrémé`, `petit-beurre`) are fine.

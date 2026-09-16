@@ -1,13 +1,15 @@
 User-agent: *
-Allow: /$
-Allow: /index.html
 Disallow: /CLAUDE.md
-Disallow: /CLAUDE.html
-Disallow: /CLAUDE
 Disallow: /CNAME
 Disallow: /README.md
+Disallow: /LICENSE
+Disallow: /package.json
 Disallow: /.gitignore
+Disallow: /.nojekyll
 Disallow: /.claude/
-Disallow: /robots.txt
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /test/
 
 Sitemap: https://sugar.thoth.fr/sitemap.xml

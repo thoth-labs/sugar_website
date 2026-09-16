@@ -3,377 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriBase — Ce que contient vraiment votre assiette</title>
+    <title>Sugar : ce que contient vraiment votre assiette</title>
+    <meta name="description" content="Classez plus de 100 aliments par glucose, fructose, saccharose, lactose, maltose, glucides, protéines, lipides, fibres, calories et index glycémique. Valeurs pour 100 g, sources CIQUAL et USDA.">
+    <link rel="canonical" href="https://sugar.thoth.fr/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sugar : ce que contient vraiment votre assiette">
+    <meta property="og:description" content="Types de sucres, macronutriments et index glycémique de plus de 100 aliments, classés et comparés.">
+    <meta property="og:url" content="https://sugar.thoth.fr/">
+    <meta property="og:site_name" content="Sugar">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --green-dark:#1a3a2a; --green-mid:#2d6a4f; --green-light:#52b788;
-            --green-pale:#b7e4c7; --green-wash:#f0faf4; --cream:#fafaf7;
-            --text:#1c2b22; --muted:#6b8f74; --white:#fff;
-            --shadow:0 2px 20px rgba(26,58,42,0.07);
-            --shadow-hover:0 8px 40px rgba(26,58,42,0.14);
-            --radius:14px;
-        }
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
-
-        header{background:var(--green-dark);padding:0 40px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:62px;box-shadow:0 2px 24px rgba(0,0,0,0.2);}
-        .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green-pale);}
-        .logo em{color:var(--green-light);font-style:italic;}
-        .header-sub{font-size:0.74rem;color:rgba(255,255,255,0.38);}
-
-        .hero{background:linear-gradient(135deg,var(--green-dark) 0%,#1e4d35 100%);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
-        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 40%,rgba(82,183,136,0.16) 0%,transparent 65%);}
-        .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.7rem,3.5vw,2.7rem);color:#fff;line-height:1.2;position:relative;}
-        .hero h1 em{color:var(--green-pale);font-style:italic;}
-        .hero p{margin-top:11px;color:rgba(255,255,255,0.58);font-size:0.93rem;font-weight:300;position:relative;}
-        .hero-examples{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:18px;position:relative;}
-        .hero-pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:30px;padding:6px 15px;font-size:0.77rem;color:rgba(255,255,255,0.68);}
-        .hero-pill strong{color:var(--green-pale);}
-
-        /* TAB GROUPS */
-        .tabs-wrap{background:var(--white);border-bottom:1px solid #e4ede7;position:sticky;top:62px;z-index:90;box-shadow:var(--shadow);}
-        .tab-group-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);padding:8px 32px 0;font-weight:600;}
-        .tabs{display:flex;overflow-x:auto;padding:0 32px 0;scrollbar-width:none;gap:0;}
-        .tabs::-webkit-scrollbar{display:none;}
-        .tab-separator{width:1px;background:#e4ede7;margin:10px 6px;flex-shrink:0;}
-        .tab-section-label{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);padding:0 6px;align-self:center;white-space:nowrap;flex-shrink:0;}
-        .tab{display:flex;align-items:center;gap:7px;padding:14px 18px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-size:0.82rem;font-weight:500;color:var(--muted);transition:all 0.2s;flex-shrink:0;}
-        .tab:hover{color:var(--text);}
-        .tab.active{color:var(--text);border-bottom-color:var(--tab-color);}
-        .tab-dot{width:8px;height:8px;border-radius:50%;background:var(--tab-color);flex-shrink:0;}
-
-        /* BANNER */
-        .nutrient-banner{background:var(--white);padding:22px 40px 18px;border-bottom:1px solid #e4ede7;display:flex;align-items:flex-start;gap:16px;animation:fadeIn 0.3s ease;}
-        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-        .nb-icon{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
-        .nb-title{font-family:'DM Serif Display',serif;font-size:1.4rem;line-height:1.1;}
-        .nb-desc{font-size:0.81rem;color:var(--muted);margin-top:5px;line-height:1.55;max-width:680px;}
-        .nb-right{margin-left:auto;text-align:right;flex-shrink:0;}
-        .nb-stat-val{font-family:'DM Serif Display',serif;font-size:1.85rem;line-height:1;}
-        .nb-stat-lbl{font-size:0.68rem;color:var(--muted);margin-top:3px;}
-
-        /* CONTROLS */
-        .controls{padding:14px 40px;display:flex;gap:11px;align-items:center;background:var(--cream);border-bottom:1px solid #e4ede7;flex-wrap:wrap;}
-        .search-wrap{position:relative;flex:1;min-width:170px;}
-        .search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);}
-        .search-wrap input{width:100%;padding:10px 14px 10px 38px;border:1.5px solid #ddeee4;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.87rem;background:var(--white);color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
-        .search-wrap input:focus{border-color:var(--green-light);box-shadow:0 0 0 3px rgba(82,183,136,0.12);}
-        .sort-pills{display:flex;gap:6px;flex-wrap:wrap;}
-        .sort-pill{padding:7px 13px;border-radius:20px;border:1.5px solid #ddeee4;background:var(--white);font-size:0.76rem;font-weight:500;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all 0.15s;}
-        .sort-pill.active{background:var(--pill-color,var(--green-mid));border-color:var(--pill-color,var(--green-mid));color:white;}
-        .sort-pill:hover:not(.active){border-color:var(--green-light);color:var(--green-mid);}
-
-        /* GRID */
-        .grid-container{padding:24px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:16px;}
-
-        /* CARD */
-        .card{background:var(--white);border-radius:var(--radius);border:1px solid #e4ede7;padding:19px;box-shadow:var(--shadow);transition:transform 0.22s,box-shadow 0.22s;animation:slideUp 0.35s ease both;position:relative;}
-        .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);}
-        @keyframes slideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-        .card-top{display:flex;align-items:center;gap:11px;margin-bottom:13px;}
-        .food-emoji{width:42px;height:42px;background:var(--green-wash);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;flex-shrink:0;}
-        .food-name{font-weight:600;font-size:0.96rem;}
-        .food-sub{font-size:0.69rem;color:var(--muted);margin-top:2px;}
-
-        /* PRIMARY BLOCK */
-        .primary-block{border-radius:10px;padding:12px 14px;margin-bottom:11px;}
-        .pb-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:7px;}
-        .pb-label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;opacity:0.75;}
-        .pb-value{font-family:'DM Serif Display',serif;font-size:1.9rem;line-height:1;}
-        .pb-unit{font-size:0.66rem;opacity:0.6;font-family:'DM Sans',sans-serif;font-weight:400;}
-        .bar-track{height:5px;background:rgba(0,0,0,0.08);border-radius:3px;overflow:hidden;}
-        .bar-fill{height:100%;border-radius:3px;}
-        .bar-pct{font-size:0.64rem;opacity:0.5;margin-top:4px;}
-
-        /* SUGAR BREAKDOWN — shown when on a sugar tab */
-        .sugar-breakdown{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px;}
-        .sugar-chip{border-radius:20px;padding:4px 10px;font-size:0.7rem;font-weight:500;border:1px solid;}
-
-        .surprise{display:inline-flex;align-items:center;gap:5px;margin-bottom:9px;padding:4px 10px;border-radius:20px;font-size:0.69rem;font-weight:500;background:rgba(255,165,0,0.1);color:#b37000;border:1px solid rgba(255,165,0,0.22);}
-
-        /* OTHERS GRID */
-        .others{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
-        .ot{background:var(--green-wash);border-radius:8px;padding:7px 9px;}
-        .ot-name{font-size:0.61rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-        .ot-val{font-size:0.87rem;font-weight:600;color:var(--text);margin-top:2px;}
-        .ot-unit{font-size:0.57rem;color:var(--muted);font-weight:400;}
-
-        .empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted);}
-        .empty-icon{font-size:3rem;margin-bottom:14px;}
-        .empty h3{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:6px;}
-
-        footer{text-align:center;padding:26px;font-size:0.72rem;color:var(--muted);border-top:1px solid #e4ede7;margin-top:20px;}
-
-        @media(max-width:600px){
-            header,.controls,.grid-container,.nutrient-banner{padding-left:16px;padding-right:16px;}
-            .tabs,.tab-group-label{padding-left:12px;padding-right:12px;}
-            .hero{padding:36px 16px;}
-            .grid-container{grid-template-columns:1fr;}
-            .nb-right{display:none;}
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
 <header>
-    <div class="logo">Nutri<em>Base</em></div>
-    <div class="header-sub">Tout aliment contient tout — voyons combien</div>
+    <div class="logo">Sugar</div>
+    <nav class="header-nav" aria-label="Navigation">
+        <a href="/" aria-current="page">Classement</a>
+        <a href="/comprendre.html">Comprendre les sucres</a>
+    </nav>
 </header>
 
 <div class="hero">
     <h1>Ce que contient <em>vraiment</em> votre assiette</h1>
-    <p>Nutriments, types de sucres, index glycémique — classez tout, découvrez les surprises.</p>
+    <p>Tout aliment contient tout. Voyons combien.</p>
     <div class="hero-examples">
         <div class="hero-pill">🍞 <strong>Pain blanc</strong> contient du glucose</div>
         <div class="hero-pill">🍎 <strong>Pomme</strong> riche en fructose</div>
         <div class="hero-pill">🥛 <strong>Lait</strong> contient du lactose</div>
-        <div class="hero-pill">🍺 <strong>Bière</strong> contient du maltose</div>
+        <div class="hero-pill">🥖 <strong>Baguette</strong> contient du maltose</div>
     </div>
 </div>
 
 <div class="tabs-wrap">
-    <div class="tabs" id="tabs"></div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Nutriment affiché"></div>
 </div>
 <div class="nutrient-banner" id="banner"></div>
 <div class="controls">
     <div class="search-wrap">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" placeholder="Rechercher un aliment…">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="searchInput" placeholder="Rechercher un aliment…" aria-label="Rechercher un aliment" autocomplete="off">
     </div>
-    <div class="sort-pills" id="sortPills"></div>
+    <div class="sort-pills" id="sortPills" role="group" aria-label="Tri"></div>
+    <div class="sort-pills" id="unitPills" role="group" aria-label="Unité"></div>
 </div>
 <div class="grid-container" id="grid"></div>
-<footer>NutriBase · Valeurs pour 100g · Sources : CIQUAL (ANSES), USDA · IG : Université de Sydney</footer>
+<div id="status" class="visually-hidden" role="status" aria-live="polite"></div>
+<div class="compare-tray" id="compare" aria-live="polite" hidden></div>
+<footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques)</footer>
 
-<script>
-    // ── DATA ─────────────────────────────────────────────────────────────────────
-    // Each food: macro nutrients + 5 sugar types (g per 100g)
-    const foods = [
-        // name, emoji, ig, glucose, fructose, saccharose, lactose, maltose, glucides, proteines, lipides, fibres, calories
-        {name:"Pomme",           emoji:"🍎", ig:38,  glucose:2.4,  fructose:5.9,  saccharose:1.9, lactose:0.0, maltose:0.1, glucides:14.0, proteines:0.3,  lipides:0.2,  fibres:2.4,  calories:52},
-        {name:"Banane",          emoji:"🍌", ig:52,  glucose:4.2,  fructose:3.6,  saccharose:6.3, lactose:0.0, maltose:0.0, glucides:23.0, proteines:1.1,  lipides:0.3,  fibres:2.6,  calories:89},
-        {name:"Raisin",          emoji:"🍇", ig:59,  glucose:7.3,  fructose:7.6,  saccharose:0.2, lactose:0.0, maltose:0.0, glucides:18.1, proteines:0.7,  lipides:0.2,  fibres:0.9,  calories:69},
-        {name:"Fraise",          emoji:"🍓", ig:25,  glucose:2.2,  fructose:2.5,  saccharose:1.0, lactose:0.0, maltose:0.1, glucides:7.7,  proteines:0.7,  lipides:0.3,  fibres:2.0,  calories:33},
-        {name:"Orange",          emoji:"🍊", ig:40,  glucose:2.2,  fructose:2.5,  saccharose:4.0, lactose:0.0, maltose:0.0, glucides:12.0, proteines:0.9,  lipides:0.1,  fibres:2.4,  calories:47},
-        {name:"Mangue",          emoji:"🥭", ig:55,  glucose:1.5,  fructose:2.9,  saccharose:7.0, lactose:0.0, maltose:0.0, glucides:15.0, proteines:0.8,  lipides:0.4,  fibres:1.6,  calories:60},
-        {name:"Cerise",          emoji:"🍒", ig:22,  glucose:6.7,  fructose:7.0,  saccharose:0.2, lactose:0.0, maltose:0.0, glucides:16.0, proteines:1.1,  lipides:0.2,  fibres:2.1,  calories:63},
-        {name:"Pastèque",        emoji:"🍉", ig:72,  glucose:2.7,  fructose:3.4,  saccharose:3.2, lactose:0.0, maltose:0.0, glucides:8.0,  proteines:0.6,  lipides:0.2,  fibres:0.4,  calories:30},
-        {name:"Poire",           emoji:"🍐", ig:38,  glucose:2.1,  fructose:6.4,  saccharose:1.0, lactose:0.0, maltose:0.1, glucides:15.5, proteines:0.4,  lipides:0.1,  fibres:3.1,  calories:57},
-        {name:"Pêche",           emoji:"🍑", ig:42,  glucose:1.5,  fructose:1.7,  saccharose:5.6, lactose:0.0, maltose:0.0, glucides:9.5,  proteines:0.9,  lipides:0.3,  fibres:1.5,  calories:39},
-        {name:"Myrtille",        emoji:"🫐", ig:25,  glucose:3.7,  fructose:4.0,  saccharose:0.1, lactose:0.0, maltose:0.0, glucides:14.5, proteines:0.7,  lipides:0.3,  fibres:2.4,  calories:57},
-        {name:"Avocat",          emoji:"🥑", ig:10,  glucose:0.2,  fructose:0.1,  saccharose:0.1, lactose:0.0, maltose:0.0, glucides:1.8,  proteines:2.0,  lipides:14.7, fibres:6.7,  calories:160},
-        {name:"Ananas",          emoji:"🍍", ig:59,  glucose:2.1,  fructose:1.9,  saccharose:4.6, lactose:0.0, maltose:0.1, glucides:13.1, proteines:0.5,  lipides:0.1,  fibres:1.4,  calories:50},
-        {name:"Kiwi",            emoji:"🥝", ig:53,  glucose:4.1,  fructose:4.4,  saccharose:0.1, lactose:0.0, maltose:0.0, glucides:14.7, proteines:1.1,  lipides:0.5,  fibres:3.0,  calories:61},
-        {name:"Carotte",         emoji:"🥕", ig:47,  glucose:1.5,  fructose:1.4,  saccharose:3.6, lactose:0.0, maltose:0.0, glucides:9.6,  proteines:0.9,  lipides:0.2,  fibres:2.8,  calories:41},
-        {name:"Pomme de terre",  emoji:"🥔", ig:78,  glucose:0.2,  fructose:0.1,  saccharose:0.2, lactose:0.0, maltose:0.3, glucides:17.5, proteines:2.0,  lipides:0.1,  fibres:2.2,  calories:77},
-        {name:"Betterave",       emoji:"🫀", ig:64,  glucose:0.9,  fructose:0.9,  saccharose:6.7, lactose:0.0, maltose:0.0, glucides:9.6,  proteines:1.6,  lipides:0.2,  fibres:2.8,  calories:43},
-        {name:"Tomate",          emoji:"🍅", ig:15,  glucose:1.5,  fructose:1.4,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:3.9,  proteines:0.9,  lipides:0.2,  fibres:1.2,  calories:18},
-        {name:"Oignon",          emoji:"🧅", ig:10,  glucose:2.0,  fructose:1.3,  saccharose:1.0, lactose:0.0, maltose:0.0, glucides:9.3,  proteines:1.1,  lipides:0.1,  fibres:1.7,  calories:40},
-        {name:"Épinard",         emoji:"🌿", ig:15,  glucose:0.1,  fructose:0.1,  saccharose:0.1, lactose:0.0, maltose:0.0, glucides:3.6,  proteines:2.9,  lipides:0.4,  fibres:2.2,  calories:23},
-        {name:"Brocoli",         emoji:"🥦", ig:15,  glucose:0.5,  fructose:0.4,  saccharose:0.3, lactose:0.0, maltose:0.0, glucides:7.0,  proteines:2.8,  lipides:0.4,  fibres:2.6,  calories:34},
-        {name:"Maïs (épi)",      emoji:"🌽", ig:65,  glucose:0.5,  fructose:0.5,  saccharose:0.9, lactose:0.0, maltose:0.5, glucides:19.0, proteines:3.4,  lipides:1.5,  fibres:2.7,  calories:86},
-        {name:"Pain blanc",      emoji:"🍞", ig:75,  glucose:0.2,  fructose:0.1,  saccharose:1.5, lactose:0.0, maltose:1.0, glucides:49.0, proteines:9.0,  lipides:3.2,  fibres:2.7,  calories:265},
-        {name:"Pain complet",    emoji:"🍞", ig:51,  glucose:0.2,  fructose:0.1,  saccharose:1.2, lactose:0.0, maltose:0.5, glucides:41.0, proteines:9.0,  lipides:3.4,  fibres:6.0,  calories:247},
-        {name:"Riz blanc cuit",  emoji:"🍚", ig:73,  glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.1, glucides:28.2, proteines:2.7,  lipides:0.3,  fibres:0.4,  calories:130},
-        {name:"Pâtes cuites",    emoji:"🍝", ig:50,  glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.2, glucides:25.0, proteines:5.8,  lipides:1.1,  fibres:1.8,  calories:131},
-        {name:"Avoine (flocons)",emoji:"🌾", ig:55,  glucose:0.0,  fructose:0.0,  saccharose:0.5, lactose:0.0, maltose:0.8, glucides:66.3, proteines:16.9, lipides:6.9,  fibres:10.6, calories:389},
-        {name:"Corn flakes",     emoji:"🥣", ig:81,  glucose:5.0,  fructose:3.0,  saccharose:7.0, lactose:0.0, maltose:1.5, glucides:84.0, proteines:7.0,  lipides:0.9,  fibres:1.2,  calories:357},
-        {name:"Quinoa cuit",     emoji:"🫘", ig:53,  glucose:0.0,  fructose:0.0,  saccharose:0.3, lactose:0.0, maltose:0.1, glucides:21.3, proteines:4.4,  lipides:1.9,  fibres:2.8,  calories:120},
-        {name:"Poulet (blanc)",  emoji:"🍗", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:0.0,  proteines:31.0, lipides:3.6,  fibres:0.0,  calories:165},
-        {name:"Saumon",          emoji:"🐟", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:0.0,  proteines:20.1, lipides:13.4, fibres:0.0,  calories:208},
-        {name:"Thon (boîte)",    emoji:"🐠", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:0.0,  proteines:30.0, lipides:1.0,  fibres:0.0,  calories:130},
-        {name:"Œuf entier",      emoji:"🥚", ig:0,   glucose:0.1,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:1.1,  proteines:12.6, lipides:9.5,  fibres:0.0,  calories:143},
-        {name:"Bœuf (maigre)",   emoji:"🥩", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:0.0,  proteines:26.1, lipides:8.3,  fibres:0.0,  calories:185},
-        {name:"Lait entier",     emoji:"🥛", ig:31,  glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:4.7, maltose:0.0, glucides:4.7,  proteines:3.2,  lipides:3.7,  fibres:0.0,  calories:61},
-        {name:"Yaourt nature",   emoji:"🫙", ig:36,  glucose:0.2,  fructose:0.1,  saccharose:0.1, lactose:3.2, maltose:0.0, glucides:3.6,  proteines:10.0, lipides:0.4,  fibres:0.0,  calories:59},
-        {name:"Fromage blanc",   emoji:"🧀", ig:30,  glucose:0.1,  fructose:0.0,  saccharose:0.0, lactose:3.1, maltose:0.0, glucides:3.3,  proteines:7.9,  lipides:0.2,  fibres:0.0,  calories:47},
-        {name:"Emmental",        emoji:"🧀", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.1, maltose:0.0, glucides:0.0,  proteines:28.5, lipides:30.6, fibres:0.0,  calories:397},
-        {name:"Beurre",          emoji:"🧈", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.1, maltose:0.0, glucides:0.1,  proteines:0.9,  lipides:81.1, fibres:0.0,  calories:717},
-        {name:"Lait de soja",    emoji:"🥛", ig:34,  glucose:0.3,  fructose:0.2,  saccharose:1.5, lactose:0.0, maltose:0.0, glucides:2.7,  proteines:3.3,  lipides:1.8,  fibres:0.4,  calories:39},
-        {name:"Lentilles",       emoji:"🫘", ig:32,  glucose:0.1,  fructose:0.1,  saccharose:0.5, lactose:0.0, maltose:0.1, glucides:20.1, proteines:9.0,  lipides:0.4,  fibres:7.9,  calories:116},
-        {name:"Pois chiches",    emoji:"🫘", ig:28,  glucose:0.1,  fructose:0.2,  saccharose:0.7, lactose:0.0, maltose:0.1, glucides:27.4, proteines:8.9,  lipides:2.6,  fibres:7.6,  calories:164},
-        {name:"Haricots rouges", emoji:"🫘", ig:25,  glucose:0.1,  fructose:0.1,  saccharose:0.5, lactose:0.0, maltose:0.1, glucides:22.8, proteines:8.7,  lipides:0.5,  fibres:6.4,  calories:127},
-        {name:"Soja",            emoji:"🌿", ig:15,  glucose:0.0,  fructose:0.1,  saccharose:3.5, lactose:0.0, maltose:0.0, glucides:9.9,  proteines:16.6, lipides:9.0,  fibres:6.0,  calories:173},
-        {name:"Amandes",         emoji:"🌰", ig:0,   glucose:0.2,  fructose:0.1,  saccharose:3.6, lactose:0.0, maltose:0.0, glucides:21.6, proteines:21.2, lipides:49.9, fibres:12.5, calories:579},
-        {name:"Noix",            emoji:"🥜", ig:15,  glucose:0.1,  fructose:0.1,  saccharose:0.7, lactose:0.0, maltose:0.0, glucides:13.7, proteines:15.2, lipides:65.2, fibres:6.7,  calories:654},
-        {name:"Graines de chia", emoji:"🌱", ig:1,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:42.1, proteines:16.5, lipides:30.7, fibres:34.4, calories:486},
-        {name:"Sucre blanc",     emoji:"🍬", ig:100, glucose:0.1,  fructose:0.1,  saccharose:99.5,lactose:0.0, maltose:0.0, glucides:99.8, proteines:0.0,  lipides:0.0,  fibres:0.0,  calories:387},
-        {name:"Miel",            emoji:"🍯", ig:58,  glucose:33.5, fructose:40.9, saccharose:1.5, lactose:0.0, maltose:1.5, glucides:82.4, proteines:0.3,  lipides:0.0,  fibres:0.2,  calories:304},
-        {name:"Chocolat noir 70%",emoji:"🍫",ig:23,  glucose:1.7,  fructose:1.4,  saccharose:22.0,lactose:0.0, maltose:0.3, glucides:45.9, proteines:7.8,  lipides:30.4, fibres:10.9, calories:546},
-        {name:"Chocolat au lait",emoji:"🍫", ig:43,  glucose:4.5,  fructose:4.0,  saccharose:45.0,lactose:5.0, maltose:0.5, glucides:59.4, proteines:7.7,  lipides:29.7, fibres:1.5,  calories:535},
-        {name:"Confiture",       emoji:"🫙", ig:55,  glucose:14.0, fructose:12.0, saccharose:20.0,lactose:0.0, maltose:0.5, glucides:69.0, proteines:0.4,  lipides:0.1,  fibres:1.0,  calories:278},
-        {name:"Miel d'acacia",   emoji:"🍯", ig:50,  glucose:24.0, fructose:43.0, saccharose:1.0, lactose:0.0, maltose:1.0, glucides:80.0, proteines:0.3,  lipides:0.0,  fibres:0.0,  calories:304},
-        {name:"Dattes",          emoji:"🌴", ig:42,  glucose:19.0, fructose:23.0, saccharose:5.0, lactose:0.0, maltose:0.5, glucides:75.0, proteines:1.8,  lipides:0.4,  fibres:7.5,  calories:277},
-        {name:"Sirop d'érable",  emoji:"🍁", ig:54,  glucose:4.0,  fructose:2.0,  saccharose:59.0,lactose:0.0, maltose:0.5, glucides:67.0, proteines:0.0,  lipides:0.1,  fibres:0.0,  calories:260},
-        {name:"Jus d'orange",    emoji:"🥤", ig:57,  glucose:2.8,  fructose:3.0,  saccharose:3.6, lactose:0.0, maltose:0.1, glucides:10.4, proteines:0.7,  lipides:0.2,  fibres:0.2,  calories:45},
-        {name:"Soda (cola)",     emoji:"🥤", ig:63,  glucose:2.9,  fructose:2.9,  saccharose:5.0, lactose:0.0, maltose:0.1, glucides:10.6, proteines:0.0,  lipides:0.0,  fibres:0.0,  calories:42},
-        {name:"Eau",             emoji:"💧", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:0.0,  proteines:0.0,  lipides:0.0,  fibres:0.0,  calories:0},
-        {name:"Thé vert",        emoji:"🍵", ig:0,   glucose:0.0,  fructose:0.0,  saccharose:0.0, lactose:0.0, maltose:0.0, glucides:0.2,  proteines:0.2,  lipides:0.0,  fibres:0.0,  calories:1},
-    ];
-
-    // ── NUTRIENT DEFINITIONS ─────────────────────────────────────────────────────
-    // isSugar: true = affiche le breakdown sucres sur la carte
-    const nutrients = [
-        // ── TYPES DE SUCRES
-        { key:"glucose",   label:"Glucose",          emoji:"⚡", color:"#d4600a", unit:"g", isSugar:true,
-            desc:"Le glucose est absorbé directement dans le sang — c'est le sucre qui fait monter la glycémie le plus vite. Présent dans les fruits, le miel, mais aussi en traces dans le pain et les produits céréaliers.",
-            surprises:["Pain blanc","Corn flakes","Confiture","Betterave","Miel","Dattes"] },
-        { key:"fructose",  label:"Fructose",         emoji:"🍎", color:"#c2410c", unit:"g", isSugar:true,
-            desc:"Le fructose est le sucre des fruits. Il est métabolisé par le foie (pas par les muscles), donc il n'augmente pas directement la glycémie — mais en excès il surcharge le foie. Le miel et les fruits en sont riches.",
-            surprises:["Miel","Miel d'acacia","Raisin","Dattes","Confiture","Poire"] },
-        { key:"saccharose",label:"Saccharose",        emoji:"🍬", color:"#b91c1c", unit:"g", isSugar:true,
-            desc:"Le saccharose, c'est le sucre de table classique (glucose + fructose). Il est présent massivement dans les sucreries, mais aussi dans la betterave, les sauces industrielles ou le sirop d'érable.",
-            surprises:["Betterave","Sirop d'érable","Corn flakes","Chocolat au lait","Mangue","Banane"] },
-        { key:"lactose",   label:"Lactose",          emoji:"🥛", color:"#7c3aed", unit:"g", isSugar:true,
-            desc:"Le lactose est le sucre du lait (glucose + galactose). Présent uniquement dans les produits laitiers animaux. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
-            surprises:["Lait entier","Yaourt nature","Fromage blanc","Chocolat au lait","Beurre","Emmental"] },
-        { key:"maltose",   label:"Maltose",          emoji:"🌾", color:"#92400e", unit:"g", isSugar:true,
-            desc:"Le maltose (glucose + glucose) apparaît lors de la digestion de l'amidon. Présent dans les céréales, le pain, la bière et les aliments fermentés. Souvent sous-estimé car peu indiqué sur les étiquettes.",
-            surprises:["Pain blanc","Corn flakes","Avoine (flocons)","Pomme de terre","Maïs (épi)","Miel"] },
-        // ── MACRONUTRIMENTS
-        { key:"glucides",  label:"Glucides totaux",  emoji:"🌾", color:"#c47a00", unit:"g", isSugar:false,
-            desc:"Les glucides totaux incluent tous les sucres + amidon + fibres. C'est la principale source d'énergie. Présents partout : céréales, fruits, légumineuses — et même dans les légumes.",
-            surprises:["Pain blanc","Avoine (flocons)","Dattes","Sucre blanc","Corn flakes","Lentilles"] },
-        { key:"proteines", label:"Protéines",        emoji:"💪", color:"#2563a8", unit:"g", isSugar:false,
-            desc:"Indispensables aux muscles et tissus. Les viandes en sont riches, mais aussi l'avoine, les légumineuses, le fromage ou même le pain — souvent méconnus comme sources protéiques.",
-            surprises:["Pain blanc","Avoine (flocons)","Pois chiches","Soja","Lentilles","Amandes"] },
-        { key:"lipides",   label:"Lipides",          emoji:"🫧", color:"#7c3aed", unit:"g", isSugar:false,
-            desc:"Les graisses sont essentielles au cerveau, aux hormones et à l'absorption des vitamines liposolubles. Pas toutes mauvaises — celles du saumon, des noix ou de l'avocat sont bénéfiques.",
-            surprises:["Avocat","Saumon","Chocolat noir 70%","Œuf entier","Noix","Amandes"] },
-        { key:"fibres",    label:"Fibres",           emoji:"🌿", color:"#166534", unit:"g", isSugar:false,
-            desc:"Les fibres améliorent la digestion, la satiété et la flore intestinale. Quasiment absentes des produits ultra-transformés. Graines de chia, légumineuses et céréales complètes en sont les champions.",
-            surprises:["Graines de chia","Lentilles","Amandes","Avocat","Chocolat noir 70%","Dattes"] },
-        { key:"calories",  label:"Calories",         emoji:"🔥", color:"#b91c1c", unit:"kcal", isSugar:false,
-            desc:"L'énergie apportée par un aliment. Les graisses : 9 kcal/g. Glucides & protéines : 4 kcal/g. Le beurre est 45× plus calorique que la tomate — à garder en tête pour les portions.",
-            surprises:["Beurre","Noix","Amandes","Chocolat noir 70%","Avoine (flocons)","Graines de chia"] },
-        { key:"ig",        label:"Index glycémique", emoji:"📈", color:"#dc2626", unit:"/100", isSugar:false,
-            desc:"L'IG mesure la vitesse de montée de la glycémie après ingestion (0–100). IG <55 = lent. IG >70 = rapide. La cuisson, la transformation et la finesse de mouture augmentent l'IG — même la carotte cuite !",
-            surprises:["Pain blanc","Corn flakes","Riz blanc cuit","Pomme de terre","Pastèque","Betterave"] },
-    ];
-
-    const SUGAR_KEYS = ["glucose","fructose","saccharose","lactose","maltose"];
-    const SUGAR_COLORS = {glucose:"#d4600a",fructose:"#c2410c",saccharose:"#b91c1c",lactose:"#7c3aed",maltose:"#92400e"};
-    const SUGAR_LABELS = {glucose:"Glucose",fructose:"Fructose",saccharose:"Saccharose",lactose:"Lactose",maltose:"Maltose"};
-
-    let current = nutrients[0];
-    let sortDir = -1;
-    let search = "";
-
-    // ── TABS ─────────────────────────────────────────────────────────────────────
-    function renderTabs(){
-        const sugarNuts  = nutrients.filter(n=>n.isSugar);
-        const macroNuts  = nutrients.filter(n=>!n.isSugar);
-        document.getElementById('tabs').innerHTML =
-            `<span class="tab-section-label">🍭 Types de sucres</span>` +
-            sugarNuts.map(tabHTML).join('') +
-            `<div class="tab-separator"></div>` +
-            `<span class="tab-section-label">📊 Macronutriments</span>` +
-            macroNuts.map(tabHTML).join('');
-        document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
-            current=nutrients.find(n=>n.key===t.dataset.key);
-            sortDir=-1; renderAll();
-        }));
-    }
-    function tabHTML(n){
-        return `<div class="tab ${n.key===current.key?'active':''}" data-key="${n.key}" style="--tab-color:${n.color}">
-    <div class="tab-dot"></div>${n.emoji} ${n.label}</div>`;
-    }
-
-    // ── BANNER ────────────────────────────────────────────────────────────────────
-    function renderBanner(){
-        const n=current;
-        const vals=foods.map(f=>f[n.key]).filter(v=>v>0);
-        const avg=(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);
-        document.getElementById('banner').innerHTML=`
-    <div class="nb-icon" style="background:${n.color}20">${n.emoji}</div>
-    <div style="flex:1">
-      <div class="nb-title" style="color:${n.color}">${n.label}</div>
-      <div class="nb-desc">${n.desc}</div>
-    </div>
-    <div class="nb-right">
-      <div class="nb-stat-val" style="color:${n.color}">${avg}</div>
-      <div class="nb-stat-lbl">${n.unit} en moyenne</div>
-    </div>`;
-    }
-
-    // ── SORT PILLS ────────────────────────────────────────────────────────────────
-    function renderPills(){
-        const n=current;
-        document.getElementById('sortPills').innerHTML=`
-    <div class="sort-pill ${sortDir===-1?'active':''}" data-d="-1" style="--pill-color:${n.color}">↓ Plus riche</div>
-    <div class="sort-pill ${sortDir===1?'active':''}" data-d="1" style="--pill-color:${n.color}">↑ Moins riche</div>`;
-        document.querySelectorAll('.sort-pill[data-d]').forEach(p=>p.addEventListener('click',()=>{
-            sortDir=parseInt(p.dataset.d); renderPills(); renderGrid();
-        }));
-    }
-
-    // ── GRID ──────────────────────────────────────────────────────────────────────
-    function renderGrid(){
-        const n=current;
-        let data=[...foods];
-        if(search) data=data.filter(f=>f.name.toLowerCase().includes(search.toLowerCase()));
-        data.sort((a,b)=>sortDir*(b[n.key]-a[n.key]));
-        const maxVal=Math.max(...foods.map(f=>f[n.key]));
-
-        // Other nutrients to show at bottom (exclude current, show 6 max)
-        const others = nutrients.filter(x=>x.key!==n.key).slice(0,6);
-
-        if(!data.length){
-            document.getElementById('grid').innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><h3>Aucun aliment trouvé</h3></div>`;
-            return;
-        }
-
-        document.getElementById('grid').innerHTML=data.map((f,i)=>{
-            const val=f[n.key];
-            const pct=maxVal>0?Math.round((val/maxVal)*100):0;
-            const isSurprise=n.surprises.includes(f.name)&&val>0;
-
-            // Sugar breakdown chips — show on ALL tabs when on a sugar tab
-            let sugarBreakdown='';
-            if(n.isSugar){
-                const totalSugar = SUGAR_KEYS.reduce((s,k)=>s+f[k],0);
-                sugarBreakdown=`<div class="sugar-breakdown">` +
-                    SUGAR_KEYS.map(k=>{
-                        const v=f[k];
-                        if(v===0) return '';
-                        const pct2=totalSugar>0?Math.round((v/totalSugar)*100):0;
-                        const active=k===n.key;
-                        return `<div class="sugar-chip" style="background:${SUGAR_COLORS[k]}${active?'22':'11'};color:${SUGAR_COLORS[k]};border-color:${SUGAR_COLORS[k]}${active?'55':'22'};font-weight:${active?'700':'500'}">
-            ${SUGAR_LABELS[k]} ${v.toFixed(1)}g <span style="opacity:0.6">(${pct2}%)</span>
-          </div>`;
-                    }).join('') +
-                    `</div>`;
-            }
-
-            return `<div class="card" style="animation-delay:${Math.min(i*.025,.5)}s">
-      <div class="card-top">
-        <div class="food-emoji">${f.emoji}</div>
-        <div><div class="food-name">${f.name}</div><div class="food-sub">pour 100g</div></div>
-      </div>
-      <div class="primary-block" style="background:${n.color}12;color:${n.color}">
-        <div class="pb-top">
-          <div class="pb-label">${n.emoji} ${n.label}</div>
-          <div class="pb-value">${val.toFixed(1)}<span class="pb-unit"> ${n.unit}</span></div>
-        </div>
-        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${n.color}"></div></div>
-        <div class="bar-pct">${pct}% du maximum</div>
-      </div>
-      ${isSurprise?`<div class="surprise">⚠️ Plus que vous ne le croyez !</div>`:''}
-      ${sugarBreakdown}
-      <div class="others">
-        ${others.map(on=>`<div class="ot">
-          <div class="ot-name">${on.emoji} ${on.label.split(' ')[0]}</div>
-          <div class="ot-val">${f[on.key].toFixed(1)}<span class="ot-unit"> ${on.unit}</span></div>
-        </div>`).join('')}
-      </div>
-    </div>`;
-        }).join('');
-    }
-
-    function renderAll(){ renderTabs(); renderBanner(); renderPills(); renderGrid(); }
-    document.getElementById('searchInput').addEventListener('input',e=>{search=e.target.value;renderGrid();});
-    renderAll();
-</script>
+<script type="module" src="assets/app.js"></script>
 </body>
 </html>

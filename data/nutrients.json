@@ -1,0 +1,189 @@
+[
+  {
+    "key": "glucose",
+    "label": "Glucose",
+    "emoji": "⚡",
+    "color": "#d4600a",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le glucose est absorbé directement dans le sang : c'est le sucre qui fait monter la glycémie le plus vite. Présent dans les fruits, le miel, mais aussi en traces dans le pain et les produits céréaliers.",
+    "surprises": [
+      "ketchup",
+      "pain-blanc",
+      "croissant",
+      "muesli",
+      "boisson-energisante",
+      "compote-de-pomme"
+    ]
+  },
+  {
+    "key": "fructose",
+    "label": "Fructose",
+    "emoji": "🍎",
+    "color": "#c2410c",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le fructose est le sucre des fruits. Il est métabolisé par le foie (pas par les muscles), donc il n'augmente pas directement la glycémie, mais en excès il surcharge le foie. Le miel et les fruits en sont riches.",
+    "surprises": [
+      "sirop-d-agave",
+      "ketchup",
+      "soda-cola",
+      "jus-de-pomme",
+      "croissant",
+      "muesli"
+    ]
+  },
+  {
+    "key": "saccharose",
+    "label": "Saccharose",
+    "emoji": "🍬",
+    "color": "#b91c1c",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le saccharose, c'est le sucre de table classique (glucose + fructose). Il est présent massivement dans les sucreries, mais aussi dans la betterave, les sauces industrielles ou le sirop d'érable.",
+    "surprises": [
+      "petits-pois",
+      "noix-de-cajou",
+      "cacahuete",
+      "betterave",
+      "muesli",
+      "boisson-energisante"
+    ]
+  },
+  {
+    "key": "lactose",
+    "label": "Lactose",
+    "emoji": "🥛",
+    "color": "#7c3aed",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent presque exclusivement dans les produits laitiers animaux, et en traces dans quelques aliments transformés. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
+    "surprises": [
+      "barre-chocolatee",
+      "croissant",
+      "pizza-margherita",
+      "puree-de-pommes-de-terre",
+      "muesli",
+      "beurre"
+    ]
+  },
+  {
+    "key": "maltose",
+    "label": "Maltose",
+    "emoji": "🌾",
+    "color": "#92400e",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le maltose (glucose + glucose) apparaît lors de la digestion de l'amidon. Présent dans les céréales, le pain, la bière et les aliments fermentés. Souvent sous-estimé car peu indiqué sur les étiquettes.",
+    "surprises": [
+      "patate-douce",
+      "baguette",
+      "croissant",
+      "pizza-margherita",
+      "compote-de-pomme",
+      "pates-cuites"
+    ]
+  },
+  {
+    "key": "glucides",
+    "label": "Glucides totaux",
+    "emoji": "🌾",
+    "color": "#c47a00",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Les glucides totaux regroupent les sucres et l'amidon (les fibres sont comptées à part). C'est la principale source d'énergie. Présents partout : céréales, fruits, légumineuses, et même dans les légumes.",
+    "surprises": [
+      "ketchup",
+      "petits-pois",
+      "raisins-secs",
+      "muesli",
+      "lentilles",
+      "corn-flakes"
+    ]
+  },
+  {
+    "key": "proteines",
+    "label": "Protéines",
+    "emoji": "💪",
+    "color": "#2563a8",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Indispensables aux muscles et tissus. Les viandes en sont riches, mais aussi l'avoine, les légumineuses, le fromage ou même le pain, souvent méconnus comme sources protéiques.",
+    "surprises": [
+      "cacahuete",
+      "graines-de-chia",
+      "noix-de-cajou",
+      "avoine-flocons",
+      "pizza-margherita",
+      "baguette"
+    ]
+  },
+  {
+    "key": "lipides",
+    "label": "Lipides",
+    "emoji": "🫧",
+    "color": "#7c3aed",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Les graisses sont essentielles au cerveau, aux hormones et à l'absorption des vitamines liposolubles. Pas toutes mauvaises : celles du saumon, des noix ou de l'avocat sont bénéfiques.",
+    "surprises": [
+      "croissant",
+      "muesli",
+      "graines-de-chia",
+      "avocat",
+      "biscuit-sable",
+      "pizza-margherita"
+    ]
+  },
+  {
+    "key": "fibres",
+    "label": "Fibres",
+    "emoji": "🌿",
+    "color": "#166534",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Les fibres améliorent la digestion, la satiété et la flore intestinale. Quasiment absentes des produits ultra-transformés. Graines de chia, légumineuses et céréales complètes en sont les champions.",
+    "surprises": [
+      "chocolat-noir-70",
+      "framboise",
+      "noisette",
+      "cacahuete",
+      "avocat",
+      "petits-pois"
+    ]
+  },
+  {
+    "key": "calories",
+    "label": "Calories",
+    "emoji": "🔥",
+    "color": "#b91c1c",
+    "unit": "kcal",
+    "isSugar": false,
+    "desc": "L'énergie apportée par un aliment. Les graisses : 9 kcal/g. Glucides et protéines : 4 kcal/g. Le beurre est 45 fois plus calorique que la tomate, à garder en tête pour les portions.",
+    "surprises": [
+      "noisette",
+      "muesli",
+      "raisins-secs",
+      "sirop-d-agave",
+      "croissant",
+      "graines-de-chia"
+    ]
+  },
+  {
+    "key": "ig",
+    "label": "Index glycémique",
+    "emoji": "📈",
+    "color": "#dc2626",
+    "unit": "/100",
+    "isSugar": false,
+    "desc": "L'IG mesure la vitesse de montée de la glycémie après ingestion, de 0 à 100. IG inférieur à 55 : lent. IG supérieur à 70 : rapide. La cuisson, la transformation et la finesse de mouture augmentent l'IG, même pour la carotte cuite !",
+    "surprises": [
+      "baguette",
+      "puree-de-pommes-de-terre",
+      "melon",
+      "pasteque",
+      "betterave",
+      "raisins-secs"
+    ]
+  }
+]

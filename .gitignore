@@ -5,3 +5,16 @@
 # OS
 .DS_Store
 Thumbs.db
+
+# Node
+node_modules/
+
+# Local scratch
+.tmp/
+
+# Tooling scratch
+.playwright-mcp/
+
+# Claude Code
+.claude/worktrees/
+.superpowers/
