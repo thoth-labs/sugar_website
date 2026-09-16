@@ -57,14 +57,14 @@
     "color": "#7c3aed",
     "unit": "g",
     "isSugar": true,
-    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent uniquement dans les produits laitiers animaux. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
+    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent essentiellement dans les produits laitiers animaux, et en traces dans tout aliment qui en contient. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
     "surprises": [
       "lait-entier",
       "yaourt-nature",
       "fromage-blanc",
       "chocolat-au-lait",
       "beurre",
-      "emmental"
+      "confiture"
     ]
   },
   {
@@ -78,8 +78,8 @@
     "surprises": [
       "pain-blanc",
       "corn-flakes",
-      "avoine-flocons",
-      "pomme-de-terre",
+      "pates-cuites",
+      "pain-complet",
       "mais-epi",
       "miel"
     ]
