@@ -1,0 +1,189 @@
+[
+  {
+    "key": "glucose",
+    "label": "Glucose",
+    "emoji": "⚡",
+    "color": "#d4600a",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le glucose est absorbé directement dans le sang — c'est le sucre qui fait monter la glycémie le plus vite. Présent dans les fruits, le miel, mais aussi en traces dans le pain et les produits céréaliers.",
+    "surprises": [
+      "pain-blanc",
+      "corn-flakes",
+      "confiture",
+      "betterave",
+      "miel",
+      "dattes"
+    ]
+  },
+  {
+    "key": "fructose",
+    "label": "Fructose",
+    "emoji": "🍎",
+    "color": "#c2410c",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le fructose est le sucre des fruits. Il est métabolisé par le foie (pas par les muscles), donc il n'augmente pas directement la glycémie — mais en excès il surcharge le foie. Le miel et les fruits en sont riches.",
+    "surprises": [
+      "miel",
+      "miel-d-acacia",
+      "raisin",
+      "dattes",
+      "confiture",
+      "poire"
+    ]
+  },
+  {
+    "key": "saccharose",
+    "label": "Saccharose",
+    "emoji": "🍬",
+    "color": "#b91c1c",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le saccharose, c'est le sucre de table classique (glucose + fructose). Il est présent massivement dans les sucreries, mais aussi dans la betterave, les sauces industrielles ou le sirop d'érable.",
+    "surprises": [
+      "betterave",
+      "sirop-d-erable",
+      "corn-flakes",
+      "chocolat-au-lait",
+      "mangue",
+      "banane"
+    ]
+  },
+  {
+    "key": "lactose",
+    "label": "Lactose",
+    "emoji": "🥛",
+    "color": "#7c3aed",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le lactose est le sucre du lait (glucose + galactose). Présent uniquement dans les produits laitiers animaux. Les personnes intolérantes manquent de lactase, l'enzyme nécessaire à sa digestion.",
+    "surprises": [
+      "lait-entier",
+      "yaourt-nature",
+      "fromage-blanc",
+      "chocolat-au-lait",
+      "beurre",
+      "emmental"
+    ]
+  },
+  {
+    "key": "maltose",
+    "label": "Maltose",
+    "emoji": "🌾",
+    "color": "#92400e",
+    "unit": "g",
+    "isSugar": true,
+    "desc": "Le maltose (glucose + glucose) apparaît lors de la digestion de l'amidon. Présent dans les céréales, le pain, la bière et les aliments fermentés. Souvent sous-estimé car peu indiqué sur les étiquettes.",
+    "surprises": [
+      "pain-blanc",
+      "corn-flakes",
+      "avoine-flocons",
+      "pomme-de-terre",
+      "mais-epi",
+      "miel"
+    ]
+  },
+  {
+    "key": "glucides",
+    "label": "Glucides totaux",
+    "emoji": "🌾",
+    "color": "#c47a00",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Les glucides totaux incluent tous les sucres + amidon + fibres. C'est la principale source d'énergie. Présents partout : céréales, fruits, légumineuses — et même dans les légumes.",
+    "surprises": [
+      "pain-blanc",
+      "avoine-flocons",
+      "dattes",
+      "sucre-blanc",
+      "corn-flakes",
+      "lentilles"
+    ]
+  },
+  {
+    "key": "proteines",
+    "label": "Protéines",
+    "emoji": "💪",
+    "color": "#2563a8",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Indispensables aux muscles et tissus. Les viandes en sont riches, mais aussi l'avoine, les légumineuses, le fromage ou même le pain — souvent méconnus comme sources protéiques.",
+    "surprises": [
+      "pain-blanc",
+      "avoine-flocons",
+      "pois-chiches",
+      "soja",
+      "lentilles",
+      "amandes"
+    ]
+  },
+  {
+    "key": "lipides",
+    "label": "Lipides",
+    "emoji": "🫧",
+    "color": "#7c3aed",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Les graisses sont essentielles au cerveau, aux hormones et à l'absorption des vitamines liposolubles. Pas toutes mauvaises — celles du saumon, des noix ou de l'avocat sont bénéfiques.",
+    "surprises": [
+      "avocat",
+      "saumon",
+      "chocolat-noir-70",
+      "oeuf-entier",
+      "noix",
+      "amandes"
+    ]
+  },
+  {
+    "key": "fibres",
+    "label": "Fibres",
+    "emoji": "🌿",
+    "color": "#166534",
+    "unit": "g",
+    "isSugar": false,
+    "desc": "Les fibres améliorent la digestion, la satiété et la flore intestinale. Quasiment absentes des produits ultra-transformés. Graines de chia, légumineuses et céréales complètes en sont les champions.",
+    "surprises": [
+      "graines-de-chia",
+      "lentilles",
+      "amandes",
+      "avocat",
+      "chocolat-noir-70",
+      "dattes"
+    ]
+  },
+  {
+    "key": "calories",
+    "label": "Calories",
+    "emoji": "🔥",
+    "color": "#b91c1c",
+    "unit": "kcal",
+    "isSugar": false,
+    "desc": "L'énergie apportée par un aliment. Les graisses : 9 kcal/g. Glucides & protéines : 4 kcal/g. Le beurre est 45× plus calorique que la tomate — à garder en tête pour les portions.",
+    "surprises": [
+      "beurre",
+      "noix",
+      "amandes",
+      "chocolat-noir-70",
+      "avoine-flocons",
+      "graines-de-chia"
+    ]
+  },
+  {
+    "key": "ig",
+    "label": "Index glycémique",
+    "emoji": "📈",
+    "color": "#dc2626",
+    "unit": "/100",
+    "isSugar": false,
+    "desc": "L'IG mesure la vitesse de montée de la glycémie après ingestion (0–100). IG <55 = lent. IG >70 = rapide. La cuisson, la transformation et la finesse de mouture augmentent l'IG — même la carotte cuite !",
+    "surprises": [
+      "pain-blanc",
+      "corn-flakes",
+      "riz-blanc-cuit",
+      "pomme-de-terre",
+      "pasteque",
+      "betterave"
+    ]
+  }
+]

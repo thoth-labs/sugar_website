@@ -1,0 +1,1585 @@
+[
+  {
+    "id": "amandes",
+    "name": "Amandes",
+    "emoji": "🌰",
+    "category": "oleagineux",
+    "ig": 0,
+    "glucose": 0.2,
+    "fructose": 0.1,
+    "saccharose": 3.6,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 21.6,
+    "proteines": 21.2,
+    "lipides": 49.9,
+    "fibres": 12.5,
+    "calories": 579,
+    "portion": {
+      "g": 30,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "ananas",
+    "name": "Ananas",
+    "emoji": "🍍",
+    "category": "fruits",
+    "ig": 59,
+    "glucose": 2.1,
+    "fructose": 1.9,
+    "saccharose": 4.6,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 13.1,
+    "proteines": 0.5,
+    "lipides": 0.1,
+    "fibres": 1.4,
+    "calories": 50,
+    "portion": {
+      "g": 120,
+      "label": "2 tranches"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "avocat",
+    "name": "Avocat",
+    "emoji": "🥑",
+    "category": "fruits",
+    "ig": 10,
+    "glucose": 0.2,
+    "fructose": 0.1,
+    "saccharose": 0.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 1.8,
+    "proteines": 2,
+    "lipides": 14.7,
+    "fibres": 6.7,
+    "calories": 160,
+    "portion": {
+      "g": 100,
+      "label": "½ avocat"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "avoine-flocons",
+    "name": "Avoine (flocons)",
+    "emoji": "🌾",
+    "category": "cereales",
+    "ig": 55,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0.5,
+    "lactose": 0,
+    "maltose": 0.8,
+    "glucides": 66.3,
+    "proteines": 16.9,
+    "lipides": 6.9,
+    "fibres": 10.6,
+    "calories": 389,
+    "portion": {
+      "g": 40,
+      "label": "4 c. à soupe"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "banane",
+    "name": "Banane",
+    "emoji": "🍌",
+    "category": "fruits",
+    "ig": 52,
+    "glucose": 4.2,
+    "fructose": 3.6,
+    "saccharose": 6.3,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 23,
+    "proteines": 1.1,
+    "lipides": 0.3,
+    "fibres": 2.6,
+    "calories": 89,
+    "portion": {
+      "g": 120,
+      "label": "1 banane"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "betterave",
+    "name": "Betterave",
+    "emoji": "🫜",
+    "category": "legumes",
+    "ig": 64,
+    "glucose": 0.9,
+    "fructose": 0.9,
+    "saccharose": 6.7,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 9.6,
+    "proteines": 1.6,
+    "lipides": 0.2,
+    "fibres": 2.8,
+    "calories": 43,
+    "portion": {
+      "g": 100,
+      "label": "1 petite betterave"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "beurre",
+    "name": "Beurre",
+    "emoji": "🧈",
+    "category": "laitiers",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0.1,
+    "maltose": 0,
+    "glucides": 0.1,
+    "proteines": 0.9,
+    "lipides": 81.1,
+    "fibres": 0,
+    "calories": 717,
+    "portion": {
+      "g": 10,
+      "label": "1 noix"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "boeuf-maigre",
+    "name": "Bœuf (maigre)",
+    "emoji": "🥩",
+    "category": "proteines",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 26.1,
+    "lipides": 8.3,
+    "fibres": 0,
+    "calories": 185,
+    "portion": {
+      "g": 120,
+      "label": "1 steak"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "brocoli",
+    "name": "Brocoli",
+    "emoji": "🥦",
+    "category": "legumes",
+    "ig": 15,
+    "glucose": 0.5,
+    "fructose": 0.4,
+    "saccharose": 0.3,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 7,
+    "proteines": 2.8,
+    "lipides": 0.4,
+    "fibres": 2.6,
+    "calories": 34,
+    "portion": {
+      "g": 150,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "carotte",
+    "name": "Carotte",
+    "emoji": "🥕",
+    "category": "legumes",
+    "ig": 47,
+    "glucose": 1.5,
+    "fructose": 1.4,
+    "saccharose": 3.6,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 9.6,
+    "proteines": 0.9,
+    "lipides": 0.2,
+    "fibres": 2.8,
+    "calories": 41,
+    "portion": {
+      "g": 80,
+      "label": "1 carotte"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "cerise",
+    "name": "Cerise",
+    "emoji": "🍒",
+    "category": "fruits",
+    "ig": 22,
+    "glucose": 6.7,
+    "fructose": 7,
+    "saccharose": 0.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 16,
+    "proteines": 1.1,
+    "lipides": 0.2,
+    "fibres": 2.1,
+    "calories": 63,
+    "portion": {
+      "g": 100,
+      "label": "1 poignée (15 cerises)"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "chocolat-au-lait",
+    "name": "Chocolat au lait",
+    "emoji": "🍫",
+    "category": "sucres",
+    "ig": 43,
+    "glucose": 4.5,
+    "fructose": 4,
+    "saccharose": 45,
+    "lactose": 5,
+    "maltose": 0.5,
+    "glucides": 59.4,
+    "proteines": 7.7,
+    "lipides": 29.7,
+    "fibres": 1.5,
+    "calories": 535,
+    "portion": {
+      "g": 20,
+      "label": "2 carrés"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "chocolat-noir-70",
+    "name": "Chocolat noir 70%",
+    "emoji": "🍫",
+    "category": "sucres",
+    "ig": 23,
+    "glucose": 1.7,
+    "fructose": 1.4,
+    "saccharose": 22,
+    "lactose": 0,
+    "maltose": 0.3,
+    "glucides": 45.9,
+    "proteines": 7.8,
+    "lipides": 30.4,
+    "fibres": 10.9,
+    "calories": 546,
+    "portion": {
+      "g": 20,
+      "label": "2 carrés"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "confiture",
+    "name": "Confiture",
+    "emoji": "🫙",
+    "category": "sucres",
+    "ig": 55,
+    "glucose": 14,
+    "fructose": 12,
+    "saccharose": 20,
+    "lactose": 0,
+    "maltose": 0.5,
+    "glucides": 69,
+    "proteines": 0.4,
+    "lipides": 0.1,
+    "fibres": 1,
+    "calories": 278,
+    "portion": {
+      "g": 20,
+      "label": "1 c. à soupe"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "corn-flakes",
+    "name": "Corn flakes",
+    "emoji": "🥣",
+    "category": "cereales",
+    "ig": 81,
+    "glucose": 5,
+    "fructose": 3,
+    "saccharose": 7,
+    "lactose": 0,
+    "maltose": 1.5,
+    "glucides": 84,
+    "proteines": 7,
+    "lipides": 0.9,
+    "fibres": 1.2,
+    "calories": 357,
+    "portion": {
+      "g": 30,
+      "label": "1 bol"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "dattes",
+    "name": "Dattes",
+    "emoji": "🌴",
+    "category": "fruits",
+    "ig": 42,
+    "glucose": 19,
+    "fructose": 23,
+    "saccharose": 5,
+    "lactose": 0,
+    "maltose": 0.5,
+    "glucides": 75,
+    "proteines": 1.8,
+    "lipides": 0.4,
+    "fibres": 7.5,
+    "calories": 277,
+    "portion": {
+      "g": 24,
+      "label": "3 dattes"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "eau",
+    "name": "Eau",
+    "emoji": "💧",
+    "category": "boissons",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 0,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 0,
+    "portion": {
+      "g": 250,
+      "label": "1 grand verre"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "emmental",
+    "name": "Emmental",
+    "emoji": "🧀",
+    "category": "laitiers",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0.1,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 28.5,
+    "lipides": 30.6,
+    "fibres": 0,
+    "calories": 397,
+    "portion": {
+      "g": 30,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "epinard",
+    "name": "Épinard",
+    "emoji": "🌿",
+    "category": "legumes",
+    "ig": 15,
+    "glucose": 0.1,
+    "fructose": 0.1,
+    "saccharose": 0.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 3.6,
+    "proteines": 2.9,
+    "lipides": 0.4,
+    "fibres": 2.2,
+    "calories": 23,
+    "portion": {
+      "g": 100,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "fraise",
+    "name": "Fraise",
+    "emoji": "🍓",
+    "category": "fruits",
+    "ig": 25,
+    "glucose": 2.2,
+    "fructose": 2.5,
+    "saccharose": 1,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 7.7,
+    "proteines": 0.7,
+    "lipides": 0.3,
+    "fibres": 2,
+    "calories": 33,
+    "portion": {
+      "g": 125,
+      "label": "1 bol (10 fraises)"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "fromage-blanc",
+    "name": "Fromage blanc",
+    "emoji": "🧀",
+    "category": "laitiers",
+    "ig": 30,
+    "glucose": 0.1,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 3.1,
+    "maltose": 0,
+    "glucides": 3.3,
+    "proteines": 7.9,
+    "lipides": 0.2,
+    "fibres": 0,
+    "calories": 47,
+    "portion": {
+      "g": 100,
+      "label": "1 pot"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "graines-de-chia",
+    "name": "Graines de chia",
+    "emoji": "🌱",
+    "category": "oleagineux",
+    "ig": 1,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 42.1,
+    "proteines": 16.5,
+    "lipides": 30.7,
+    "fibres": 34.4,
+    "calories": 486,
+    "portion": {
+      "g": 15,
+      "label": "1 c. à soupe"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "haricots-rouges",
+    "name": "Haricots rouges",
+    "emoji": "🫘",
+    "category": "legumineuses",
+    "ig": 25,
+    "glucose": 0.1,
+    "fructose": 0.1,
+    "saccharose": 0.5,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 22.8,
+    "proteines": 8.7,
+    "lipides": 0.5,
+    "fibres": 6.4,
+    "calories": 127,
+    "portion": {
+      "g": 150,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "jus-d-orange",
+    "name": "Jus d'orange",
+    "emoji": "🥤",
+    "category": "boissons",
+    "ig": 57,
+    "glucose": 2.8,
+    "fructose": 3,
+    "saccharose": 3.6,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 10.4,
+    "proteines": 0.7,
+    "lipides": 0.2,
+    "fibres": 0.2,
+    "calories": 45,
+    "portion": {
+      "g": 200,
+      "label": "1 verre"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "kiwi",
+    "name": "Kiwi",
+    "emoji": "🥝",
+    "category": "fruits",
+    "ig": 53,
+    "glucose": 4.1,
+    "fructose": 4.4,
+    "saccharose": 0.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 14.7,
+    "proteines": 1.1,
+    "lipides": 0.5,
+    "fibres": 3,
+    "calories": 61,
+    "portion": {
+      "g": 90,
+      "label": "1 kiwi"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "lait-de-soja",
+    "name": "Lait de soja",
+    "emoji": "🥛",
+    "category": "boissons",
+    "ig": 34,
+    "glucose": 0.3,
+    "fructose": 0.2,
+    "saccharose": 1.5,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 2.7,
+    "proteines": 3.3,
+    "lipides": 1.8,
+    "fibres": 0.4,
+    "calories": 39,
+    "portion": {
+      "g": 200,
+      "label": "1 verre"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "lait-entier",
+    "name": "Lait entier",
+    "emoji": "🥛",
+    "category": "laitiers",
+    "ig": 31,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 4.7,
+    "maltose": 0,
+    "glucides": 4.7,
+    "proteines": 3.2,
+    "lipides": 3.7,
+    "fibres": 0,
+    "calories": 61,
+    "portion": {
+      "g": 200,
+      "label": "1 verre"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "lentilles",
+    "name": "Lentilles",
+    "emoji": "🫘",
+    "category": "legumineuses",
+    "ig": 32,
+    "glucose": 0.1,
+    "fructose": 0.1,
+    "saccharose": 0.5,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 20.1,
+    "proteines": 9,
+    "lipides": 0.4,
+    "fibres": 7.9,
+    "calories": 116,
+    "portion": {
+      "g": 150,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "mais-epi",
+    "name": "Maïs (épi)",
+    "emoji": "🌽",
+    "category": "legumes",
+    "ig": 65,
+    "glucose": 0.5,
+    "fructose": 0.5,
+    "saccharose": 0.9,
+    "lactose": 0,
+    "maltose": 0.5,
+    "glucides": 19,
+    "proteines": 3.4,
+    "lipides": 1.5,
+    "fibres": 2.7,
+    "calories": 86,
+    "portion": {
+      "g": 100,
+      "label": "1 épi"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "mangue",
+    "name": "Mangue",
+    "emoji": "🥭",
+    "category": "fruits",
+    "ig": 55,
+    "glucose": 1.5,
+    "fructose": 2.9,
+    "saccharose": 7,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 15,
+    "proteines": 0.8,
+    "lipides": 0.4,
+    "fibres": 1.6,
+    "calories": 60,
+    "portion": {
+      "g": 200,
+      "label": "½ mangue"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "miel",
+    "name": "Miel",
+    "emoji": "🍯",
+    "category": "sucres",
+    "ig": 58,
+    "glucose": 33.5,
+    "fructose": 40.9,
+    "saccharose": 1.5,
+    "lactose": 0,
+    "maltose": 1.5,
+    "glucides": 82.4,
+    "proteines": 0.3,
+    "lipides": 0,
+    "fibres": 0.2,
+    "calories": 304,
+    "portion": {
+      "g": 20,
+      "label": "1 c. à soupe"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "miel-d-acacia",
+    "name": "Miel d'acacia",
+    "emoji": "🍯",
+    "category": "sucres",
+    "ig": 50,
+    "glucose": 24,
+    "fructose": 43,
+    "saccharose": 1,
+    "lactose": 0,
+    "maltose": 1,
+    "glucides": 80,
+    "proteines": 0.3,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 304,
+    "portion": {
+      "g": 20,
+      "label": "1 c. à soupe"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "myrtille",
+    "name": "Myrtille",
+    "emoji": "🫐",
+    "category": "fruits",
+    "ig": 25,
+    "glucose": 3.7,
+    "fructose": 4,
+    "saccharose": 0.1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 14.5,
+    "proteines": 0.7,
+    "lipides": 0.3,
+    "fibres": 2.4,
+    "calories": 57,
+    "portion": {
+      "g": 80,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "noix",
+    "name": "Noix",
+    "emoji": "🥜",
+    "category": "oleagineux",
+    "ig": 15,
+    "glucose": 0.1,
+    "fructose": 0.1,
+    "saccharose": 0.7,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 13.7,
+    "proteines": 15.2,
+    "lipides": 65.2,
+    "fibres": 6.7,
+    "calories": 654,
+    "portion": {
+      "g": 30,
+      "label": "1 poignée"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "oeuf-entier",
+    "name": "Œuf entier",
+    "emoji": "🥚",
+    "category": "proteines",
+    "ig": 0,
+    "glucose": 0.1,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 1.1,
+    "proteines": 12.6,
+    "lipides": 9.5,
+    "fibres": 0,
+    "calories": 143,
+    "portion": {
+      "g": 55,
+      "label": "1 œuf"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "oignon",
+    "name": "Oignon",
+    "emoji": "🧅",
+    "category": "legumes",
+    "ig": 10,
+    "glucose": 2,
+    "fructose": 1.3,
+    "saccharose": 1,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 9.3,
+    "proteines": 1.1,
+    "lipides": 0.1,
+    "fibres": 1.7,
+    "calories": 40,
+    "portion": {
+      "g": 80,
+      "label": "1 oignon"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "orange",
+    "name": "Orange",
+    "emoji": "🍊",
+    "category": "fruits",
+    "ig": 40,
+    "glucose": 2.2,
+    "fructose": 2.5,
+    "saccharose": 4,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 12,
+    "proteines": 0.9,
+    "lipides": 0.1,
+    "fibres": 2.4,
+    "calories": 47,
+    "portion": {
+      "g": 150,
+      "label": "1 orange"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "pain-blanc",
+    "name": "Pain blanc",
+    "emoji": "🍞",
+    "category": "cereales",
+    "ig": 75,
+    "glucose": 0.2,
+    "fructose": 0.1,
+    "saccharose": 1.5,
+    "lactose": 0,
+    "maltose": 1,
+    "glucides": 49,
+    "proteines": 9,
+    "lipides": 3.2,
+    "fibres": 2.7,
+    "calories": 265,
+    "portion": {
+      "g": 40,
+      "label": "1 tranche épaisse"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "pain-complet",
+    "name": "Pain complet",
+    "emoji": "🍞",
+    "category": "cereales",
+    "ig": 51,
+    "glucose": 0.2,
+    "fructose": 0.1,
+    "saccharose": 1.2,
+    "lactose": 0,
+    "maltose": 0.5,
+    "glucides": 41,
+    "proteines": 9,
+    "lipides": 3.4,
+    "fibres": 6,
+    "calories": 247,
+    "portion": {
+      "g": 40,
+      "label": "1 tranche épaisse"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "pasteque",
+    "name": "Pastèque",
+    "emoji": "🍉",
+    "category": "fruits",
+    "ig": 72,
+    "glucose": 2.7,
+    "fructose": 3.4,
+    "saccharose": 3.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 8,
+    "proteines": 0.6,
+    "lipides": 0.2,
+    "fibres": 0.4,
+    "calories": 30,
+    "portion": {
+      "g": 250,
+      "label": "1 tranche"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "pates-cuites",
+    "name": "Pâtes cuites",
+    "emoji": "🍝",
+    "category": "cereales",
+    "ig": 50,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0.2,
+    "glucides": 25,
+    "proteines": 5.8,
+    "lipides": 1.1,
+    "fibres": 1.8,
+    "calories": 131,
+    "portion": {
+      "g": 150,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "peche",
+    "name": "Pêche",
+    "emoji": "🍑",
+    "category": "fruits",
+    "ig": 42,
+    "glucose": 1.5,
+    "fructose": 1.7,
+    "saccharose": 5.6,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 9.5,
+    "proteines": 0.9,
+    "lipides": 0.3,
+    "fibres": 1.5,
+    "calories": 39,
+    "portion": {
+      "g": 150,
+      "label": "1 pêche"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "poire",
+    "name": "Poire",
+    "emoji": "🍐",
+    "category": "fruits",
+    "ig": 38,
+    "glucose": 2.1,
+    "fructose": 6.4,
+    "saccharose": 1,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 15.5,
+    "proteines": 0.4,
+    "lipides": 0.1,
+    "fibres": 3.1,
+    "calories": 57,
+    "portion": {
+      "g": 160,
+      "label": "1 poire"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "pois-chiches",
+    "name": "Pois chiches",
+    "emoji": "🫘",
+    "category": "legumineuses",
+    "ig": 28,
+    "glucose": 0.1,
+    "fructose": 0.2,
+    "saccharose": 0.7,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 27.4,
+    "proteines": 8.9,
+    "lipides": 2.6,
+    "fibres": 7.6,
+    "calories": 164,
+    "portion": {
+      "g": 150,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "pomme",
+    "name": "Pomme",
+    "emoji": "🍎",
+    "category": "fruits",
+    "ig": 38,
+    "glucose": 2.4,
+    "fructose": 5.9,
+    "saccharose": 1.9,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 14,
+    "proteines": 0.3,
+    "lipides": 0.2,
+    "fibres": 2.4,
+    "calories": 52,
+    "portion": {
+      "g": 150,
+      "label": "1 pomme moyenne"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "pomme-de-terre",
+    "name": "Pomme de terre",
+    "emoji": "🥔",
+    "category": "legumes",
+    "ig": 78,
+    "glucose": 0.2,
+    "fructose": 0.1,
+    "saccharose": 0.2,
+    "lactose": 0,
+    "maltose": 0.3,
+    "glucides": 17.5,
+    "proteines": 2,
+    "lipides": 0.1,
+    "fibres": 2.2,
+    "calories": 77,
+    "portion": {
+      "g": 150,
+      "label": "1 pomme de terre moyenne"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "poulet-blanc",
+    "name": "Poulet (blanc)",
+    "emoji": "🍗",
+    "category": "proteines",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 31,
+    "lipides": 3.6,
+    "fibres": 0,
+    "calories": 165,
+    "portion": {
+      "g": 120,
+      "label": "1 blanc"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "quinoa-cuit",
+    "name": "Quinoa cuit",
+    "emoji": "🫘",
+    "category": "cereales",
+    "ig": 53,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0.3,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 21.3,
+    "proteines": 4.4,
+    "lipides": 1.9,
+    "fibres": 2.8,
+    "calories": 120,
+    "portion": {
+      "g": 150,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "raisin",
+    "name": "Raisin",
+    "emoji": "🍇",
+    "category": "fruits",
+    "ig": 59,
+    "glucose": 7.3,
+    "fructose": 7.6,
+    "saccharose": 0.2,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 18.1,
+    "proteines": 0.7,
+    "lipides": 0.2,
+    "fibres": 0.9,
+    "calories": 69,
+    "portion": {
+      "g": 100,
+      "label": "1 petite grappe"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "riz-blanc-cuit",
+    "name": "Riz blanc cuit",
+    "emoji": "🍚",
+    "category": "cereales",
+    "ig": 73,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 28.2,
+    "proteines": 2.7,
+    "lipides": 0.3,
+    "fibres": 0.4,
+    "calories": 130,
+    "portion": {
+      "g": 150,
+      "label": "1 portion cuite"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "saumon",
+    "name": "Saumon",
+    "emoji": "🐟",
+    "category": "proteines",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 20.1,
+    "lipides": 13.4,
+    "fibres": 0,
+    "calories": 208,
+    "portion": {
+      "g": 120,
+      "label": "1 pavé"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "sirop-d-erable",
+    "name": "Sirop d'érable",
+    "emoji": "🍁",
+    "category": "sucres",
+    "ig": 54,
+    "glucose": 4,
+    "fructose": 2,
+    "saccharose": 59,
+    "lactose": 0,
+    "maltose": 0.5,
+    "glucides": 67,
+    "proteines": 0,
+    "lipides": 0.1,
+    "fibres": 0,
+    "calories": 260,
+    "portion": {
+      "g": 20,
+      "label": "1 c. à soupe"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "soda-cola",
+    "name": "Soda (cola)",
+    "emoji": "🥤",
+    "category": "boissons",
+    "ig": 63,
+    "glucose": 2.9,
+    "fructose": 2.9,
+    "saccharose": 5,
+    "lactose": 0,
+    "maltose": 0.1,
+    "glucides": 10.6,
+    "proteines": 0,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 42,
+    "portion": {
+      "g": 330,
+      "label": "1 canette"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "soja",
+    "name": "Soja",
+    "emoji": "🌿",
+    "category": "legumineuses",
+    "ig": 15,
+    "glucose": 0,
+    "fructose": 0.1,
+    "saccharose": 3.5,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 9.9,
+    "proteines": 16.6,
+    "lipides": 9,
+    "fibres": 6,
+    "calories": 173,
+    "portion": {
+      "g": 100,
+      "label": "1 portion"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "sucre-blanc",
+    "name": "Sucre blanc",
+    "emoji": "🍬",
+    "category": "sucres",
+    "ig": 100,
+    "glucose": 0.1,
+    "fructose": 0.1,
+    "saccharose": 99.5,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 99.8,
+    "proteines": 0,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 387,
+    "portion": {
+      "g": 5,
+      "label": "1 morceau"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "the-vert",
+    "name": "Thé vert",
+    "emoji": "🍵",
+    "category": "boissons",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0.2,
+    "proteines": 0.2,
+    "lipides": 0,
+    "fibres": 0,
+    "calories": 1,
+    "portion": {
+      "g": 250,
+      "label": "1 tasse"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "thon-boite",
+    "name": "Thon (boîte)",
+    "emoji": "🐠",
+    "category": "proteines",
+    "ig": 0,
+    "glucose": 0,
+    "fructose": 0,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 0,
+    "proteines": 30,
+    "lipides": 1,
+    "fibres": 0,
+    "calories": 130,
+    "portion": {
+      "g": 70,
+      "label": "½ boîte"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    }
+  },
+  {
+    "id": "tomate",
+    "name": "Tomate",
+    "emoji": "🍅",
+    "category": "legumes",
+    "ig": 15,
+    "glucose": 1.5,
+    "fructose": 1.4,
+    "saccharose": 0,
+    "lactose": 0,
+    "maltose": 0,
+    "glucides": 3.9,
+    "proteines": 0.9,
+    "lipides": 0.2,
+    "fibres": 1.2,
+    "calories": 18,
+    "portion": {
+      "g": 120,
+      "label": "1 tomate"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  },
+  {
+    "id": "yaourt-nature",
+    "name": "Yaourt nature",
+    "emoji": "🫙",
+    "category": "laitiers",
+    "ig": 36,
+    "glucose": 0.2,
+    "fructose": 0.1,
+    "saccharose": 0.1,
+    "lactose": 4,
+    "maltose": 0,
+    "glucides": 4.5,
+    "proteines": 3.7,
+    "lipides": 3.2,
+    "fibres": 0,
+    "calories": 60,
+    "portion": {
+      "g": 125,
+      "label": "1 pot"
+    },
+    "source": {
+      "name": "À vérifier",
+      "ref": "index.html initial",
+      "url": "https://ciqual.anses.fr/"
+    },
+    "igSource": "À vérifier"
+  }
+]
