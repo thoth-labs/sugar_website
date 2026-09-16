@@ -1,4 +1,4 @@
-import { filterFoods, sortFoods, otherNutrients, valueOf, readState, writeState } from "./lib.js";
+import { filterFoods, sortFoods, otherNutrients, valueOf, readState, writeState, scale } from "./lib.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -62,6 +62,17 @@ function renderPills() {
   }));
 }
 
+function renderUnitPills() {
+  const pill = (u, label) => `<button class="sort-pill${state.u === u ? " active" : ""}" aria-pressed="${state.u === u}" data-unit="${u}" style="--pill-color:var(--green-mid)">${label}</button>`;
+  $("unitPills").innerHTML = pill("100g", "100 g") + pill("portion", "Portion");
+  $("unitPills").querySelectorAll("[data-unit]").forEach((p) => p.addEventListener("click", () => {
+    state.u = p.dataset.unit;
+    sync();
+    renderUnitPills();
+    renderGrid();
+  }));
+}
+
 function sugarChipsHTML(f, n) {
   const sugars = nutrients.filter((x) => x.isSugar);
   const total = sugars.reduce((s, x) => s + f[x.key], 0);
@@ -81,7 +92,7 @@ function cardHTML(f, i, n, maxVal, others) {
   return `<article class="card" style="animation-delay:${Math.min(i * 0.025, 0.5)}s">
     <div class="card-top">
       <div class="food-emoji">${f.emoji}</div>
-      <div><div class="food-name">${esc(f.name)}</div><div class="food-sub">pour 100g</div></div>
+      <div><div class="food-name">${esc(f.name)}</div><div class="food-sub">${state.u === "portion" ? `${esc(f.portion.label)} · ${f.portion.g} g` : "pour 100g"}</div></div>
     </div>
     <div class="primary-block" style="background:${n.color}12;color:${n.color}">
       <div class="pb-top">
@@ -101,8 +112,9 @@ function cardHTML(f, i, n, maxVal, others) {
 
 function renderGrid() {
   const n = current();
-  const data = sortFoods(filterFoods(foods, state.q), n.key, state.sort);
-  const maxVal = Math.max(...foods.map((f) => f[n.key]));
+  const scaled = foods.map((f) => scale(f, state.u));
+  const data = sortFoods(filterFoods(scaled, state.q), n.key, state.sort);
+  const maxVal = Math.max(...scaled.map((f) => f[n.key]));
   const others = otherNutrients(nutrients, n.key);
   $("grid").innerHTML = data.length
     ? data.map((f, i) => cardHTML(f, i, n, maxVal, others)).join("")
@@ -113,6 +125,7 @@ function renderAll() {
   renderTabs();
   renderBanner();
   renderPills();
+  renderUnitPills();
   renderGrid();
 }
 
