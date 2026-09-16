@@ -37,6 +37,7 @@ sitemap.xml                # generated
 robots.txt
 favicon.svg
 assets/styles.css
+assets/pages.css           # styles used only by generated pages
 assets/app.js              # browser entry (ES module), DOM only
 assets/lib.js              # pure functions, shared with build + tests
 data/foods.json
@@ -97,8 +98,9 @@ Fails the run (non-zero exit, one line per problem) when:
 - a required key is missing or not a finite number ≥ 0 (nutrients) / non-empty string (text);
 - `id` is not `^[a-z0-9-]+$` or is duplicated; `name` duplicated;
 - `glucose+fructose+saccharose+lactose+maltose > glucides + 0.5`;
-- `fibres > glucides + 0.5`;
-- `calories` differs by more than 20 % from `4·proteines + 4·(glucides − fibres) + 2·fibres + 9·lipides`, unless calories < 20;
+- `calories` differs by more than 20 % from `4·proteines + 4·glucides + 2·fibres + 9·lipides`, unless calories < 20
+  (`glucides` follows the French convention: sugars + starch, excluding fibres; USDA "carbohydrate by difference" has fibre subtracted before storing);
+- foods are not sorted by `id`;
 - `ig` outside 0–100;
 - `category` not in the allowed list;
 - `portion.g` not in 1–1000 or `portion.label` empty;
@@ -118,7 +120,7 @@ Reads the three JSON files and writes:
   nutrient (richest first) with values, links to food pages.
 - `comprendre.html` — the five sugar descriptions plus the six macro
   descriptions as a readable article, with links to nutrient pages.
-- `sitemap.xml` — index, comprendre, every food and nutrient page, `lastmod` = build date.
+- `sitemap.xml` — index, comprendre, every food and nutrient page. No `lastmod`, so the build is fully deterministic.
 - If `plausibleDomain` is set, every generated page and `index.html` gets the
   Plausible `<script>` tag; otherwise nothing is injected.
 
@@ -126,8 +128,9 @@ All generated pages share one HTML template (`scripts/template.mjs`): same
 header/footer as `index.html`, `<title>`, `<meta name="description">`,
 Open Graph tags, canonical URL, `lang="fr"`, favicon link.
 
-Build is deterministic except `lastmod`; CI compares the tree ignoring the
-`lastmod` lines in `sitemap.xml`.
+Generated pages load `assets/styles.css` plus `assets/pages.css` (page-only
+styles, kept separate so the app and build workstreams never edit the same
+stylesheet). CI runs the build and fails if `git status` is not clean.
 
 ## 7. App (`assets/app.js` + `assets/lib.js`)
 
@@ -152,8 +155,10 @@ Build is deterministic except `lastmod`; CI compares the tree ignoring the
   side and the larger value highlighted. `cmp` is part of URL state.
 - **Accessibility**: tabs are `<button role="tab">` inside `role="tablist"`,
   `aria-selected`, Left/Right/Home/End keyboard navigation; sort and unit
-  pills are `<button aria-pressed>`; the grid has `aria-live="polite"`;
-  `:focus-visible` outline uses the tab colour.
+  pills are `<button aria-pressed>`; a visually-hidden `role="status"` region
+  announces the result count and sort after each grid render (a live region on
+  the grid itself would read out every card); `:focus-visible` outline uses
+  the tab colour.
 - Bug fixes carried in: yogurt protein value, beetroot emoji, accent search,
   redundant sugar mini-grid.
 
@@ -173,8 +178,10 @@ Build is deterministic except `lastmod`; CI compares the tree ignoring the
   pois, courgette, poivron, chou-fleur, haricots verts, patate douce, potiron,
   champignon), noix de cajou, noisette, cacahuète, sirop d'agave, sucre roux,
   chocolat blanc, bonbons, barre chocolatée, boisson énergisante, vin rouge.
-- Values with no primary source are not added. Each source `ref` is the CIQUAL
-  food code; `url` is the CIQUAL page.
+- Values with no primary source are not added. Preferred source is the CIQUAL
+  2020 table (`ref` = CIQUAL food code, `url` = CIQUAL page); fallback is USDA
+  FoodData Central SR Legacy (`ref` = fdc_id, `url` = FDC food-details page),
+  with fibre subtracted from "carbohydrate by difference" to get `glucides`.
 - `surprises` lists are reviewed after the data grows so each still holds six
   foods that are genuinely non-obvious for that nutrient.
 
