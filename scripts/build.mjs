@@ -134,50 +134,81 @@ ${nutrients.filter((n) => !n.isSugar).map(section).join("\n")}
   return layout({ ...config, path: "/comprendre.html", title: `Comprendre les sucres : glucose, fructose, saccharose, lactose, maltose | ${config.siteName}`, description: "Ce que sont le glucose, le fructose, le saccharose, le lactose et le maltose, comment le corps les utilise, et quels aliments en contiennent le plus.", body });
 }
 
+// Mirrors the structure and wording of the company's own legal page (thoth.fr/entreprise.html).
 function mentionsPage(config) {
   const c = config.company;
   const site = esc(config.siteName);
+  const name = esc(c.name);
   const mail = `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`;
+  const updated = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeZone: "UTC" }).format(new Date(config.legalUpdated));
   const body = `
 <article class="mentions">
 <p class="crumbs"><a href="/">${site}</a> › Mentions légales</p>
 <h1>Mentions légales</h1>
-<p class="lead">${site} est un site d'information nutritionnelle édité par ${esc(c.name)}. Cette page présente l'entreprise et les informations légales exigées par le droit français et européen.</p>
+<p class="lead">Informations fournies en application de l'article 6-III de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN). ${site} est un site d'information nutritionnelle édité par ${name}.</p>
 
-<h2>Qui sommes-nous</h2>
-<p>${esc(c.name)}, sous le nom commercial ${esc(c.tradeName)}, est une société de logiciel et de données installée à Charenton-le-Pont, près de Paris. Elle conçoit et développe des logiciels, des applications web et mobiles, et accompagne ses clients en conseil informatique, en business intelligence et en science des données.</p>
-<p>${site} est l'un de ses projets : un classement d'une centaine d'aliments courants par teneur en sucres, en macronutriments, en calories et par index glycémique, à partir de données publiques (CIQUAL de l'ANSES, USDA FoodData Central). Les valeurs sont données pour 100 g, à titre informatif : elles ne remplacent pas l'avis d'un professionnel de santé.</p>
+<h2>L'entreprise</h2>
+<p><a href="${esc(c.url)}" rel="noopener">${name}</a>, sous le nom commercial ${esc(c.tradeName)}, est un studio français d'applications mobiles et web fondé au printemps 2025 à Charenton-le-Pont, aux portes de Paris. Il crée, développe et publie ses propres applications, dont ${site}, et propose en parallèle du conseil informatique et technologique, des prestations en data science et en business intelligence, et des formations sur ces sujets.</p>
+<p>${site} classe plus de cent aliments courants selon leurs sucres, leurs macronutriments, leurs calories et leur index glycémique, à partir de données publiques (CIQUAL de l'ANSES, USDA FoodData Central). Les valeurs sont données pour 100 g, à titre informatif : elles ne remplacent pas l'avis d'un professionnel de santé.</p>
 
 <h2>Éditeur du site</h2>
 <dl class="legal-list">
-<dt>Dénomination</dt><dd>${esc(c.name)} (nom commercial : ${esc(c.tradeName)})</dd>
+<dt>Dénomination</dt><dd>${name} (nom commercial : ${esc(c.tradeName)})</dd>
 <dt>Forme juridique</dt><dd>${esc(c.legalForm)} au capital de ${esc(c.capital)}</dd>
-<dt>Immatriculation</dt><dd>${esc(c.rcs)}</dd>
-<dt>Identifiant européen (EUID)</dt><dd>${esc(c.euid)}</dd>
+<dt>Création</dt><dd>${esc(c.founded)}</dd>
+<dt>Immatriculation</dt><dd>${esc(c.rcs)} · SIREN ${esc(c.siren)} · EUID ${esc(c.euid)}</dd>
 <dt>TVA intracommunautaire</dt><dd>${esc(c.vat)}</dd>
 <dt>Siège social</dt><dd>${esc(c.address)}</dd>
-<dt>Contact</dt><dd>${mail}</dd>
 <dt>Directeur de la publication</dt><dd>${esc(c.director)}, ${esc(c.directorTitle)}</dd>
+<dt>Contact</dt><dd>${mail}</dd>
 </dl>
 
 <h2>Hébergement</h2>
-<p>Le site est hébergé par GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (<a href="https://pages.github.com/" rel="noopener">pages.github.com</a>). L'hébergeur peut enregistrer l'adresse IP des visiteurs dans ses journaux techniques, selon sa propre <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">politique de confidentialité</a>. GitHub, Inc. participe au cadre de protection des données UE-États-Unis (Data Privacy Framework).</p>
-
-<h2>Données personnelles</h2>
-<p>${site} ne collecte aucune donnée personnelle. Il n'y a ni compte utilisateur, ni formulaire, ni outil de mesure d'audience, ni traceur publicitaire. Les polices de caractères et tous les fichiers du site sont servis depuis le même domaine : aucune requête n'est envoyée à un tiers pendant la navigation. Vos réglages (nutriment affiché, tri, recherche, comparaison) sont conservés uniquement dans l'adresse de la page, jamais sur un serveur.</p>
-<p>Seul l'hébergeur peut enregistrer des journaux techniques, comme indiqué ci-dessus, sous sa propre responsabilité. Pour toute question relative à vos données au sens du règlement (UE) 2016/679 (RGPD), écrivez à ${mail} ; vous pouvez aussi vous adresser à la CNIL (<a href="https://www.cnil.fr/" rel="noopener">cnil.fr</a>).</p>
-
-<h2>Cookies</h2>
-<p>Le site ne dépose aucun cookie et n'utilise aucun stockage local. Aucun bandeau de consentement n'est donc nécessaire.</p>
+<p>Le site est hébergé par GitHub, Inc. (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (<a href="https://pages.github.com/" rel="noopener">pages.github.com</a>). Comme tout hébergeur, GitHub peut enregistrer l'adresse IP des visiteurs dans ses journaux techniques, à des fins de sécurité, selon sa propre <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">déclaration de confidentialité</a>. GitHub, Inc. participe au cadre de protection des données UE-États-Unis (Data Privacy Framework). ${name} n'a pas accès à ces journaux et n'en exploite aucun.</p>
 
 <h2>Propriété intellectuelle et sources</h2>
+<p>La structure du site, ses textes, son logo et son code sont la propriété de ${name}, sauf mention contraire. Le code source est publié sous licence libre (voir le dépôt du projet). Les polices de caractères DM Sans et DM Serif Display sont diffusées sous licence SIL Open Font License. Les marques et noms de produits cités appartiennent à leurs propriétaires respectifs.</p>
 <p>Les valeurs nutritionnelles proviennent de la table CIQUAL 2020 de l'ANSES et de la base USDA FoodData Central, chacune citée sur la fiche de l'aliment. Ces données publiques restent soumises aux conditions de leurs éditeurs. Les index glycémiques sont des valeurs indicatives issues de tables publiques.</p>
-<p>La structure du site, ses textes et son code sont la propriété de ${esc(c.name)}. Le code source est publié sous licence libre (voir le dépôt du projet). Les marques et noms de produits cités appartiennent à leurs propriétaires respectifs.</p>
 
 <h2>Responsabilité</h2>
-<p>Les informations de ${site} sont fournies à titre indicatif et sont vérifiées avec soin, mais elles peuvent contenir des erreurs ou des données obsolètes. Elles ne constituent pas un conseil médical ou diététique. ${esc(c.name)} ne peut être tenue responsable de l'usage qui en est fait. Signalez toute erreur à ${mail}.</p>
+<p>Les informations de ${site} sont fournies à titre indicatif et sont vérifiées avec soin, mais elles peuvent contenir des erreurs ou des données obsolètes. Elles ne constituent pas un conseil médical ou diététique. ${name} ne peut être tenue responsable de l'usage qui en est fait. Signalez toute erreur à ${mail}.</p>
+
+<h2>Droit applicable</h2>
+<p>Le présent site est soumis au droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents.</p>
+
+<h2>Politique de confidentialité</h2>
+<p>${site} ne collecte aucune donnée personnelle. Aucun cookie, aucun traceur, aucune mesure d'audience, aucun formulaire, aucun compte utilisateur.</p>
+<ul class="legal-points">
+<li><strong>Cookies et traceurs : aucun.</strong> Le site n'utilise ni cookie, ni stockage local, ni outil d'analyse d'audience, ni bouton de partage tiers. Aucun bandeau de consentement n'est donc nécessaire.</li>
+<li><strong>Ressources externes : aucune.</strong> Les polices de caractères et tous les fichiers du site sont servis depuis le même domaine ; aucune requête n'est adressée à un service tiers pendant votre visite.</li>
+<li><strong>Formulaires et comptes : aucun.</strong> Le site ne vous demande jamais d'information. Vos réglages (nutriment affiché, tri, recherche, comparaison) sont conservés uniquement dans l'adresse de la page, jamais sur un serveur.</li>
+</ul>
+<p>Seul l'hébergeur peut enregistrer des journaux techniques, comme indiqué ci-dessus, sous sa propre responsabilité.</p>
+
+<h2>Liens sortants</h2>
+<p>Les liens vers les fiches CIQUAL, USDA FoodData Central et les autres sites cités vous conduisent vers des services régis par leurs propres politiques de confidentialité.</p>
+
+<h2>Contact</h2>
+<p>Si vous nous écrivez à ${mail}, votre message n'est utilisé que pour vous répondre et n'est transmis à personne. Pour toute question relative à vos données au sens du règlement (UE) 2016/679 (RGPD), vous pouvez nous contacter à cette même adresse ou saisir la Commission nationale de l'informatique et des libertés (CNIL, <a href="https://www.cnil.fr/" rel="noopener">cnil.fr</a>).</p>
+
+<h2>Mise à jour</h2>
+<p>Dernière mise à jour : ${updated}. Toute modification de cette page sera publiée ici.</p>
 </article>`;
-  return layout({ ...config, path: "/mentions-legales.html", title: `Mentions légales | ${config.siteName}`, description: `${config.siteName} est édité par ${c.name} (${c.tradeName}). Identification de l'éditeur, hébergement, données personnelles, cookies et sources.`, body });
+  const [street, rest] = c.address.split(", ");
+  const [postalCode, ...locality] = (rest || "").split(" ");
+  const org = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: c.name,
+    alternateName: c.tradeName,
+    legalName: c.name,
+    url: c.url,
+    email: c.email,
+    founder: { "@type": "Person", name: c.director },
+    identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: c.siren.replace(/\s/g, "") },
+    address: { "@type": "PostalAddress", streetAddress: street, postalCode, addressLocality: locality.join(" "), addressCountry: "FR" },
+  };
+  return layout({ ...config, path: "/mentions-legales.html", title: `Mentions légales | ${config.siteName}`, description: `${config.siteName} est édité par ${c.name} (${c.tradeName}). Identification de l'éditeur, hébergement, propriété intellectuelle, confidentialité et contact.`, body, jsonLd: [org] });
 }
 
 function sitemap(foods, nutrients, config) {

@@ -26,7 +26,11 @@ Sugar: a French-language static site that ranks around 100 foods by nutrient con
 
 ## Generated pages
 
-`scripts/build.mjs` writes `aliment/<id>/index.html` (one per food), `nutriment/<key>/index.html` (one per nutrient), `comprendre.html` and `sitemap.xml`. These are committed to the repo, not built by CI: run `npm run build` after any data change and commit the result, or CI fails on a stale diff.
+`scripts/build.mjs` writes `aliment/<id>/index.html` (one per food), `nutriment/<key>/index.html` (one per nutrient), `comprendre.html`, `mentions-legales.html`, `404.html` and `sitemap.xml`. It also rewrites the static index of every food and nutrient inside `index.html`, between the `<!-- build:index -->` and `<!-- /build:index -->` markers (keep them: that section is what crawlers see, since the grid is JS-rendered). These are committed to the repo, not built by CI: run `npm run build` after any data change and commit the result, or CI fails on a stale diff.
+
+Every generated page carries JSON-LD (`BreadcrumbList` on food and nutrient pages, `ItemList` on nutrient pages, `Organization` on the legal page); the home page has a hand-written `WebSite` block. `404.html` keeps root-absolute links because GitHub Pages serves it at any depth.
+
+`data/config.json` holds the site URL and the company identity used by the legal page (`company.*`, `legalUpdated`); the legal page mirrors thoth.fr's own "mentions légales", so keep the two consistent.
 
 GitHub Pages serves every committed file, so `robots.txt` disallows the non-page files (`CLAUDE.md`, `CNAME`, `README.md`, `package.json`, `scripts/`, `test/`, etc). Add a `Disallow` line there for any new non-page file.
 

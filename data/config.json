@@ -2,17 +2,21 @@
   "siteUrl": "https://sugar.thoth.fr",
   "siteName": "Sugar",
   "plausibleDomain": null,
+  "legalUpdated": "2026-09-21",
   "company": {
-    "name": "THOTH TECHNOLOGIES",
+    "name": "Thoth Technologies",
     "tradeName": "Thoth",
-    "legalForm": "Société par actions simplifiée à associé unique",
+    "url": "https://thoth.fr/",
+    "legalForm": "Société par actions simplifiée unipersonnelle (SASU)",
     "capital": "1 500 €",
-    "rcs": "945 408 763 R.C.S. Créteil",
+    "founded": "27 mai 2025, immatriculée le 11 juin 2025",
+    "rcs": "RCS Créteil 945 408 763",
+    "siren": "945 408 763",
     "euid": "FR9401.945408763",
     "vat": "FR 39 945 408 763",
-    "address": "3 Terrasse le Nôtre, 94220 Charenton-le-Pont, France",
+    "address": "3 Terrasse Le Nôtre, 94220 Charenton-le-Pont, France",
     "email": "contact@thoth.fr",
     "director": "Mohamed Ait Abderrahman",
-    "directorTitle": "Président"
+    "directorTitle": "président"
   }
 }

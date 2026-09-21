@@ -19,8 +19,8 @@ const nutrients = [
   { key: "calories", label: "Calories", emoji: "🔥", color: "#b91c1c", unit: "kcal", isSugar: false, desc: "Desc calories", surprises: ["miel"] },
 ];
 const config = {
-  siteUrl: "https://example.test", siteName: "Sugar", plausibleDomain: null,
-  company: { name: "THOTH TECHNOLOGIES", tradeName: "Thoth", legalForm: "SAS à associé unique", capital: "1 500 €", rcs: "945 408 763 R.C.S. Créteil", euid: "FR9401.945408763", vat: "FR 39 945 408 763", address: "3 Terrasse le Nôtre, 94220 Charenton-le-Pont, France", email: "contact@example.test", director: "Jane Doe", directorTitle: "Présidente" },
+  siteUrl: "https://example.test", siteName: "Sugar", plausibleDomain: null, legalUpdated: "2026-09-21",
+  company: { name: "Thoth Technologies", tradeName: "Thoth", url: "https://corp.example.test/", legalForm: "SASU", capital: "1 500 €", founded: "27 mai 2025", rcs: "RCS Créteil 945 408 763", siren: "945 408 763", euid: "FR9401.945408763", vat: "FR 39 945 408 763", address: "3 Terrasse Le Nôtre, 94220 Charenton-le-Pont, France", email: "contact@example.test", director: "Jane Doe", directorTitle: "présidente" },
 };
 
 test("esc escapes html", () => assert.equal(esc(`<a href="x">&'`), "&lt;a href=&quot;x&quot;&gt;&amp;&#39;"));
@@ -61,6 +61,15 @@ test("build writes one page per food and nutrient, comprendre, mentions légales
   assert.match(mentions, /GitHub/);
   assert.match(mentions, /CNIL/);
   assert.match(mentions, /href="https:\/\/example.test\/mentions-legales.html"/);
+  assert.match(mentions, /article 6-III de la loi n° 2004-575/, "cites the LCEN");
+  assert.match(mentions, /<h2>Droit applicable<\/h2>/);
+  assert.match(mentions, /<h2>Liens sortants<\/h2>/);
+  assert.match(mentions, /21 septembre 2026/, "shows the last update date in French");
+  assert.match(mentions, /href="https:\/\/corp.example.test\/"/, "links the company site");
+  const org = ldBlocks(mentions).find((b) => b["@type"] === "Organization");
+  assert.equal(org.legalName, "Thoth Technologies");
+  assert.equal(org.identifier.value, "945408763");
+  assert.equal(org.url, "https://corp.example.test/");
   const biere = fs.readFileSync(path.join(outDir, "aliment/biere/index.html"), "utf8");
   assert.match(biere, /4\.0 g d'alcool/);
   const miel = fs.readFileSync(path.join(outDir, "aliment/miel/index.html"), "utf8");
