@@ -15,7 +15,10 @@ const nutrients = [
   { key: "glucose", label: "Glucose", emoji: "⚡", color: "#d4600a", unit: "g", isSugar: true, desc: "Desc glucose", surprises: ["tomate"] },
   { key: "calories", label: "Calories", emoji: "🔥", color: "#b91c1c", unit: "kcal", isSugar: false, desc: "Desc calories", surprises: ["miel"] },
 ];
-const config = { siteUrl: "https://example.test", siteName: "Sugar", plausibleDomain: null };
+const config = {
+  siteUrl: "https://example.test", siteName: "Sugar", plausibleDomain: null,
+  company: { name: "THOTH TECHNOLOGIES", tradeName: "Thoth", legalForm: "SAS à associé unique", capital: "1 500 €", rcs: "945 408 763 R.C.S. Créteil", euid: "FR9401.945408763", vat: "FR 39 945 408 763", address: "3 Terrasse le Nôtre, 94220 Charenton-le-Pont, France", email: "contact@example.test", director: "Jane Doe", directorTitle: "Présidente" },
+};
 
 test("esc escapes html", () => assert.equal(esc(`<a href="x">&'`), "&lt;a href=&quot;x&quot;&gt;&amp;&#39;"));
 
@@ -24,13 +27,20 @@ test("layout emits canonical, description and optional plausible tag", () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/example.test\/x\/">/);
   assert.match(html, /<meta name="description" content="D">/);
   assert.doesNotMatch(html, /plausible/);
+  assert.doesNotMatch(html, /googleapis|gstatic/, "fonts are self-hosted");
+  assert.match(html, /href="\/mentions-legales.html"/, "footer links to the legal page");
   assert.match(layout({ ...config, plausibleDomain: "example.test", path: "/", title: "T", description: "D", body: "" }), /data-domain="example.test"/);
 });
 
-test("build writes one page per food and nutrient, comprendre and sitemap", () => {
+test("build writes one page per food and nutrient, comprendre, mentions légales and sitemap", () => {
   const outDir = fs.mkdtempSync(path.join(os.tmpdir(), "sugar-"));
   const written = build({ foods, nutrients, config, outDir }).sort();
-  assert.deepEqual(written, ["aliment/biere/index.html", "aliment/miel/index.html", "aliment/tomate/index.html", "comprendre.html", "nutriment/calories/index.html", "nutriment/glucose/index.html", "sitemap.xml"]);
+  assert.deepEqual(written, ["aliment/biere/index.html", "aliment/miel/index.html", "aliment/tomate/index.html", "comprendre.html", "mentions-legales.html", "nutriment/calories/index.html", "nutriment/glucose/index.html", "sitemap.xml"]);
+  const mentions = fs.readFileSync(path.join(outDir, "mentions-legales.html"), "utf8");
+  for (const v of Object.values(config.company)) assert.ok(mentions.includes(esc(v)), `mentions légales shows ${v}`);
+  assert.match(mentions, /GitHub/);
+  assert.match(mentions, /CNIL/);
+  assert.match(mentions, /href="https:\/\/example.test\/mentions-legales.html"/);
   const biere = fs.readFileSync(path.join(outDir, "aliment/biere/index.html"), "utf8");
   assert.match(biere, /4\.0 g d'alcool/);
   const miel = fs.readFileSync(path.join(outDir, "aliment/miel/index.html"), "utf8");
@@ -44,6 +54,7 @@ test("build writes one page per food and nutrient, comprendre and sitemap", () =
   const sitemap = fs.readFileSync(path.join(outDir, "sitemap.xml"), "utf8");
   assert.match(sitemap, /<loc>https:\/\/example.test\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/example.test\/aliment\/tomate\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/example.test\/mentions-legales.html<\/loc>/);
   assert.doesNotMatch(sitemap, /lastmod/);
   fs.rmSync(outDir, { recursive: true, force: true });
 });

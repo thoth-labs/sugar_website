@@ -71,8 +71,54 @@ ${nutrients.filter((n) => !n.isSugar).map(section).join("\n")}
   return layout({ ...config, path: "/comprendre.html", title: `Comprendre les sucres : glucose, fructose, saccharose, lactose, maltose | ${config.siteName}`, description: "Ce que sont le glucose, le fructose, le saccharose, le lactose et le maltose, comment le corps les utilise, et quels aliments en contiennent le plus.", body });
 }
 
+function mentionsPage(config) {
+  const c = config.company;
+  const site = esc(config.siteName);
+  const mail = `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`;
+  const body = `
+<article class="mentions">
+<p class="crumbs"><a href="/">${site}</a> › Mentions légales</p>
+<h1>Mentions légales</h1>
+<p class="lead">${site} est un site d'information nutritionnelle édité par ${esc(c.name)}. Cette page présente l'entreprise et les informations légales exigées par le droit français et européen.</p>
+
+<h2>Qui sommes-nous</h2>
+<p>${esc(c.name)}, sous le nom commercial ${esc(c.tradeName)}, est une société de logiciel et de données installée à Charenton-le-Pont, près de Paris. Elle conçoit et développe des logiciels, des applications web et mobiles, et accompagne ses clients en conseil informatique, en business intelligence et en science des données.</p>
+<p>${site} est l'un de ses projets : un classement d'une centaine d'aliments courants par teneur en sucres, en macronutriments, en calories et par index glycémique, à partir de données publiques (CIQUAL de l'ANSES, USDA FoodData Central). Les valeurs sont données pour 100 g, à titre informatif : elles ne remplacent pas l'avis d'un professionnel de santé.</p>
+
+<h2>Éditeur du site</h2>
+<dl class="legal-list">
+<dt>Dénomination</dt><dd>${esc(c.name)} (nom commercial : ${esc(c.tradeName)})</dd>
+<dt>Forme juridique</dt><dd>${esc(c.legalForm)} au capital de ${esc(c.capital)}</dd>
+<dt>Immatriculation</dt><dd>${esc(c.rcs)}</dd>
+<dt>Identifiant européen (EUID)</dt><dd>${esc(c.euid)}</dd>
+<dt>TVA intracommunautaire</dt><dd>${esc(c.vat)}</dd>
+<dt>Siège social</dt><dd>${esc(c.address)}</dd>
+<dt>Contact</dt><dd>${mail}</dd>
+<dt>Directeur de la publication</dt><dd>${esc(c.director)}, ${esc(c.directorTitle)}</dd>
+</dl>
+
+<h2>Hébergement</h2>
+<p>Le site est hébergé par GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (<a href="https://pages.github.com/" rel="noopener">pages.github.com</a>). L'hébergeur peut enregistrer l'adresse IP des visiteurs dans ses journaux techniques, selon sa propre <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">politique de confidentialité</a>. GitHub, Inc. participe au cadre de protection des données UE-États-Unis (Data Privacy Framework).</p>
+
+<h2>Données personnelles</h2>
+<p>${site} ne collecte aucune donnée personnelle. Il n'y a ni compte utilisateur, ni formulaire, ni outil de mesure d'audience, ni traceur publicitaire. Les polices de caractères et tous les fichiers du site sont servis depuis le même domaine : aucune requête n'est envoyée à un tiers pendant la navigation. Vos réglages (nutriment affiché, tri, recherche, comparaison) sont conservés uniquement dans l'adresse de la page, jamais sur un serveur.</p>
+<p>Seul l'hébergeur peut enregistrer des journaux techniques, comme indiqué ci-dessus, sous sa propre responsabilité. Pour toute question relative à vos données au sens du règlement (UE) 2016/679 (RGPD), écrivez à ${mail} ; vous pouvez aussi vous adresser à la CNIL (<a href="https://www.cnil.fr/" rel="noopener">cnil.fr</a>).</p>
+
+<h2>Cookies</h2>
+<p>Le site ne dépose aucun cookie et n'utilise aucun stockage local. Aucun bandeau de consentement n'est donc nécessaire.</p>
+
+<h2>Propriété intellectuelle et sources</h2>
+<p>Les valeurs nutritionnelles proviennent de la table CIQUAL 2020 de l'ANSES et de la base USDA FoodData Central, chacune citée sur la fiche de l'aliment. Ces données publiques restent soumises aux conditions de leurs éditeurs. Les index glycémiques sont des valeurs indicatives issues de tables publiques.</p>
+<p>La structure du site, ses textes et son code sont la propriété de ${esc(c.name)}. Le code source est publié sous licence libre (voir le dépôt du projet). Les marques et noms de produits cités appartiennent à leurs propriétaires respectifs.</p>
+
+<h2>Responsabilité</h2>
+<p>Les informations de ${site} sont fournies à titre indicatif et sont vérifiées avec soin, mais elles peuvent contenir des erreurs ou des données obsolètes. Elles ne constituent pas un conseil médical ou diététique. ${esc(c.name)} ne peut être tenue responsable de l'usage qui en est fait. Signalez toute erreur à ${mail}.</p>
+</article>`;
+  return layout({ ...config, path: "/mentions-legales.html", title: `Mentions légales | ${config.siteName}`, description: `${config.siteName} est édité par ${c.name} (${c.tradeName}). Identification de l'éditeur, hébergement, données personnelles, cookies et sources.`, body });
+}
+
 function sitemap(foods, nutrients, config) {
-  const urls = ["/", "/comprendre.html", ...nutrients.map((n) => `/nutriment/${n.key}/`), ...foods.map((f) => `/aliment/${f.id}/`)];
+  const urls = ["/", "/comprendre.html", "/mentions-legales.html", ...nutrients.map((n) => `/nutriment/${n.key}/`), ...foods.map((f) => `/aliment/${f.id}/`)];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${config.siteUrl}${u}</loc></url>`).join("\n")}\n</urlset>\n`;
 }
 
@@ -88,6 +134,7 @@ export function build({ foods, nutrients, config, outDir }) {
   for (const f of foods) write(path.join("aliment", f.id, "index.html"), foodPage(f, nutrients, config));
   for (const n of nutrients) write(path.join("nutriment", n.key, "index.html"), nutrientPage(n, foods, config));
   write("comprendre.html", comprendrePage(nutrients, foods, config));
+  write("mentions-legales.html", mentionsPage(config));
   write("sitemap.xml", sitemap(foods, nutrients, config));
   return written;
 }

@@ -64,6 +64,13 @@ test("config.json has site url", () => {
   assert.equal(config.siteName, "Sugar");
 });
 
+test("config.json has every company field for the mentions légales page", () => {
+  for (const k of ["name", "tradeName", "legalForm", "capital", "rcs", "euid", "vat", "address", "email", "director", "directorTitle"]) {
+    assert.ok(typeof config.company[k] === "string" && config.company[k].length > 0, `company.${k}`);
+  }
+  assert.match(config.company.email, /^[^@\s]+@[^@\s]+$/);
+});
+
 test("no dashes used as punctuation in nutrient copy", () => {
   for (const n of nutrients) {
     assert.doesNotMatch(n.desc, /[—–]| - /, `${n.key}.desc`);
