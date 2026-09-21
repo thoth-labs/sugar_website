@@ -1,9 +1,16 @@
 export const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+// Rewrites root-absolute hrefs ("/assets/x", "/?q=miel", "/") relative to the page depth,
+// so the generated pages also render when opened straight from the file system.
+export function relativize(html, path) {
+  const base = "../".repeat(path.split("/").length - 2);
+  return html.replace(/href="\/([^"]*)"/g, (m, rest) => `href="${rest && !rest.startsWith("?") ? base + rest : (base || "./") + rest}"`);
+}
+
 export function layout({ siteName, siteUrl, path, title, description, body, plausibleDomain }) {
   const canonical = siteUrl + path;
   const plausible = plausibleDomain ? `\n<script defer data-domain="${esc(plausibleDomain)}" src="https://plausible.io/js/script.js"></script>` : "";
-  return `<!DOCTYPE html>
+  return relativize(`<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -30,5 +37,5 @@ ${body}
 <footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques) · <a href="/mentions-legales.html">Mentions légales</a></footer>
 </body>
 </html>
-`;
+`, path);
 }

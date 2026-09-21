@@ -28,8 +28,24 @@ test("layout emits canonical, description and optional plausible tag", () => {
   assert.match(html, /<meta name="description" content="D">/);
   assert.doesNotMatch(html, /plausible/);
   assert.doesNotMatch(html, /googleapis|gstatic/, "fonts are self-hosted");
-  assert.match(html, /href="\/mentions-legales.html"/, "footer links to the legal page");
+  assert.match(html, /href="\.\.\/mentions-legales.html"/, "footer links to the legal page");
   assert.match(layout({ ...config, plausibleDomain: "example.test", path: "/", title: "T", description: "D", body: "" }), /data-domain="example.test"/);
+});
+
+test("layout links assets and pages relative to the page depth so file:// previews work", () => {
+  const deep = layout({ ...config, path: "/aliment/miel/", title: "T", description: "D", body: '<a href="/nutriment/glucose/">g</a> <a href="/?q=miel">q</a>' });
+  assert.match(deep, /href="\.\.\/\.\.\/assets\/styles\.css"/);
+  assert.match(deep, /href="\.\.\/\.\.\/favicon\.svg"/);
+  assert.match(deep, /class="logo" href="\.\.\/\.\.\/"/);
+  assert.match(deep, /href="\.\.\/\.\.\/nutriment\/glucose\/"/);
+  assert.match(deep, /href="\.\.\/\.\.\/\?q=miel"/);
+  assert.match(deep, /<link rel="canonical" href="https:\/\/example.test\/aliment\/miel\/">/);
+  assert.doesNotMatch(deep, /href="\//, "no root-absolute href left");
+  const top = layout({ ...config, path: "/comprendre.html", title: "T", description: "D", body: '<a href="/?n=ig">n</a>' });
+  assert.match(top, /href="assets\/styles\.css"/);
+  assert.match(top, /class="logo" href="\.\/"/);
+  assert.match(top, /href="\.\/\?n=ig"/);
+  assert.doesNotMatch(top, /href="\//);
 });
 
 test("build writes one page per food and nutrient, comprendre, mentions légales and sitemap", () => {
