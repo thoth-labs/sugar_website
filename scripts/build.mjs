@@ -12,15 +12,37 @@ const fmt = (v, unit) => {
   return `${Number(v).toFixed(1)} ${esc(unit)}`;
 };
 
-function foodPage(f, nutrients, config) {
+const categoryLabel = (f) => CATEGORY_LABELS[f.category] || f.category;
+const byName = (a, b) => a.name.localeCompare(b.name, "fr");
+
+// Shortens `text` to `max` characters for meta descriptions: at the last full sentence when one fits, else at a word.
+export function clip(text, max = 155) {
+  if (text.length <= max) return text;
+  const head = text.slice(0, max);
+  const sentence = head.lastIndexOf(". ");
+  if (sentence > 0) return head.slice(0, sentence + 1);
+  const cut = head.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
+}
+
+const breadcrumbs = (config, crumbs) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [{ name: config.siteName, item: config.siteUrl + "/" }, ...crumbs].map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, ...(c.item ? { item: c.item } : {}) })),
+});
+
+function foodPage(f, foods, nutrients, config) {
   const per = scale(f, "portion");
   const sugars = nutrients.filter((n) => n.isSugar);
   const total = totalSugars(f);
+  const category = categoryLabel(f);
   const rows = nutrients.map((n) => `<tr><th scope="row"><a href="/nutriment/${n.key}/">${esc(n.emoji)} ${esc(n.label)}</a></th><td>${fmt(f[n.key], n.unit)}</td><td>${fmt(per[n.key], n.unit)}</td></tr>`).join("\n");
   const chips = sugars.filter((n) => f[n.key] > 0).map((n) => `<li><a href="/nutriment/${n.key}/">${esc(n.label)}</a> : ${f[n.key].toFixed(1)} g (${Math.round((f[n.key] / total) * 100)} %)</li>`).join("\n");
+  const siblings = foods.filter((o) => o.category === f.category && o.id !== f.id).sort(byName);
+  const related = siblings.length ? `<h2>Autres ${esc(category.toLowerCase())}</h2><ul class="related">${siblings.map((o) => `<li><a href="/aliment/${o.id}/">${esc(o.emoji)} ${esc(o.name)}</a></li>`).join("")}</ul>` : "";
   const body = `
 <article class="food-page">
-<p class="crumbs"><a href="/">${esc(config.siteName)}</a> › ${esc(CATEGORY_LABELS[f.category] || f.category)}</p>
+<p class="crumbs"><a href="/">${esc(config.siteName)}</a> › ${esc(category)}</p>
 <h1><span class="big-emoji">${esc(f.emoji)}</span> ${esc(f.name)}</h1>
 <p class="lead">${esc(f.name)} apporte ${Math.round(f.calories)} kcal, ${f.glucides.toFixed(1)} g de glucides dont ${total.toFixed(1)} g de sucres, ${f.proteines.toFixed(1)} g de protéines et ${f.lipides.toFixed(1)} g de lipides pour 100 g.${f.ig > 0 ? ` Index glycémique : ${f.ig}.` : ""}</p>
 <table class="nutri-table">
@@ -33,8 +55,10 @@ ${total > 0 ? `<h2>Répartition des sucres</h2><ul class="sugar-list">${chips}</
 <h2>Source</h2>
 <p>${esc(f.source.name)}, fiche <a href="${esc(f.source.url)}" rel="noopener">${esc(f.source.ref)}</a>.${f.igSource ? ` Index glycémique : ${esc(f.igSource)}.` : ""}</p>
 <p><a class="btn" href="/?q=${encodeURIComponent(f.name)}">Voir ${esc(f.name)} dans le classement</a></p>
+${related}
 </article>`;
-  return layout({ ...config, path: `/aliment/${f.id}/`, title: `${f.name} : sucres, calories et nutriments pour 100 g | ${config.siteName}`, description: `${f.name} : ${total.toFixed(1)} g de sucres (glucose ${f.glucose}, fructose ${f.fructose}, saccharose ${f.saccharose}, lactose ${f.lactose}, maltose ${f.maltose}), ${Math.round(f.calories)} kcal pour 100 g. Source ${f.source.name}.`, body });
+  const path = `/aliment/${f.id}/`;
+  return layout({ ...config, path, title: `${f.name} : sucres, calories et nutriments pour 100 g | ${config.siteName}`, description: `${f.name} : ${total.toFixed(1)} g de sucres (glucose ${f.glucose}, fructose ${f.fructose}, saccharose ${f.saccharose}, lactose ${f.lactose}, maltose ${f.maltose}), ${Math.round(f.calories)} kcal pour 100 g. Source ${f.source.name}.`, body, jsonLd: [breadcrumbs(config, [{ name: category }, { name: f.name, item: config.siteUrl + path }])] });
 }
 
 function nutrientPage(n, foods, config) {
@@ -51,7 +75,46 @@ ${items}
 </ol>
 <p><a class="btn" href="/?n=${n.key}">Voir le classement complet dans l'application</a></p>
 </article>`;
-  return layout({ ...config, path: `/nutriment/${n.key}/`, title: `${n.label} : quels aliments en contiennent le plus ? | ${config.siteName}`, description: `${n.desc.slice(0, 150)}`, body });
+  const path = `/nutriment/${n.key}/`;
+  const top = ranked.slice(0, 3).map((f) => f.name).join(", ");
+  const isIg = n.key === "ig";
+  const criterion = isIg ? "index glycémique" : `teneur en ${n.label.toLowerCase()}`;
+  const description = clip(`Classement de ${foods.length} aliments par ${criterion}${isIg ? "" : " pour 100 g"}. ${isIg ? "Les plus élevés" : "Les plus riches"} : ${top}. ${n.desc}`);
+  const list = { "@context": "https://schema.org", "@type": "ItemList", name: `Aliments classés par ${criterion}`, itemListElement: ranked.map((f, i) => ({ "@type": "ListItem", position: i + 1, name: f.name, url: `${config.siteUrl}/aliment/${f.id}/` })) };
+  return layout({ ...config, path, title: `${n.label} : quels aliments en contiennent le plus ? | ${config.siteName}`, description, body, jsonLd: [breadcrumbs(config, [{ name: "Comprendre", item: `${config.siteUrl}/comprendre.html` }, { name: n.label, item: config.siteUrl + path }]), list] });
+}
+
+function notFoundPage(config) {
+  const body = `
+<article class="not-found">
+<h1>Page introuvable</h1>
+<p class="lead">Cette adresse ne correspond à aucune page de ${esc(config.siteName)}. L'aliment a peut-être été renommé ou retiré.</p>
+<p><a class="btn" href="/">Retour au classement</a> <a class="btn" href="/comprendre.html">Comprendre les sucres</a></p>
+</article>`;
+  return layout({ ...config, path: "/404.html", title: `Page introuvable | ${config.siteName}`, description: "Cette page n'existe pas.", body, noindex: true, absolute: true });
+}
+
+// The home page is hand-written; the build only refreshes the static index between its markers,
+// so crawlers reach every food and nutrient page without running the app.
+const INDEX_START = "<!-- build:index -->";
+const INDEX_END = "<!-- /build:index -->";
+function homeIndex(foods, nutrients) {
+  const keys = [...new Set([...Object.keys(CATEGORY_LABELS), ...foods.map((f) => f.category)])];
+  const groups = keys.map((key) => [key, foods.filter((f) => f.category === key).sort(byName)]).filter(([, list]) => list.length)
+    .map(([key, list]) => `<h3>${esc(CATEGORY_LABELS[key] || key)}</h3><ul>${list.map((f) => `<li><a href="aliment/${f.id}/">${esc(f.emoji)} ${esc(f.name)}</a></li>`).join("")}</ul>`).join("\n");
+  return `${INDEX_START}
+<section class="site-index" aria-labelledby="site-index-title">
+<h2 id="site-index-title">Tous les aliments et nutriments</h2>
+<h3>Par nutriment</h3><ul>${nutrients.map((n) => `<li><a href="nutriment/${n.key}/">${esc(n.emoji)} ${esc(n.label)}</a></li>`).join("")}</ul>
+${groups}
+</section>
+${INDEX_END}`;
+}
+function injectHomeIndex(html, foods, nutrients) {
+  const start = html.indexOf(INDEX_START);
+  const end = html.indexOf(INDEX_END);
+  if (start < 0 || end < start) throw new Error(`index.html must contain the ${INDEX_START} … ${INDEX_END} markers`);
+  return html.slice(0, start) + homeIndex(foods, nutrients) + html.slice(end + INDEX_END.length);
 }
 
 function comprendrePage(nutrients, foods, config) {
@@ -131,11 +194,14 @@ export function build({ foods, nutrients, config, outDir }) {
     written.push(rel.split(path.sep).join("/"));
   };
   for (const dir of ["aliment", "nutriment"]) fs.rmSync(path.join(outDir, dir), { recursive: true, force: true });
-  for (const f of foods) write(path.join("aliment", f.id, "index.html"), foodPage(f, nutrients, config));
+  for (const f of foods) write(path.join("aliment", f.id, "index.html"), foodPage(f, foods, nutrients, config));
   for (const n of nutrients) write(path.join("nutriment", n.key, "index.html"), nutrientPage(n, foods, config));
   write("comprendre.html", comprendrePage(nutrients, foods, config));
   write("mentions-legales.html", mentionsPage(config));
+  write("404.html", notFoundPage(config));
   write("sitemap.xml", sitemap(foods, nutrients, config));
+  const home = path.join(outDir, "index.html");
+  if (fs.existsSync(home)) write("index.html", injectHomeIndex(fs.readFileSync(home, "utf8"), foods, nutrients));
   return written;
 }
 
