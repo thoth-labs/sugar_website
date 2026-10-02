@@ -12,9 +12,10 @@ export const jsonLdTag = (data) => `<script type="application/ld+json">${JSON.st
 
 // `jsonLd`: structured data blocks to embed. `noindex`: keep the page out of search results (404).
 // `absolute`: skip relativize, for pages served at arbitrary URLs (404.html).
-export function layout({ siteName, siteUrl, path, title, description, body, plausibleDomain, jsonLd = [], noindex = false, absolute = false }) {
+export function layout({ siteName, siteUrl, path, title, description, body, gaMeasurementId, jsonLd = [], noindex = false, absolute = false }) {
   const canonical = siteUrl + path;
-  const plausible = plausibleDomain ? `\n<script defer data-domain="${esc(plausibleDomain)}" src="https://plausible.io/js/script.js"></script>` : "";
+  // Loads Google Analytics only after consent, see assets/consent.js.
+  const analytics = gaMeasurementId ? `\n<script defer src="/assets/consent.js" data-ga="${esc(gaMeasurementId)}"></script>` : "";
   const ld = jsonLd.map((d) => `\n${jsonLdTag(d)}`).join("");
   const html = `<!DOCTYPE html>
 <html lang="fr">
@@ -33,14 +34,14 @@ export function layout({ siteName, siteUrl, path, title, description, body, plau
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="/assets/glykon_icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/styles.css">
-<link rel="stylesheet" href="/assets/pages.css">${plausible}${ld}
+<link rel="stylesheet" href="/assets/pages.css">${analytics}${ld}
 </head>
 <body>
 <header><a class="logo" href="/"><img src="/assets/glykon_icon_foreground.svg" alt="" width="36" height="36">${esc(siteName)}</a><nav class="header-nav"><a href="/">Classement</a><a href="/comprendre.html">Comprendre les sucres</a></nav></header>
 <main class="page">
 ${body}
 </main>
-<footer>${esc(siteName)} · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques) · <a href="/mentions-legales.html">Mentions légales</a></footer>
+<footer>${esc(siteName)} · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques) · <a href="/mentions-legales.html">Mentions légales</a>${gaMeasurementId ? ` · <button type="button" class="consent-open" data-consent-open>Gestion des cookies</button>` : ""}</footer>
 </body>
 </html>
 `;

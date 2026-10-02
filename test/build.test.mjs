@@ -19,20 +19,23 @@ const nutrients = [
   { key: "calories", label: "Calories", emoji: "🔥", color: "#b91c1c", unit: "kcal", isSugar: false, desc: "Desc calories", surprises: ["miel"] },
 ];
 const config = {
-  siteUrl: "https://example.test", siteName: "Glykon", plausibleDomain: null, legalUpdated: "2026-09-21",
+  siteUrl: "https://example.test", siteName: "Glykon", legalUpdated: "2026-09-21",
   company: { name: "Thoth Technologies", tradeName: "Thoth", url: "https://corp.example.test/", legalForm: "SASU", capital: "1 500 €", founded: "27 mai 2025", rcs: "RCS Créteil 945 408 763", siren: "945 408 763", euid: "FR9401.945408763", vat: "FR 39 945 408 763", address: "3 Terrasse Le Nôtre, 94220 Charenton-le-Pont, France", email: "contact@example.test", director: "Jane Doe", directorTitle: "présidente" },
 };
 
 test("esc escapes html", () => assert.equal(esc(`<a href="x">&'`), "&lt;a href=&quot;x&quot;&gt;&amp;&#39;"));
 
-test("layout emits canonical, description and optional plausible tag", () => {
+test("layout emits canonical, description and the consent script only when analytics is configured", () => {
   const html = layout({ ...config, path: "/x/", title: "T", description: "D", body: "<p>b</p>" });
   assert.match(html, /<link rel="canonical" href="https:\/\/example.test\/x\/">/);
   assert.match(html, /<meta name="description" content="D">/);
-  assert.doesNotMatch(html, /plausible/);
+  assert.doesNotMatch(html, /consent/);
   assert.doesNotMatch(html, /googleapis|gstatic/, "fonts are self-hosted");
   assert.match(html, /href="\.\.\/mentions-legales.html"/, "footer links to the legal page");
-  assert.match(layout({ ...config, plausibleDomain: "example.test", path: "/", title: "T", description: "D", body: "" }), /data-domain="example.test"/);
+  const ga = layout({ ...config, gaMeasurementId: "G-TEST", path: "/", title: "T", description: "D", body: "" });
+  assert.match(ga, /<script defer src="assets\/consent\.js" data-ga="G-TEST"><\/script>/);
+  assert.match(ga, /data-consent-open>Gestion des cookies/, "footer reopens the consent banner");
+  assert.doesNotMatch(ga, /googletagmanager/, "Google is never loaded before consent");
 });
 
 test("layout links assets and pages relative to the page depth so file:// previews work", () => {
@@ -65,6 +68,14 @@ test("build writes one page per food and nutrient, comprendre, mentions légales
   assert.match(mentions, /article 6-III de la loi n° 2004-575/, "cites the LCEN");
   assert.match(mentions, /<h2>Droit applicable<\/h2>/);
   assert.match(mentions, /<h2>Liens sortants<\/h2>/);
+  assert.doesNotMatch(mentions, /Google Analytics/, "no analytics section when analytics is off");
+  const withGa = fs.mkdtempSync(path.join(os.tmpdir(), "sugar-"));
+  build({ foods, nutrients, config: { ...config, gaMeasurementId: "G-TEST" }, outDir: withGa });
+  const gaMentions = fs.readFileSync(path.join(withGa, "mentions-legales.html"), "utf8");
+  assert.match(gaMentions, /id="cookies"/, "the banner links to the cookie section");
+  assert.match(gaMentions, /Google Analytics 4/);
+  assert.match(gaMentions, /Data Privacy Framework/);
+  fs.rmSync(withGa, { recursive: true, force: true });
   assert.match(mentions, /21 septembre 2026/, "shows the last update date in French");
   assert.match(mentions, /href="https:\/\/corp.example.test\/"/, "links the company site");
   const org = ldBlocks(mentions).find((b) => b["@type"] === "Organization");

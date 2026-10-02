@@ -185,13 +185,22 @@ function mentionsPage(config) {
 <p>Le présent site est soumis au droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents.</p>
 
 <h2>Politique de confidentialité</h2>
-<p>${site} ne collecte aucune donnée personnelle. Aucun cookie, aucun traceur, aucune mesure d'audience, aucun formulaire, aucun compte utilisateur.</p>
+<p>${site} n'a ni formulaire, ni compte utilisateur, ni publicité. Vos réglages (nutriment affiché, tri, recherche, comparaison) sont conservés uniquement dans l'adresse de la page. La seule donnée personnelle traitée par ${name}, responsable du traitement, est la mesure d'audience décrite ci-dessous, et uniquement si vous l'acceptez.</p>
+${config.gaMeasurementId ? `<h3 id="cookies">Mesure d'audience et cookies</h3>
 <ul class="legal-points">
-<li><strong>Cookies et traceurs : aucun.</strong> Le site n'utilise ni cookie, ni stockage local, ni outil d'analyse d'audience, ni bouton de partage tiers. Aucun bandeau de consentement n'est donc nécessaire.</li>
-<li><strong>Ressources externes : aucune.</strong> Les polices de caractères et tous les fichiers du site sont servis depuis le même domaine ; aucune requête n'est adressée à un service tiers pendant votre visite.</li>
-<li><strong>Formulaires et comptes : aucun.</strong> Le site ne vous demande jamais d'information. Vos réglages (nutriment affiché, tri, recherche, comparaison) sont conservés uniquement dans l'adresse de la page, jamais sur un serveur.</li>
-</ul>
-<p>Seul l'hébergeur peut enregistrer des journaux techniques, comme indiqué ci-dessus, sous sa propre responsabilité.</p>
+<li><strong>Outil.</strong> Google Analytics 4, fourni par Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irlande, agissant comme sous-traitant.</li>
+<li><strong>Finalité.</strong> Compter les visites, connaître les pages consultées, l'origine des visiteurs (moteur de recherche, lien) et le type d'appareil, afin d'améliorer le site. Aucune publicité, aucun profilage, aucun recoupement avec un compte Google : les signaux publicitaires et Google Signals sont désactivés.</li>
+<li><strong>Base légale.</strong> Votre consentement (article 6.1.a du RGPD et article 82 de la loi Informatique et Libertés). Tant que vous n'avez pas cliqué sur « Accepter », aucun script Google n'est chargé et aucun cookie n'est déposé. Refuser n'a aucune conséquence sur l'utilisation du site.</li>
+<li><strong>Données collectées.</strong> Un identifiant aléatoire stocké dans un cookie, les pages vues, la date et la durée de la visite, le site de provenance, le navigateur, le système, le type d'écran, la langue et une localisation approximative (pays, ville) déduite de l'adresse IP. Google Analytics 4 n'enregistre pas l'adresse IP elle-même.</li>
+<li><strong>Cookies.</strong> <code>_ga</code> et <code>_ga_*</code>, déposés sur le domaine du site, pour une durée de 13 mois au plus. Votre choix (accepter ou refuser) est mémorisé dans le stockage local de votre navigateur pendant 6 mois, puis la question vous est reposée.</li>
+<li><strong>Conservation.</strong> Les données de mesure d'audience sont conservées 14 mois au plus dans Google Analytics, puis supprimées.</li>
+<li><strong>Transferts hors de l'Union européenne.</strong> Google peut traiter ces données aux États-Unis. Google LLC participe au cadre de protection des données UE-États-Unis (Data Privacy Framework), reconnu par la décision d'adéquation de la Commission européenne du 10 juillet 2023, et ces transferts sont en outre encadrés par les clauses contractuelles types de la Commission. Voir les <a href="https://business.safety.google/privacy/" rel="noopener">règles de confidentialité de Google</a>.</li>
+<li><strong>Retirer votre consentement.</strong> À tout moment, via le bouton « Gestion des cookies » en bas de chaque page : choisir « Refuser » arrête la mesure et supprime les cookies <code>_ga</code>. Vous pouvez aussi bloquer les cookies dans les réglages de votre navigateur.</li>
+</ul>` : `<p>Le site n'utilise ni cookie, ni outil de mesure d'audience, ni bouton de partage tiers.</p>`}
+<h3>Autres ressources</h3>
+<p>Les polices de caractères et tous les fichiers du site sont servis depuis le même domaine. Seul l'hébergeur peut enregistrer des journaux techniques, comme indiqué ci-dessus, sous sa propre responsabilité.</p>
+<h3>Vos droits</h3>
+<p>Conformément au règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur vos données, ainsi que du droit de retirer votre consentement à tout moment. Les données de mesure d'audience étant pseudonymes, nous ne pouvons les retrouver que si vous nous indiquez l'identifiant contenu dans votre cookie <code>_ga</code> ; le plus simple reste de refuser la mesure et de supprimer vos cookies. Pour exercer ces droits, écrivez à ${mail}. Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL.</p>
 
 <h2>Liens sortants</h2>
 <p>Les liens vers les fiches CIQUAL, USDA FoodData Central et les autres sites cités vous conduisent vers des services régis par leurs propres politiques de confidentialité.</p>
