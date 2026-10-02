@@ -1,10 +1,10 @@
 export const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-// Rewrites root-absolute hrefs ("/assets/x", "/?q=miel", "/") relative to the page depth,
+// Rewrites root-absolute hrefs and srcs ("/assets/x", "/?q=miel", "/") relative to the page depth,
 // so the generated pages also render when opened straight from the file system.
 export function relativize(html, path) {
   const base = "../".repeat(path.split("/").length - 2);
-  return html.replace(/href="\/([^"]*)"/g, (m, rest) => `href="${rest && !rest.startsWith("?") ? base + rest : (base || "./") + rest}"`);
+  return html.replace(/(href|src)="\/([^"]*)"/g, (m, attr, rest) => `${attr}="${rest && !rest.startsWith("?") ? base + rest : (base || "./") + rest}"`);
 }
 
 // JSON-LD lives inside a <script>, where "</script>" would end it early: escape "<" so the block stays inert.
@@ -31,12 +31,12 @@ export function layout({ siteName, siteUrl, path, title, description, body, plau
 <meta property="og:site_name" content="${esc(siteName)}">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/glykon_icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/styles.css">
 <link rel="stylesheet" href="/assets/pages.css">${plausible}${ld}
 </head>
 <body>
-<header><a class="logo" href="/">${esc(siteName)}</a><nav class="header-nav"><a href="/">Classement</a><a href="/comprendre.html">Comprendre les sucres</a></nav></header>
+<header><a class="logo" href="/"><img src="/assets/glykon_icon_foreground.svg" alt="" width="36" height="36">${esc(siteName)}</a><nav class="header-nav"><a href="/">Classement</a><a href="/comprendre.html">Comprendre les sucres</a></nav></header>
 <main class="page">
 ${body}
 </main>

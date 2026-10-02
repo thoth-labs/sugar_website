@@ -20,7 +20,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
 
 header{background:var(--green-dark);padding:0 40px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:var(--header-h);box-shadow:0 2px 24px rgba(0,0,0,0.2);}
-.logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green-pale);}
+.logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green-pale);display:flex;align-items:center;gap:8px;}
+.logo img{width:36px;height:36px;flex-shrink:0;}
 .logo em{color:var(--green-light);font-style:italic;}
 .header-sub{font-size:0.74rem;color:rgba(255,255,255,0.38);}
 .header-nav{display:flex;gap:18px;}
@@ -141,7 +142,8 @@ footer a{color:var(--green-mid);}
 @media(max-width:600px){
     :root{--header-h:54px;}
     header,.controls,.grid-container,.nutrient-banner,.site-index{padding-left:16px;padding-right:16px;}
-    .logo{font-size:1.3rem;}
+    .logo{font-size:1.3rem;gap:6px;}
+    .logo img{width:30px;height:30px;}
     .header-nav{gap:4px;}
     .header-nav a{padding:10px 6px;font-size:0.8rem;}
     .tabs{padding-left:8px;padding-right:8px;}

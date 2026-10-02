@@ -38,7 +38,8 @@ test("layout emits canonical, description and optional plausible tag", () => {
 test("layout links assets and pages relative to the page depth so file:// previews work", () => {
   const deep = layout({ ...config, path: "/aliment/miel/", title: "T", description: "D", body: '<a href="/nutriment/glucose/">g</a> <a href="/?q=miel">q</a>' });
   assert.match(deep, /href="\.\.\/\.\.\/assets\/styles\.css"/);
-  assert.match(deep, /href="\.\.\/\.\.\/favicon\.svg"/);
+  assert.match(deep, /href="\.\.\/\.\.\/assets\/glykon_icon\.svg"/);
+  assert.match(deep, /src="\.\.\/\.\.\/assets\/glykon_icon_foreground\.svg"/);
   assert.match(deep, /class="logo" href="\.\.\/\.\.\/"/);
   assert.match(deep, /href="\.\.\/\.\.\/nutriment\/glucose\/"/);
   assert.match(deep, /href="\.\.\/\.\.\/\?q=miel"/);
