@@ -19,7 +19,7 @@ const nutrients = [
   { key: "calories", label: "Calories", emoji: "🔥", color: "#b91c1c", unit: "kcal", isSugar: false, desc: "Desc calories", surprises: ["miel"] },
 ];
 const config = {
-  siteUrl: "https://example.test", siteName: "Sugar", plausibleDomain: null, legalUpdated: "2026-09-21",
+  siteUrl: "https://example.test", siteName: "Glykon", plausibleDomain: null, legalUpdated: "2026-09-21",
   company: { name: "Thoth Technologies", tradeName: "Thoth", url: "https://corp.example.test/", legalForm: "SASU", capital: "1 500 €", founded: "27 mai 2025", rcs: "RCS Créteil 945 408 763", siren: "945 408 763", euid: "FR9401.945408763", vat: "FR 39 945 408 763", address: "3 Terrasse Le Nôtre, 94220 Charenton-le-Pont, France", email: "contact@example.test", director: "Jane Doe", directorTitle: "présidente" },
 };
 
@@ -130,7 +130,7 @@ test("food page links the other foods of its category and carries breadcrumbs", 
   const biere = fs.readFileSync(path.join(outDir, "aliment/biere/index.html"), "utf8");
   assert.doesNotMatch(biere, /Autres/, "no section when the food is alone in its category");
   const crumbs = ldBlocks(miel).find((b) => b["@type"] === "BreadcrumbList");
-  assert.deepEqual(crumbs.itemListElement.map((e) => e.name), ["Sugar", "Sucres et douceurs", "Miel"]);
+  assert.deepEqual(crumbs.itemListElement.map((e) => e.name), ["Glykon", "Sucres et douceurs", "Miel"]);
   assert.equal(crumbs.itemListElement[2].item, "https://example.test/aliment/miel/");
   fs.rmSync(outDir, { recursive: true, force: true });
 });

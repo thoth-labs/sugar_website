@@ -1,4 +1,4 @@
-# Sugar
+# Glykon
 
 Ce que contient vraiment votre assiette : types de sucres (glucose, fructose,
 saccharose, lactose, maltose), macronutriments, calories et index glycémique

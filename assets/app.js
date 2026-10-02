@@ -27,6 +27,9 @@ function renderTabs() {
     `<span class="tab-section-label">📊 Macronutriments</span>` + macro.map(tabHTML).join("");
   $("tabs").querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => selectTab(t.dataset.key)));
   if (!tabKeysBound) { $("tabs").addEventListener("keydown", onTabKey); tabKeysBound = true; }
+  // On narrow screens the tab strip scrolls: keep the selected tab visible (e.g. ?n=ig on load).
+  const active = $("tabs").querySelector(".tab.active");
+  if (active) $("tabs").scrollLeft = active.offsetLeft - ($("tabs").clientWidth - active.offsetWidth) / 2;
 }
 
 function selectTab(key) {
@@ -150,6 +153,7 @@ function renderCompare() {
   const tray = $("compare");
   const picked = state.cmp.map((id) => foods.find((f) => f.id === id)).filter(Boolean).map((f) => scale(f, state.u));
   document.body.classList.toggle("has-compare", picked.length > 0);
+  document.body.style.paddingBottom = "";
   if (picked.length === 0) { tray.hidden = true; tray.innerHTML = ""; return; }
   tray.hidden = false;
   const head = `<div class="ct-head"><div class="ct-title">Comparer</div><button class="ct-close" id="cmpClose">Fermer</button></div>`;
@@ -165,6 +169,8 @@ function renderCompare() {
     tray.innerHTML = head + `<table class="ct-table"><thead><tr><th></th><th>${a.emoji} ${esc(a.name)}<div class="ct-hint">${unitLabel(a)}</div></th><th>${b.emoji} ${esc(b.name)}<div class="ct-hint">${unitLabel(b)}</div></th></tr></thead><tbody>${rows}</tbody></table>`;
   }
   $("cmpClose").addEventListener("click", () => { state.cmp = []; sync(); renderGrid(); renderCompare(); });
+  // The tray is fixed over the bottom of the page: reserve exactly its height so the last cards stay reachable.
+  document.body.style.paddingBottom = `${tray.offsetHeight}px`;
 }
 
 function renderAll() {

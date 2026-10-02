@@ -36,4 +36,4 @@
 .legal-points{padding-left:20px;margin-bottom:12px;}
 .legal-points li{line-height:1.6;margin-bottom:6px;}
 @media(max-width:600px){.legal-list{grid-template-columns:1fr;gap:2px 0;}.legal-list dd{margin-bottom:10px;}}
-@media(max-width:600px){.page{padding:20px 16px 40px;}.header-nav{gap:12px;}}
+@media(max-width:600px){.page{padding:20px 16px 40px;}.nutri-table{font-size:0.84rem;}.nutri-table th,.nutri-table td{padding:9px 8px;}.ranking li{padding:10px 10px;}.related a{padding:8px 12px;}}

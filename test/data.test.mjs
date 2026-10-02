@@ -61,7 +61,7 @@ test("glucides covers the five sugars (French convention, fibres excluded)", () 
 
 test("config.json has site url", () => {
   assert.equal(config.siteUrl, "https://sugar.thoth.fr");
-  assert.equal(config.siteName, "Sugar");
+  assert.equal(config.siteName, "Glykon");
 });
 
 test("config.json has every company field for the mentions légales page", () => {

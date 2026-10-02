@@ -1,4 +1,4 @@
-// Shared loader for the two primary datasets used by Sugar:
+// Shared loader for the two primary datasets used by Glykon:
 //   CIQUAL 2020 (ANSES, XML) and USDA SR Legacy (FoodData Central, CSV).
 // Downloads on first use into <repo>/.tmp/datasets/ (git-ignored), then
 // caches a compact JSON index so later runs start in well under a second.

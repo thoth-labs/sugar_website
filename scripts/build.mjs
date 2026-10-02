@@ -98,15 +98,23 @@ function notFoundPage(config) {
 // so crawlers reach every food and nutrient page without running the app.
 const INDEX_START = "<!-- build:index -->";
 const INDEX_END = "<!-- /build:index -->";
+const CATEGORY_EMOJI = { fruits: "🍎", legumes: "🥕", cereales: "🌾", proteines: "🥩", laitiers: "🧀", legumineuses: "🫘", oleagineux: "🥜", sucres: "🍬", boissons: "🥤" };
+// Categories are collapsed <details>: short to scan, and the links stay in the HTML for crawlers.
 function homeIndex(foods, nutrients) {
   const keys = [...new Set([...Object.keys(CATEGORY_LABELS), ...foods.map((f) => f.category)])];
+  const chip = (href, emoji, label, style = "") => `<li><a class="chip" href="${href}"${style}><span aria-hidden="true">${esc(emoji)}</span> ${esc(label)}</a></li>`;
   const groups = keys.map((key) => [key, foods.filter((f) => f.category === key).sort(byName)]).filter(([, list]) => list.length)
-    .map(([key, list]) => `<h3>${esc(CATEGORY_LABELS[key] || key)}</h3><ul>${list.map((f) => `<li><a href="aliment/${f.id}/">${esc(f.emoji)} ${esc(f.name)}</a></li>`).join("")}</ul>`).join("\n");
+    .map(([key, list]) => `<details class="si-group"><summary><span class="si-emoji" aria-hidden="true">${CATEGORY_EMOJI[key] || "🍽️"}</span><span class="si-label">${esc(CATEGORY_LABELS[key] || key)}</span><span class="si-count">${list.length} aliment${list.length > 1 ? "s" : ""}</span></summary><ul class="chips">${list.map((f) => chip(`aliment/${f.id}/`, f.emoji, f.name)).join("")}</ul></details>`).join("\n");
   return `${INDEX_START}
 <section class="site-index" aria-labelledby="site-index-title">
-<h2 id="site-index-title">Tous les aliments et nutriments</h2>
-<h3>Par nutriment</h3><ul>${nutrients.map((n) => `<li><a href="nutriment/${n.key}/">${esc(n.emoji)} ${esc(n.label)}</a></li>`).join("")}</ul>
+<h2 id="site-index-title">Parcourir les fiches</h2>
+<p class="si-lead">Chaque nutriment et chaque aliment a sa page détaillée, avec ses sources.</p>
+<h3>Classements par nutriment</h3>
+<ul class="chips">${nutrients.map((n) => chip(`nutriment/${n.key}/`, n.emoji, n.label, ` style="--chip-color:${esc(n.color)}"`)).join("")}</ul>
+<h3>Fiches aliments, par catégorie</h3>
+<div class="si-groups">
 ${groups}
+</div>
 </section>
 ${INDEX_END}`;
 }

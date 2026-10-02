@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Sugar: a French-language static site that ranks around 100 foods by nutrient content (five sugar types, macronutrients, calories, glycemic index) per 100 g. Zero npm dependencies, Node 20 or later. Deployed via GitHub Pages at `sugar.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
+Glykon (formerly Sugar): a French-language static site that ranks around 100 foods by nutrient content (five sugar types, macronutrients, calories, glycemic index) per 100 g. Zero npm dependencies, Node 20 or later. Deployed via GitHub Pages at `sugar.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
 
 ## Data model
 
@@ -53,4 +53,4 @@ Use the `add-food` skill (`.claude/skills/add-food/`) or the `food-sourcer` agen
 
 ## Copy conventions
 
-All UI copy is in French. The site name is exactly `Sugar`, everywhere (title, meta tags, logo, footer, page titles). Do not use dashes ("—", "–") or " - " as sentence punctuation anywhere in user-facing copy; use a comma, a colon or a new sentence instead. Hyphens inside compound words (`chou-fleur`, `demi-écrémé`, `petit-beurre`) are fine.
+All UI copy is in French. The site name is exactly `Glykon`, everywhere (title, meta tags, logo, footer, page titles). Do not use dashes ("—", "–") or " - " as sentence punctuation anywhere in user-facing copy; use a comma, a colon or a new sentence instead. Hyphens inside compound words (`chou-fleur`, `demi-écrémé`, `petit-beurre`) are fine.

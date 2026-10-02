@@ -21,6 +21,7 @@ export function layout({ siteName, siteUrl, path, title, description, body, plau
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a3a2a">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">${noindex ? `\n<meta name="robots" content="noindex">` : `\n<link rel="canonical" href="${canonical}">`}
 <meta property="og:type" content="website">
@@ -35,11 +36,11 @@ export function layout({ siteName, siteUrl, path, title, description, body, plau
 <link rel="stylesheet" href="/assets/pages.css">${plausible}${ld}
 </head>
 <body>
-<header><a class="logo" href="/">Sugar</a><nav class="header-nav"><a href="/">Classement</a><a href="/comprendre.html">Comprendre les sucres</a></nav></header>
+<header><a class="logo" href="/">${esc(siteName)}</a><nav class="header-nav"><a href="/">Classement</a><a href="/comprendre.html">Comprendre les sucres</a></nav></header>
 <main class="page">
 ${body}
 </main>
-<footer>Sugar · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques) · <a href="/mentions-legales.html">Mentions légales</a></footer>
+<footer>${esc(siteName)} · Valeurs pour 100 g · Sources : CIQUAL (ANSES), USDA · IG : valeurs indicatives (tables publiques) · <a href="/mentions-legales.html">Mentions légales</a></footer>
 </body>
 </html>
 `;

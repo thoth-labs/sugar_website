@@ -1,9 +1,9 @@
 ---
 name: add-food
-description: Use when adding, replacing or re-sourcing a food in data/foods.json for the Sugar site, or when asked where a food's nutrient numbers should come from (CIQUAL, USDA, "valeur pour 100 g", sucres, glucose, fructose, index glycémique)
+description: Use when adding, replacing or re-sourcing a food in data/foods.json for the Glykon site, or when asked where a food's nutrient numbers should come from (CIQUAL, USDA, "valeur pour 100 g", sucres, glucose, fructose, index glycémique)
 ---
 
-# Add a food to Sugar
+# Add a food to Glykon
 
 ## Overview
 
