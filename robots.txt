@@ -12,4 +12,4 @@ Disallow: /docs/
 Disallow: /scripts/
 Disallow: /test/
 
-Sitemap: https://sugar.thoth.fr/sitemap.xml
+Sitemap: https://glykon.thoth.fr/sitemap.xml

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Glykon (formerly Sugar): a French-language static site that ranks around 100 foods by nutrient content (five sugar types, macronutrients, calories, glycemic index) per 100 g. Zero npm dependencies, Node 20 or later. Deployed via GitHub Pages at `sugar.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
+Glykon (formerly Sugar): a French-language static site that ranks around 100 foods by nutrient content (five sugar types, macronutrients, calories, glycemic index) per 100 g. Zero npm dependencies, Node 20 or later. Deployed via GitHub Pages at `glykon.thoth.fr` (see `CNAME`, remote `thoth-labs/sugar_website`). Pushing to `main` publishes the site.
 
 ## Data model
 

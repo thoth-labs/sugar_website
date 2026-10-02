@@ -2,7 +2,7 @@
 
 Ce que contient vraiment votre assiette : types de sucres (glucose, fructose,
 saccharose, lactose, maltose), macronutriments, calories et index glycémique
-de plus de 100 aliments, pour 100 g. En ligne sur https://sugar.thoth.fr.
+de plus de 100 aliments, pour 100 g. En ligne sur https://glykon.thoth.fr.
 
 ## Développement
 
